@@ -1,0 +1,52 @@
+@startuml
+class User {
+  id: number
+  username: string
+  password: string
+  email: string
+  name: string
+  birthdate: date
+  address: Address
+}
+
+class Address {
+  id: number
+  zip: string
+  street: string
+  number: number
+  suite: string
+  city: string
+  district: string
+  state: string
+}
+
+class SupportType {
+ id:
+ type:
+}
+
+class Volunteer {
+ supportTypes: SupportType[]
+}
+
+class Senior {
+}
+
+class Task {
+id: number
+title: string
+supportType: SupportType
+description: string
+date: date
+time: datetime
+status: string
+senior: Senior
+
+volunteer: Volunteer
+}
+
+
+User "1" *-- "1" Address : has
+Volunteer <|-- User : inherits
+Senior <|-- User : inherits
+@enduml
