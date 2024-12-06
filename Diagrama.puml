@@ -2,11 +2,15 @@
 class User {
   id: number
   username: string
+  cpf: string
   password: string
   email: string
   name: string
   birthdate: date
   address: Address
+  taskList: Task[]
+  description: string
+  userType: 
 }
 
 class Address {
@@ -21,8 +25,8 @@ class Address {
 }
 
 class SupportType {
- id:
- type:
+ id: number
+ type: ENUM
 }
 
 class Volunteer {
@@ -30,20 +34,30 @@ class Volunteer {
 }
 
 class Senior {
+ 
 }
 
 class Task {
 id: number
 title: string
 supportType: SupportType
+isOnline: boolean
 description: string
 date: date
 time: datetime
 status: string
-senior: Senior
-
-volunteer: Volunteer
+seniorID: Senior
+volunteerID: Volunteer
+candidatesID: Volunteer[]
+assessmentID: Assement 
 }
+
+class Assement {
+id: number
+grade: number
+comment: string
+taskID: string
+} 
 
 
 User "1" *-- "1" Address : has
