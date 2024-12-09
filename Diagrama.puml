@@ -1,66 +1,78 @@
 @startuml
 class User {
-  id: number
+  id: int
+  firstName: string
+  lastName: string
   username: string
-  cpf: string
   password: string
   email: string
-  name: string
+  phone: int
   birthdate: date
   address: Address
   taskList: Task[]
   description: string
-  userType: 
+  role: Role
+  createdAt: date
+  profilePicture: byte[]
+}
+
+class Volunteer {
+ supportTypes: SupportType[]
+ rating: double
+}
+
+class Task {
+  id: int
+  title: string
+  supportType: SupportType
+  isOnline: boolean
+  description: string
+  date: date
+  time: datetime
+  city: string
+  state: string
+  status: string
+  requestBy: Senior
+  volunteer: Volunteer
+  candidates: Volunteer[]
+  assessment: Assement | null
 }
 
 class Address {
-  id: number
   zip: string
   street: string
-  number: number
+  number: string
   suite: string
   city: string
   district: string
   state: string
 }
 
-class SupportType {
- id: number
- type: ENUM
-}
-
-class Volunteer {
- supportTypes: SupportType[]
-}
-
-class Senior {
- 
-}
-
-class Task {
-id: number
-title: string
-supportType: SupportType
-isOnline: boolean
-description: string
-date: date
-time: datetime
-status: string
-seniorID: Senior
-volunteerID: Volunteer
-candidatesID: Volunteer[]
-assessmentID: Assement 
-}
-
 class Assement {
-id: number
-grade: number
-comment: string
-taskID: string
+  grade: double
+  comment: string
+  taskID: int
 } 
 
+enum Role {
+  SENIOR
+  VOLUNTEER
+}
 
-User "1" *-- "1" Address : has
-Volunteer <|-- User : inherits
-Senior <|-- User : inherits
+enum SupportType {
+  COMPANIONSHIP_AND_TRANSPORT
+  MAINTENANCE_AND_REPAIRS
+  TEACHING_AND_TECHNOLOGY : (online available)
+  SOCIAL_ACTIVITIES : (online available)
+  PHYSICAL_ACTIVITIES
+}
+
+Task "1" -- "1" Assement
+SupportType "1" -- "*" Task
+SupportType "*" -- "*" Volunteer : has
+User "2" -- "*" Task
+User "1" -- "1" Role : has
+User "1" -- "1" Address : has
+User <|-- Volunteer
+
 @enduml
