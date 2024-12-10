@@ -1,10 +1,14 @@
 package com.cuidarmais.demo.Entities;
 
-import java.sql.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import com.cuidarmais.demo.Entities.EntitiyObjects.Address;
 import com.cuidarmais.demo.Entities.EntitiyObjects.Enums.Role;
 
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -31,19 +35,21 @@ public class User {
 
     private int phone;
 
-    private Date birthdate;
+    private LocalDate birthdate;
 
+    @Embedded
     private Address address;
 
     private String description;
 
     private Role role;
 
-    private Date createdAt;
+    @CreationTimestamp
+    private LocalDateTime createdAt;
 
 
     public User(String firstName, String lastName, String username, String password, String email, int phone,
-            Date birthdate, Address address) {
+            LocalDate birthdate, Address address, Role role) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
@@ -52,14 +58,15 @@ public class User {
         this.phone = phone;
         this.birthdate = birthdate;
         this.address = address;
+        this.role = role;
     }
 
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -111,11 +118,11 @@ public class User {
         this.phone = phone;
     }
 
-    public Date getBirthdate() {
+    public LocalDate getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(Date birthdate) {
+    public void setBirthdate(LocalDate birthdate) {
         this.birthdate = birthdate;
     }
 
@@ -143,11 +150,7 @@ public class User {
         this.role = role;
     }
 
-    public Date getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }     
 }

@@ -18,16 +18,5 @@ public class UserController {
 
     @Autowired
     public UserService userService;
-
-    @GetMapping("/users")
-    public List<User> getUsers() {
-        return userService.getUsers();
-    }
-    
-
-    @PostMapping("/create")
-    public User createUser(@RequestBody User user) {
-        return userService.createUser(user);
-    }
     
 }
