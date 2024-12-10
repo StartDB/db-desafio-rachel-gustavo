@@ -1,7 +1,7 @@
 import { UserDTO } from "./interfaces/user.dto";
 
 export async function postUser(user: UserDTO): Promise<UserDTO> {
-    const url = "http://localhost:8080/create";
+    const url = "http://localhost:8080/save";
 
     const response = await fetch(url, {
         method: "POST",
