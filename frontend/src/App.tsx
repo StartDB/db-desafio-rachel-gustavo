@@ -7,6 +7,7 @@ function App() {
     <>
       <header>
         <Link to="/cadastro">Cadastrar</Link>
+        <Link to="/login"></Link>
       </header>
      <Outlet />
     </>
