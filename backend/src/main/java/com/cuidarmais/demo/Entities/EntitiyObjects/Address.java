@@ -1,5 +1,8 @@
 package com.cuidarmais.demo.Entities.EntitiyObjects;
 
+import jakarta.persistence.Embeddable;
+
+@Embeddable
 public class Address {
 
     private String zip;
@@ -15,6 +18,8 @@ public class Address {
     private String district;
 
     private String state;
+
+    public Address() {};
 
     public Address(String zip, String street, String number, String suite, String city, String district, String state) {
         this.zip = zip;

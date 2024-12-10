@@ -1,5 +1,6 @@
 package com.cuidarmais.demo.Controllers;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,5 +19,19 @@ public class UserController {
 
     @Autowired
     public UserService userService;
+
+    @GetMapping("/listAll")
+    public List<User> getListUsers() {
+        return userService.listAll();
+    }
+    
+    
+    @PostMapping("/save")
+    public User saveUser(@RequestBody User user) {
+        
+        userService.saveUser(user);
+        
+        return user;
+    }
     
 }
