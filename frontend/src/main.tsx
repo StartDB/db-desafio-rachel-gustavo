@@ -9,15 +9,15 @@ import { Dashboard} from './pages/Dashboard.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <BrowserRouter>
-      <Routes>
-          <Route path="/" element={<App />}>
-            <Route path="cadastro" element = {<Register/>} />
-            <Route path="login" element = {<Login/>} />
-            <Route path="dashboard/:id" element={<Dashboard />}>
+      <BrowserRouter>
+        <Routes>
+            <Route path="/" element={<App />}>
+              <Route path="cadastro" element = {<Register/>} />
+              <Route path="login" element = {<Login/>} />
+              <Route path="dashboard/:id" element={<Dashboard />}>
+              </Route>
             </Route>
-          </Route>
-      </Routes>
-    </BrowserRouter>
+        </Routes>
+      </BrowserRouter>
   </StrictMode>,
 )
