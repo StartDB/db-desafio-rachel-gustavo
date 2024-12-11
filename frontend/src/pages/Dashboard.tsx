@@ -1,8 +1,8 @@
-import { Outlet, useParams } from "react-router";
-import { NavBarDashboard } from "../components/NavBarDashBoard";
+import { Outlet } from "react-router";
+import { NavBarDashboard } from "../components/NavBarDashboard";
 
 export function Dashboard(){
-    const { id } = useParams();
+    // const { id } = useParams();
 
     return (
         <>
