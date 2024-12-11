@@ -1,13 +1,15 @@
 import { Outlet } from "react-router";
 import { NavBarDashboard } from "../components/NavBarDashboard";
-import { testUser } from "../services/testUser";
+import useUser from "../contexts/hook/useUser";
 
 export function Dashboard(){
+    const { user } = useUser();
+    
     return (
         <>
             <header>
                 <NavBarDashboard />
-                <h1>{testUser.firstName}</h1>
+                <h1>{user?.firstName + " " + user?.lastName}</h1>
             </header>
             <Outlet />
         </>

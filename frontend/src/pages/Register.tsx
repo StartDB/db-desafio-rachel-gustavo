@@ -29,7 +29,7 @@ export default function Register() {
 	};
 
 	const [data, setData] = useState<UserDTO>(INITIALUSER);
-	
+
 	function handleChangeAdress(e: React.ChangeEvent<HTMLInputElement>) {
 		let { name, value } = e.target;
 		setAddress({
@@ -99,8 +99,8 @@ export default function Register() {
 				<div>
 					<label>Tipo de cadastro</label>
 
-					<input type="radio" name="role" id="elderly" value="ELDERLY" checked={data.role === "ELDERLY"} onChange={handleChange}/><label htmlFor="elderly">Idoso</label>
-					<input type="radio" name="role" id="volunteer" value="VOLUNTEER" checked={data.role === "VOLUNTEER"}onChange={handleChange}/><label htmlFor="volunteer">Voluntário</label>
+					<input type="radio" name="role" id="elderly" value="elderly" checked={data.role === "elderly"} onChange={handleChange}/><label htmlFor="elderly">Idoso</label>
+					<input type="radio" name="role" id="volunteer" value="volunteer" checked={data.role === "volunteer"}onChange={handleChange}/><label htmlFor="volunteer">Voluntário</label>
 				</div>
 
 			</fieldset>

@@ -1,7 +1,8 @@
+import { UserDTO } from "../services/interfaces/user.dto";
 import UserCredentialsDTO from "../services/interfaces/userCredentials.dto";
 
-export default async function loginUser(userCredentials: UserCredentialsDTO):Promise<number>{
-    const url:string = "http://localhost:8080/??"
+export default async function loginUser(userCredentials: UserCredentialsDTO):Promise<UserDTO>{
+    const url:string = "http://localhost:8080/user/login"
 
     const response: Response = await fetch(url,{
         method: "POST",
