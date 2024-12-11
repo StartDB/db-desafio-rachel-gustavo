@@ -26,8 +26,8 @@ import jakarta.persistence.Table;
     property = "role"
 )
 @JsonSubTypes({
-    @JsonSubTypes.Type(value = Elderly.class, name = "ELDERLY"),
-    @JsonSubTypes.Type(value = Volunteer.class, name = "VOLUNTEER")
+    @JsonSubTypes.Type(value = Elderly.class, name = "elderly"),
+    @JsonSubTypes.Type(value = Volunteer.class, name = "volunteer")
 })
 public abstract class User {
 

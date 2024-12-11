@@ -4,7 +4,7 @@ import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 
 @Entity
-@DiscriminatorValue("VOLUNTEER")
+@DiscriminatorValue("volunteer")
 public class Volunteer extends User {
 
     private double rating;
