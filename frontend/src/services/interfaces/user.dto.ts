@@ -1,6 +1,7 @@
 import { AddressDTO } from "./adress.dto"
 
 export interface UserDTO {
+    id?:number
     firstName: string
     lastName: string
     username: string
@@ -10,4 +11,5 @@ export interface UserDTO {
     birthdate: string
     address: AddressDTO
     role: string
+    description?:string
 }
