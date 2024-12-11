@@ -5,8 +5,8 @@ import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import com.cuidarmais.demo.Entities.EntitiyObjects.Address;
-import com.cuidarmais.demo.Entities.EntitiyObjects.Enums.Role;
+import com.cuidarmais.demo.Entities.EntityObjects.Address;
+import com.cuidarmais.demo.Entities.EntityObjects.Enums.Role;
 
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -47,7 +47,7 @@ public class User {
     @CreationTimestamp
     private LocalDateTime createdAt;
 
-    public User() {};
+    public User() {}
 
     public User(String firstName, String lastName, String username, String password, String email, int phone,
             LocalDate birthdate, Address address, Role role) {
