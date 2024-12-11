@@ -1,4 +1,4 @@
-import { Outlet, useParams } from "react-router";
+import { Outlet } from "react-router";
 import { NavBarDashboard } from "../components/NavBarDashboard";
 import { testUser } from "../services/testUser";
 
@@ -11,6 +11,5 @@ export function Dashboard(){
             </header>
             <Outlet />
         </>
-    
     )
 }

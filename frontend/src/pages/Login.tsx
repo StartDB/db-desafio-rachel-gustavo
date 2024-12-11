@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import UserCredentialsDTO from "../services/interfaces/userCredentials.dto";
-import loginUser from "../api/auth";
+// import loginUser from "../api/auth";
 import { testUser } from "../services/testUser";
 
 export function Login(){
