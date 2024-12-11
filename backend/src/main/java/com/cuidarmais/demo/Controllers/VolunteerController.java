@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cuidarmais.demo.Entities.Volunteer;
+import com.cuidarmais.demo.Services.VolunteerService;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,7 +28,7 @@ public class VolunteerController {
     @PostMapping("/save")
     public Volunteer saveVolunteer(@RequestBody Volunteer volunteer) {
         
-        volunteerService.save();
+        volunteerService.saveVolunteer(volunteer);
 
         return volunteer;
     }
