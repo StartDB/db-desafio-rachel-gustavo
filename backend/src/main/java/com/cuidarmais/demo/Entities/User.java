@@ -6,14 +6,12 @@ import java.time.LocalDateTime;
 import org.hibernate.annotations.CreationTimestamp;
 
 import com.cuidarmais.demo.Entities.EntityObjects.Address;
-import com.cuidarmais.demo.Entities.EntityObjects.Enums.Role;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -22,6 +20,15 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "users")
 @DiscriminatorColumn(name = "role")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME, 
+    include = JsonTypeInfo.As.PROPERTY, 
+    property = "role"
+)
+@JsonSubTypes({
+    @JsonSubTypes.Type(value = Elderly.class, name = "ELDERLY"),
+    @JsonSubTypes.Type(value = Volunteer.class, name = "VOLUNTEER")
+})
 public abstract class User {
 
     @Id
@@ -46,10 +53,6 @@ public abstract class User {
     private Address address;
 
     private String description;
-
-    @Column(insertable = false, updatable = false)
-    @Enumerated(EnumType.STRING)
-    private Role role;
 
     @CreationTimestamp
     private LocalDateTime createdAt;

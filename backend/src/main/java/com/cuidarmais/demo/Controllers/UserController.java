@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cuidarmais.demo.DTO.LoginDTO;
-import com.cuidarmais.demo.DTO.LoginResponseDTO;
 import com.cuidarmais.demo.Entities.User;
 import com.cuidarmais.demo.Services.UserService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,7 +27,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public LoginResponseDTO login(@RequestBody LoginDTO login) {
+    public User login(@RequestBody LoginDTO login) {
 
         return userService.login(login);
     }
