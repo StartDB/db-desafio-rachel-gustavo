@@ -1,13 +1,13 @@
 import { Link, Outlet } from 'react-router'
 import './App.css'
+import { NavBar } from './components/navBar'
 
 function App() {
 
   return (
     <>
       <header>
-        <Link to="/cadastro">Cadastrar</Link>
-        <Link to="/login"></Link>
+        <NavBar />
       </header>
      <Outlet />
     </>
