@@ -18,4 +18,9 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    public User login(LoginDTO login) {
+        return userRepository.findLogin(login.username, login.password);
+    }
+    
+
 }
