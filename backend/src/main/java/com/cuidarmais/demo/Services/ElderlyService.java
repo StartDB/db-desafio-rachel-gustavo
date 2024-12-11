@@ -1,5 +1,7 @@
 package com.cuidarmais.demo.Services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,4 +18,7 @@ public class ElderlyService {
         return this.elderlyRepository.save(elderly);
     }
 
+    public List<Elderly> listAll() {
+        return elderlyRepository.findAll();
+    }
 }
