@@ -12,4 +12,6 @@ export interface UserDTO {
     address: AddressDTO
     role: string
     description?:string
+    createAt?: Date
+    rating?: number
 }
