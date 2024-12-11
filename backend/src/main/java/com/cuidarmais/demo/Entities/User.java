@@ -5,11 +5,15 @@ import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import com.cuidarmais.demo.Entities.EntitiyObjects.Address;
-import com.cuidarmais.demo.Entities.EntitiyObjects.Enums.Role;
+import com.cuidarmais.demo.Entities.EntityObjects.Address;
+import com.cuidarmais.demo.Entities.EntityObjects.Enums.Role;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -17,7 +21,8 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "users")
-public class User {
+@DiscriminatorColumn(name = "role")
+public abstract class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -42,15 +47,17 @@ public class User {
 
     private String description;
 
+    @Column(insertable = false, updatable = false)
+    @Enumerated(EnumType.STRING)
     private Role role;
 
     @CreationTimestamp
     private LocalDateTime createdAt;
 
-    public User() {};
+    public User() {}
 
     public User(String firstName, String lastName, String username, String password, String email, int phone,
-            LocalDate birthdate, Address address, Role role) {
+            LocalDate birthdate, Address address) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
@@ -59,7 +66,6 @@ public class User {
         this.phone = phone;
         this.birthdate = birthdate;
         this.address = address;
-        this.role = role;
     }
 
 
@@ -141,14 +147,6 @@ public class User {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
     }
 
     public LocalDateTime getCreatedAt() {
