@@ -1,28 +1,24 @@
 package com.cuidarmais.demo.Services;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cuidarmais.demo.Entities.User;
+import com.cuidarmais.demo.Repositories.UserRepository;
 
-@Repository
+@Service
 public class UserService {
 
-    private List<User> users;
+    @Autowired
+    private UserRepository userRepository;
 
-    public UserService() {
-        this.users = new ArrayList<User>();
+    public User saveUser(User user) {
+        return this.userRepository.save(user);
     }
 
-    public User createUser(User user) {
-        users.add(user);
-        return user;
-   }
-
-   public List<User> getUsers() {
-        return users;
-   }
+    public List<User> listAll() {
+        return this.userRepository.findAll();
+    }
 }

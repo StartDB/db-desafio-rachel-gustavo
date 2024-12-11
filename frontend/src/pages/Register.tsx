@@ -88,7 +88,7 @@ export default function Register() {
 				<div>
 					<label>Tipo de cadastro</label>
 
-					<input type="radio" name="role" id="eldery" value="ELDERY" checked={data.role === "ELDERY"} onChange={handleChange}/><label htmlFor="eldery">Idoso</label>
+					<input type="radio" name="role" id="elderly" value="ELDERLY" checked={data.role === "ELDERLY"} onChange={handleChange}/><label htmlFor="elderly">Idoso</label>
 					<input type="radio" name="role" id="volunteer" value="VOLUNTEER" checked={data.role === "VOLUNTEER"}onChange={handleChange}/><label htmlFor="volunteer">Voluntário</label>
 				</div>
 
