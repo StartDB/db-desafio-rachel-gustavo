@@ -48,10 +48,21 @@ export default function Register() {
 		
 		switch (name){
 			case 'phone':
-				setData({
-					...data,
-					[name]: parseInt(value),
-				});
+				const regexDigits: RegExp = /^\d{1,9}$/
+
+				if (value == "") {
+					setData({
+						...data,
+						[name]: 0,
+					});
+				}
+
+				if (regexDigits.test(value)) {
+					setData({
+						...data,
+						[name]: parseInt(value),
+					});
+				}
 				break;
 
 			default:
