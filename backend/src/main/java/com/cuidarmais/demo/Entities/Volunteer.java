@@ -1,8 +1,10 @@
 package com.cuidarmais.demo.Entities;
 
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 
 @Entity
+@DiscriminatorValue("VOLUNTEER")
 public class Volunteer extends User {
 
     private double rating;

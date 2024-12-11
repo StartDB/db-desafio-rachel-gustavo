@@ -8,6 +8,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import com.cuidarmais.demo.Entities.EntityObjects.Address;
 import com.cuidarmais.demo.Entities.EntityObjects.Enums.Role;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,6 +19,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "users")
+@DiscriminatorColumn(name = "role")
 public abstract class User {
 
     @Id
@@ -42,6 +45,7 @@ public abstract class User {
 
     private String description;
 
+    @Column(insertable = false, updatable = false)
     private Role role;
 
     @CreationTimestamp
@@ -50,7 +54,7 @@ public abstract class User {
     public User() {}
 
     public User(String firstName, String lastName, String username, String password, String email, int phone,
-            LocalDate birthdate, Address address, Role role) {
+            LocalDate birthdate, Address address) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
@@ -59,7 +63,6 @@ public abstract class User {
         this.phone = phone;
         this.birthdate = birthdate;
         this.address = address;
-        this.role = role;
     }
 
 
@@ -141,14 +144,6 @@ public abstract class User {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
     }
 
     public LocalDateTime getCreatedAt() {
