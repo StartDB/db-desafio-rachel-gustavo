@@ -12,6 +12,8 @@ import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -46,6 +48,7 @@ public abstract class User {
     private String description;
 
     @Column(insertable = false, updatable = false)
+    @Enumerated(EnumType.STRING)
     private Role role;
 
     @CreationTimestamp
