@@ -1,4 +1,4 @@
-package com.cuidarmais.demo.Entities.EntitiyObjects.Enums;
+package com.cuidarmais.demo.Entities.EntityObjects.Enums;
 
 public enum Role {
     

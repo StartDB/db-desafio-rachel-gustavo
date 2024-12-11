@@ -1,4 +1,4 @@
-package com.cuidarmais.demo.Entities.EntitiyObjects;
+package com.cuidarmais.demo.Entities.EntityObjects;
 
 import jakarta.persistence.Embeddable;
 
