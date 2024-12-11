@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import UserCredentialsDTO from "../services/interfaces/userCredentials.dto";
 import loginUser from "../api/auth";
+import { testUser } from "../services/testUser";
 
 export function Login(){
     const [userCredentials, setuserCredentials] = useState<UserCredentialsDTO>({
@@ -15,7 +16,8 @@ export function Login(){
         e.preventDefault()
 
         try {
-            const newId = await loginUser(userCredentials)
+            // const newId = await loginUser(userCredentials)
+            const newId = testUser.id
             navigate(`dashboard/${newId}`);
         } catch(error){
             alert(error)
@@ -33,7 +35,7 @@ export function Login(){
     return (
         <form onSubmit={handleSubmit}>
             <h1>Login</h1>
-            
+
             <div>
                 <label>Nome do Usuário</label>
                 <input type="text" name="username" placeholder="Nome Completo" value={userCredentials.username} onChange={handleChange}/>
