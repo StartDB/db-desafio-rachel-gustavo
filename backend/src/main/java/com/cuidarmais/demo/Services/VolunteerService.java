@@ -1,5 +1,7 @@
 package com.cuidarmais.demo.Services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,4 +21,7 @@ public class VolunteerService {
         return volunteer;
     }
 
+    public List<Volunteer> listAll() {
+        return volunteerRepository.findAll();
+    }
 }
