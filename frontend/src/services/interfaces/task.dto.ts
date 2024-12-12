@@ -1,3 +1,5 @@
+import { UserDTO } from "./user.dto"
+
 export interface TaskDTO {
     id: number
     title: string
@@ -9,7 +11,7 @@ export interface TaskDTO {
     city: string
     state: string
     status: string
-    requestBy: number // id do idoso
-    volunteer?: number | null // id do voluntario
+    requestBy: UserDTO
+    volunteer?: UserDTO | null 
     assessment?: null
 }

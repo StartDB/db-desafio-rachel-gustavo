@@ -1,4 +1,5 @@
 import { TaskDTO } from "../interfaces/task.dto";
+import { testUser } from "./testUser";
 
 const exampleTask: TaskDTO = {
     id: 1,
@@ -11,7 +12,7 @@ const exampleTask: TaskDTO = {
     city: "São Paulo",
     state: "SP",
     status: "Disponível",
-    requestBy: 101, // ID do idoso
+    requestBy: testUser,
     volunteer: null, // Ainda sem voluntário
     assessment: null // Avaliação ainda não realizada
 };
