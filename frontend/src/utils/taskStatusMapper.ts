@@ -10,7 +10,7 @@ export const statusMap: Record <string, string> = {
 export function mapTaskStatus(task: TaskDTO): TaskDTO {
     return {
         ...task,
-        supportType: statusMap[task.supportType] || "(Sem status)"
+        status: statusMap[task.status] || "(Sem status)"
     }
 }
 

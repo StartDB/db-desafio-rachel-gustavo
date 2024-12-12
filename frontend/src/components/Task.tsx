@@ -1,6 +1,18 @@
 import { TaskDTO } from "../services/interfaces/task.dto";
 
-export default function Task ({title, description, date, supportType, city, state, status, requestBy, isOnline}: TaskDTO) {
+export default function Task ({title, description, date, time, supportType, city, state, status, requestBy, isOnline}: TaskDTO) {
+    function formatDate(date: string): string {
+        let formattedDate = date.split("-")
+        return `${formattedDate[2]}/${formattedDate[1]}/${formattedDate[0]}`
+        
+    }
+
+    function formatTime(time: string): string {
+        let formattedTime = time.split(":")
+        return `${formattedTime[0]}:${formattedTime[1]}`
+        
+    }
+
     return (
         <>
             <article>
@@ -8,9 +20,9 @@ export default function Task ({title, description, date, supportType, city, stat
                     <h2>{title}</h2>
                     <div>
                         <h3>Data:</h3>
-                        <p>{`${date.getDay()}/${date.getDate() +1 }/${date.getFullYear()}`}</p>
+                        <p>{formatDate(date)}</p>
                         <h3>Hora:</h3>
-                        <p>{`${date.getHours()}:${date.getMinutes()}`}</p>
+                        <p>{formatTime(time)}</p>
                     </div>
                     <div>
                         <h3>Local:</h3>

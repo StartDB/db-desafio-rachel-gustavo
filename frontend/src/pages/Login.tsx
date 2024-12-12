@@ -2,12 +2,12 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import UserCredentialsDTO from "../services/interfaces/userCredentials.dto";
 import useUser from "../contexts/hook/useUser";
-//import loginUser from "../api/auth";
-//import { UserDTO } from "../services/interfaces/user.dto";
-import { testUser } from "../services/tests/testUser";
+import loginUser from "../api/auth";
+import { UserDTO } from "../services/interfaces/user.dto";
+// import { testUser } from "../services/tests/testUser";
 
 export function Login(){
-    const { user, setUser } = useUser();
+    const { setUser } = useUser();
     
     const [userCredentials, setuserCredentials] = useState<UserCredentialsDTO>({
         username: "",
@@ -20,15 +20,15 @@ export function Login(){
         e.preventDefault()
 
         try {
-            //const userAPI: UserDTO = await loginUser(userCredentials)
-            // setUser(userAPI)
-            setUser(testUser) // TESTE EXCLUIR
-            //navigate(`/dashboard/${user?.id}`);
+            const userAPI: UserDTO = await loginUser(userCredentials)
+            setUser(userAPI)
+            //setUser(testUser) // TESTE EXCLUIR
+            navigate(`/dashboard/${userAPI?.id}`);
         } catch(error){
             alert(error)
         }
 
-        navigate(`/dashboard/${user?.id}`); // TESTE EXCLUIR
+        //navigate(`/dashboard/${user?.id}`); // TESTE EXCLUIR
     }
 
     function handleChange(e: React.ChangeEvent<HTMLInputElement>): void {

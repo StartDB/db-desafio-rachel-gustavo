@@ -3,8 +3,8 @@ import getTasks from "../api/getTask";
 import { transformTasksSupportTypes } from "../utils/taskSupportTypeMapper";
 import { transformTasksStatus } from "../utils/taskStatusMapper";
 import { TaskDTO } from "../services/interfaces/task.dto";
-import Task from "../components/task";
-import { exampleTask } from "../services/tests/testTask";
+import Task from "../components/Task.tsx";
+// import { exampleTask } from "../services/tests/testTask";
 
 export default function SearchTasks() {
 
@@ -21,7 +21,7 @@ export default function SearchTasks() {
     async function captureTasks(supportType?: string): Promise<void> {
         // setTasks([exampleTask])
         // setWarning("")
-        
+
         try {
             const tasks: TaskDTO[] = await getTasks(supportType);
 
@@ -55,7 +55,7 @@ export default function SearchTasks() {
             supportType: value,
         });
 
-        captureTasks(search.supportType)
+        captureTasks(value)
     }
 
     function handleClick() {
@@ -81,7 +81,7 @@ export default function SearchTasks() {
 
                         <input type="radio" name="supportType" value="SOCIAL_ACTIVITIES" checked={search.supportType === "SOCIAL_ACTIVITIES"} onChange={handleChange} /><label>Atividades Sociais</label>
 
-                        <input type="radio" name="supportType" value="PHYSICAL_ACTIVITIES" checked={search.supportType === "PHYSICAL_ACTIVITIES"} onChange={handleChange} /><label>Acompanhamento e Ensino</label>
+                        <input type="radio" name="supportType" value="PHYSICAL_ACTIVITIES" checked={search.supportType === "PHYSICAL_ACTIVITIES"} onChange={handleChange} /><label>Atividades Físicas</label>
                     </div>
                 </fieldset>
 

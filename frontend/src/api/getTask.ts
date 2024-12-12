@@ -1,9 +1,9 @@
 import { TaskDTO } from "../services/interfaces/task.dto";
 
 export default async function getTasks(supportType?: string): Promise<TaskDTO[]> {
-    const initialUrl: string = "localhost:8080/task/SupportTypeOrStatusFilter?:";
+    const initialUrl: string = "http://localhost:8080/task/SupportTypeOrStatusFilter?status=AVAILABLE";
 
-    const finalUrl:string = supportType ? `${initialUrl}supportType=${supportType}` : initialUrl
+    const finalUrl:string = supportType ? `${initialUrl}&&supportType=${supportType}` : initialUrl
 
     const response: Response = await fetch(finalUrl)
 

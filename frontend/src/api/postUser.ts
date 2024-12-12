@@ -14,5 +14,6 @@ export async function postUser(user: UserDTO): Promise<UserDTO> {
     if (!response.ok) {
         throw new Error(`Erro: ${response.status}`)
     }
+    console.log(response.json())
     return response.json()
 }

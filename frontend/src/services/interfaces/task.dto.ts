@@ -6,8 +6,8 @@ export interface TaskDTO {
     supportType: string
     isOnline: boolean
     description: string
-    date: Date
-    time: Date
+    date: string
+    time: string
     city: string
     state: string
     status: string
