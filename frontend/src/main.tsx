@@ -7,6 +7,7 @@ import Register from './pages/Register.tsx'
 import { Login } from './pages/Login.tsx'
 import { Dashboard} from './pages/Dashboard.tsx'
 import { UserProvider } from './contexts/UserContext.tsx'
+import SearchTasks from './pages/SearchTasks.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -17,6 +18,7 @@ createRoot(document.getElementById('root')!).render(
                 <Route path="cadastro" element = {<Register/>} />
                 <Route path="login" element = {<Login/>} />
                 <Route path="dashboard/:id" element={<Dashboard />}>
+                  <Route path="tarefas" element={<SearchTasks />}/>
                 </Route>
               </Route>
           </Routes>

@@ -1,7 +1,7 @@
 import { TaskDTO } from "../interfaces/task.dto";
 import { testUser } from "./testUser";
 
-const exampleTask: TaskDTO = {
+export const exampleTask: TaskDTO = {
     id: 1,
     title: "Entrega de Medicamentos",
     supportType: "Acompanhamento e Transporte",
