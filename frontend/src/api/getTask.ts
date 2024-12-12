@@ -8,8 +8,9 @@ export default async function getTasks(supportType?: string): Promise<TaskDTO[]>
     const response: Response = await fetch(finalUrl)
 
     if (!response.ok) {
-        throw new Error(`Erro: ${response.status} -  ${response.text()}`)
+        throw new Error("Tarefas não identificadas.")
     }
+
 
     return response.json()
 }

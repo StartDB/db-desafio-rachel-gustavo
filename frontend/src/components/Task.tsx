@@ -1,32 +1,32 @@
 import { TaskDTO } from "../services/interfaces/task.dto";
 
-export default function Task (props: TaskDTO) {
+export default function Task ({title, description, date, supportType, city, state, status, requestBy, isOnline}: TaskDTO) {
     return (
         <>
             <article>
                 <header>
-                    <h2>{props.title}</h2>
+                    <h2>{title}</h2>
                     <div>
                         <h3>Data:</h3>
-                        <p>{`${props.date.getDay()}/${props.date.getDate() +1 }/${props.date.getFullYear}`}</p>
+                        <p>{`${date.getDay()}/${date.getDate() +1 }/${date.getFullYear()}`}</p>
                         <h3>Hora:</h3>
-                        <p>{`${props.date.getHours()}:${props.date.getMinutes()}`}</p>
+                        <p>{`${date.getHours()}:${date.getMinutes()}`}</p>
                     </div>
                     <div>
                         <h3>Local:</h3>
-                        <p>{`${props.city}/${props.state}`}</p>
+                        <p>{`${city}/${state}`}</p>
                         <h3>Área de Suporte</h3>
-                        <p>{props.supportType}</p>
+                        <p>{supportType}</p>
                     </div>
                 </header>
                 <main>
-                    <p>{props.description.length > 100 ? props.description.slice(0,100) + "...": props.description}</p>
+                    <p>{description.length > 200 ? description.slice(0,200) + "...": description}</p>
                 </main>
                 <footer>
                     <h3>Solicitante</h3>
-                    <p>{`${props.requestBy.firstName} ${props.requestBy.lastName}`}</p>
-                    <p>{props.isOnline ? "Online " : "Presencial"}</p>
-                    <p>{props.status}</p>
+                    <p>{`${requestBy.firstName} ${requestBy.lastName}`}</p>
+                    <p>{isOnline ? "Online " : "Presencial"}</p>
+                    <p>{status}</p>
                 </footer>
             </article>
         </>

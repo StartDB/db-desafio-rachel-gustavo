@@ -16,10 +16,13 @@ createRoot(document.getElementById('root')!).render(
           <Routes>
               <Route path="/" element={<App />}>
                 <Route path="cadastro" element = {<Register/>} />
+
                 <Route path="login" element = {<Login/>} />
+
                 <Route path="dashboard/:id" element={<Dashboard />}>
-                  <Route path="tarefas" element={<SearchTasks />}/>
+                  <Route path="buscar_tarefas" element={<SearchTasks />}/>
                 </Route>
+                
               </Route>
           </Routes>
         </BrowserRouter>

@@ -9,7 +9,7 @@ export function NavBarDashboard() {
         <nav>
             <NavLink to="/">Perfil</NavLink>
             <NavLink to="/cadastro">Minhas Tarefas</NavLink>
-            <NavLink to="/buscar-tarefas" >Buscar Tarefas</NavLink>
+            <NavLink to="buscar_tarefas" >Buscar Tarefas</NavLink>
         </nav>
     )
     
