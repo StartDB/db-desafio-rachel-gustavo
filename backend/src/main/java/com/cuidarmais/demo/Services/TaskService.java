@@ -30,10 +30,10 @@ public class TaskService {
     public List<Task> getTasks(SupportType supportType, Status status) {
         if (supportType != null && status != null) {
             return taskRepository.findBySupportTypeAndStatus(supportType, status);
-        } else if (supportType == null) {
-            return taskRepository.findByStatus(status);
-        } else if (status == null ) {
+        } else if (supportType != null) {
             return taskRepository.findBySupportType(supportType);
+        } else if (status != null ) {
+            return taskRepository.findByStatus(status);
         } else {
             return taskRepository.findAll();
         }
