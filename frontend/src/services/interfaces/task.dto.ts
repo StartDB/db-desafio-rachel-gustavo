@@ -10,6 +10,6 @@ export interface TaskDTO {
     state: string
     status: string
     requestBy: number // id do idoso
-    volunteer: number | null // id do voluntario
+    volunteer?: number | null // id do voluntario
     assessment?: null
 }
