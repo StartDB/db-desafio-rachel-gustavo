@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  backend:
+    image: maven:3.9.9-eclipse-temurin-21 # Usa uma imagem com Maven já instalado
+    volumes:
+      - .:/app  # Monta o diretório atual no container
+    working_dir: /app # Define o diretório onde o projeto está
+    command: mvn test  # Executa o comando de teste diretamente
+    depends_on:
+      - db  # Espera o banco de dados inicializar
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/test_db
+      SPRING_DATASOURCE_USERNAME: postgrestest
+      SPRING_DATASOURCE_PASSWORD: passwordtest
+
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: postgrestest
+      POSTGRES_PASSWORD: passwordtest
+      POSTGRES_DB: test_db
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
