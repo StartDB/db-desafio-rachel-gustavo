@@ -7,12 +7,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cuidarmais.demo.Entities.Task;
+import com.cuidarmais.demo.Entities.EntityObjects.Enums.Status;
 import com.cuidarmais.demo.Entities.EntityObjects.Enums.SupportType;
 import com.cuidarmais.demo.Services.TaskService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @RestController
@@ -34,10 +36,12 @@ public class TaskController {
     public List<Task> getAllTasks() {
         return taskService.listAll();
     }
-    
-    @GetMapping("/listForVolunteer/{SupportType}")
-    public List<Task> getTasksWithFilter(@PathVariable SupportType SupportType) {
-        return taskService.getTypeFilter(SupportType);
+
+    @GetMapping("/SupportTypeOrStatusFilter")
+    public List<Task> getTasks(@RequestParam(required = false) SupportType supportType, 
+                                        @RequestParam (required = false) Status status) {
+        return taskService.getTasks(supportType, status);
     }
+    
     
 }

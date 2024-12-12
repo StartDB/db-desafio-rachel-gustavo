@@ -27,7 +27,15 @@ public class TaskService {
         return taskRepository.findAll();
     }
 
-    public List<Task> getTypeFilter(SupportType supportType) {
-        return taskRepository.findBySupportTypeAndStatus(supportType, Status.AVAILABLE);
+    public List<Task> getTasks(SupportType supportType, Status status) {
+        if (supportType != null && status != null) {
+            return taskRepository.findBySupportTypeAndStatus(supportType, status);
+        } else if (supportType == null) {
+            return taskRepository.findByStatus(status);
+        } else if (status == null ) {
+            return taskRepository.findBySupportType(supportType);
+        } else {
+            return taskRepository.findAll();
+        }
     }
 }
