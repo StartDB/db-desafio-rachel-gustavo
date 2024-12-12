@@ -11,7 +11,7 @@ import jakarta.persistence.OneToMany;
 @DiscriminatorValue("elderly")
 public class Elderly extends User {
 
-    @OneToMany(mappedBy = "elderly")
+    @OneToMany(mappedBy = "requestBy")
     private List<Task> tasks = new ArrayList<>();
 
     public Elderly() {}
