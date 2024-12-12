@@ -67,6 +67,13 @@ enum SupportType {
   PHYSICAL_ACTIVITIES
 }
 
+enum Status {
+  AVAILABLE,
+  ACCEPTED,
+  COMPLETED,
+  CANCELED
+}
+
 Task "1" -- "1" Assement
 SupportType "1" -- "*" Task
 SupportType "*" -- "*" Volunteer : has
