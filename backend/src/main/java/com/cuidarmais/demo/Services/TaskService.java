@@ -50,10 +50,10 @@ public class TaskService {
 
         if (supportType != null && status != null) {
             taskList = taskRepository.findBySupportTypeAndStatusOrderByDateAsc(supportType, status);
-        } else if (supportType == null) {
-            taskList = taskRepository.findByStatusOrderByDateAsc(status);
-        } else if (status == null ) {
+        } else if (supportType != null) {
             taskList = taskRepository.findBySupportTypeOrderByDateAsc(supportType);
+        } else if (status != null ) {
+            taskList = taskRepository.findByStatusOrderByDateAsc(status);
         }
         return TaskDTOTransform.transformToTaskDTOList(taskList);
         }
