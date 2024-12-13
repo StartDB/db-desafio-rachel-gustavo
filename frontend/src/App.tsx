@@ -1,12 +1,12 @@
 import { Outlet } from 'react-router'
 import './App.css'
 import { NavBar } from './components/NavBar'
-import { NavBarDashboard } from './components/NavBarDashboard'
-import { useState } from 'react';
-import useUser from './contexts/hook/useUser';
+//import { NavBarDashboard } from './components/NavBarDashboard'
+//import { useState } from 'react';
+//import useUser from './contexts/hook/useUser';
 
 function App() {
-  const { user } = useUser();
+  //const { user } = useUser();
 
   return (
     <>

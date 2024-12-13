@@ -1,9 +1,9 @@
-import { NavLink, Outlet, useNavigate } from "react-router";
+import { NavLink, Outlet } from "react-router"; //useNavigate
 import { TaskDTO } from "../services/interfaces/task.dto";
 import styles from './Task.module.css';
 
 export default function Task({ id, title, description, date, time, supportType, city, state, status, requestBy, isOnline }: TaskDTO) {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     function formatDate(date: string): string {
         let formattedDate = date.split("-")
