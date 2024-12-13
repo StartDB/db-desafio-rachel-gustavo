@@ -34,7 +34,6 @@ class Task {
   status: string
   requestBy: Senior
   volunteer: Volunteer
-  candidates: Volunteer[]
   assessment: Assement | null
 }
 
@@ -51,7 +50,6 @@ class Address {
 class Assement {
   grade: double
   comment: string
-  taskID: int
 } 
 
 enum Role {
@@ -65,6 +63,13 @@ enum SupportType {
   TEACHING_AND_TECHNOLOGY : (online available)
   SOCIAL_ACTIVITIES : (online available)
   PHYSICAL_ACTIVITIES
+}
+
+enum Status {
+  AVAILABLE,
+  ACCEPTED,
+  COMPLETED,
+  CANCELED
 }
 
 Task "1" -- "1" Assement

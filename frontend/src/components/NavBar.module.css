@@ -1,0 +1,21 @@
+.container {
+    background-color: var(--link-dark-color);
+    min-width: 100dvw;
+    color: #FFFFFF;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0px 5px 10px var(--shadow-background-color);
+}
+
+.col {
+    display: flex;
+    gap: 1.3rem;
+}
+
+.link {
+    padding: 1rem 1.5rem;
+}
+
+.link:hover {
+    background-color: var(--link-light-color);
+}

@@ -1,4 +1,4 @@
-import { UserDTO } from "./interfaces/user.dto";
+import { UserDTO } from "../interfaces/user.dto";
 
 export const testUser: UserDTO = {
     id:102,

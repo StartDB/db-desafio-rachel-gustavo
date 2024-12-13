@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { UserDTO } from "../services/interfaces/user.dto";
-import { postUser } from "../services/postUser";
+import { postUser } from "../api/postUser";
 import { AddressDTO } from "../services/interfaces/adress.dto";
 
 export default function Register() {
@@ -45,8 +45,8 @@ export default function Register() {
 
 	function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
 		let { name, value } = e.target;
-		
-		switch (name){
+
+		switch (name) {
 			case 'phone':
 				const regexDigits: RegExp = /^\d{1,9}$/
 
@@ -76,17 +76,15 @@ export default function Register() {
 
 	async function handleSubmit(e: React.FormEvent<HTMLFormElement>): Promise<void> {
 		e.preventDefault();
-	
-		// alert(JSON.stringify(data));
 
 		try {
 			const response = await postUser(data);
-			const user: UserDTO = {...response}
+			const user: UserDTO = { ...response }
 
 			alert("Enviado pelo servidor: \n" + JSON.stringify(user));
 			setData(INITIALUSER);
 			setAddress(INITIALDDRESS);
-			
+
 		} catch (error) {
 			alert(`Erro ao enviar os dados: ${error}`);
 		}
@@ -99,8 +97,8 @@ export default function Register() {
 				<div>
 					<label>Tipo de cadastro</label>
 
-					<input type="radio" name="role" id="elderly" value="elderly" checked={data.role === "elderly"} onChange={handleChange}/><label htmlFor="elderly">Idoso</label>
-					<input type="radio" name="role" id="volunteer" value="volunteer" checked={data.role === "volunteer"}onChange={handleChange}/><label htmlFor="volunteer">Voluntário</label>
+					<input type="radio" name="role" id="elderly" value="elderly" checked={data.role === "elderly"} onChange={handleChange} /><label htmlFor="elderly">Idoso</label>
+					<input type="radio" name="role" id="volunteer" value="volunteer" checked={data.role === "volunteer"} onChange={handleChange} /><label htmlFor="volunteer">Voluntário</label>
 				</div>
 
 			</fieldset>
@@ -133,7 +131,7 @@ export default function Register() {
 
 				<div>
 					<label>Telefone</label>
-					<input type="tel"  name="phone" value={data.phone == 0 ? "" : data.phone} placeholder="Informe o seu celular" onChange={handleChange} />
+					<input type="tel" name="phone" value={data.phone == 0 ? "" : data.phone} placeholder="Informe o seu celular" onChange={handleChange} />
 				</div>
 
 				<div>
@@ -146,31 +144,31 @@ export default function Register() {
 				<legend>Endereço</legend>
 				<div>
 					<label>CEP</label>
-					<input type="text"  name="zip" value={address.zip} placeholder="Informe o seu CEP" onChange={handleChangeAdress} />
+					<input type="text" name="zip" value={address.zip} placeholder="Informe o seu CEP" onChange={handleChangeAdress} />
 				</div>
 				<div>
 					<label>Estado</label>
-					<input type="text"  name="state" value={address.state} placeholder="Informe o seu estado" onChange={handleChangeAdress} />
+					<input type="text" name="state" value={address.state} placeholder="Informe o seu estado" onChange={handleChangeAdress} />
 				</div>
 				<div>
 					<label>Cidade</label>
-					<input type="text"  name="city" value={address.city} placeholder="Informe a sua cidade" onChange={handleChangeAdress} />
+					<input type="text" name="city" value={address.city} placeholder="Informe a sua cidade" onChange={handleChangeAdress} />
 				</div>
 				<div>
 					<label>Bairro</label>
-					<input type="text"  name="district" value={address.district} placeholder="Informe o seu bairro" onChange={handleChangeAdress} />
+					<input type="text" name="district" value={address.district} placeholder="Informe o seu bairro" onChange={handleChangeAdress} />
 				</div>
 				<div>
 					<label>Rua</label>
-					<input type="text"  name="street" value={address.street} placeholder="Informe a sua rua" onChange={handleChangeAdress} />
+					<input type="text" name="street" value={address.street} placeholder="Informe a sua rua" onChange={handleChangeAdress} />
 				</div>
 				<div>
 					<label>Unidade</label>
-					<input type="text"  name="number" value={address.number} placeholder="Informe a sua unidade" onChange={handleChangeAdress} />
+					<input type="text" name="number" value={address.number} placeholder="Informe a sua unidade" onChange={handleChangeAdress} />
 				</div>
 				<div>
 					<label>Complemento</label>
-					<input type="text"  name="suite" value={address.suite} placeholder="Informe o seu complemento" onChange={handleChangeAdress} />
+					<input type="text" name="suite" value={address.suite} placeholder="Informe o seu complemento" onChange={handleChangeAdress} />
 				</div>
 			</fieldset>
 			<input type="submit" value="Cadastrar" />

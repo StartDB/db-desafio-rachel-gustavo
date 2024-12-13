@@ -1,0 +1,23 @@
+.formLogin {
+    display: grid;
+    padding: 2rem;
+    gap: 2rem;
+}
+
+.labelJustifyCenter {
+    justify-self: center;
+    font-size: 2.5rem;
+}
+
+.row {
+    display: grid;
+    gap: 1rem;
+}
+
+.subRow {
+    display:flex;
+    flex-direction: column;
+    gap:.5rem;
+    min-width: 5rem;
+}
+

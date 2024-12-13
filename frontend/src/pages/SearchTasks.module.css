@@ -1,0 +1,30 @@
+.containerSearchTasks {
+    display: grid;
+    grid-template-columns: min-content min-content;
+    gap: 2rem;
+}
+
+.row {
+    color:blue
+}
+
+.subRow {
+    background-color: yellow;
+}
+
+.buttonSearch {
+    background-color: transparent;
+    font-size: .85rem;
+    padding: .15rem 0;
+    color: var(--black-color);
+    border: none;
+    border-bottom: 1px solid var(--black-color);
+    border-radius: 0;
+    min-height: min-content;
+}
+
+.buttonSearch:hover {
+    background-color: transparent;
+    color: black;
+}
+
