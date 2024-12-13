@@ -3,8 +3,6 @@ package com.cuidarmais.demo.Controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,21 +31,8 @@ public class VolunteerController {
 
     @PostMapping("/save")
     public ResponseEntity<Object> saveVolunteer(@RequestBody Volunteer volunteer) {
-        try {
-
-        volunteerService.saveVolunteer(volunteer);
         
-        return ResponseEntity.ok("Cadastro salvo com sucesso!");
-
-        } catch (DataIntegrityViolationException ex) {
-        
-        String detail = ex.getMostSpecificCause().getLocalizedMessage().split("Detail:")[1];
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(detail);
-
-        } catch (Exception ex) {
-
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro desconhecido.");
-    }
+        return volunteerService.saveVolunteer(volunteer);
     }
     
     

@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.cuidarmais.demo.DTO.TaskDTO.TaskDTO;
@@ -19,11 +22,23 @@ public class TaskService {
     @Autowired
     private TaskRepository taskRepository;
 
-    public Task saveTask(Task task) {
+    public ResponseEntity<Object> saveTask(Task task) {
         
-        taskRepository.save(task);
+       try {
 
-        return task;
+        taskRepository.save(task);
+        
+        return ResponseEntity.ok("Tarefa criada com sucesso!");
+
+        } catch (DataIntegrityViolationException ex) {
+        
+        String detail = ex.getMostSpecificCause().getLocalizedMessage().split("Detail:")[1];
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(detail);
+
+        } catch (Exception ex) {
+
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro desconhecido.");
+    }
     }
 
     public List<TaskDTO> listAll() {

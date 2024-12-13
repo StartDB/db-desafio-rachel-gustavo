@@ -3,8 +3,6 @@ package com.cuidarmais.demo.Controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,20 +29,6 @@ public class ElderlyController {
     
     @PostMapping("/save")
     public ResponseEntity<Object> saveElderly(@RequestBody Elderly elderly) {
-        try {
-
-        elderlyService.saveElderly(elderly);
-        
-        return ResponseEntity.ok("Cadastro salvo com sucesso!");
-
-        } catch (DataIntegrityViolationException ex) {
-        
-        String detail = ex.getMostSpecificCause().getLocalizedMessage().split("Detail:")[1];
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(detail);
-
-        } catch (Exception ex) {
-
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro desconhecido.");
-    }
+        return elderlyService.saveElderly(elderly);
     }
 }

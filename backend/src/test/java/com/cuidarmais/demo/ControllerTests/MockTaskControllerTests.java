@@ -28,7 +28,7 @@ public class MockTaskControllerTests {
     private TaskService taskService;
 
     @Test
-    void getTasks() throws Exception {
+    void getTasksStatusAndTypeFilter() throws Exception {
         List<TaskDTO> mockList = new ArrayList<TaskDTO>();
         when(taskService.getStatusTypeFilter(null, null)).thenReturn(mockList);
         this.mockMvc.perform(get("/task/status-type-filter"))
