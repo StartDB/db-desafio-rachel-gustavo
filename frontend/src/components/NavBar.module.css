@@ -1,0 +1,20 @@
+.container {
+    background-color: #1B3764;
+    min-width: 100dvw;
+    color: #FFFFFF;
+    display: flex;
+    justify-content: space-between;
+}
+
+.col {
+    display: flex;
+    gap: 1.3rem;
+}
+
+.link {
+    padding: 1rem 1.5rem;
+}
+
+.link:hover {
+    background-color: #265092;
+}
