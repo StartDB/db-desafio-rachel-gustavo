@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cuidarmais.demo.DTO.TaskDTO.TaskDTO;
 import com.cuidarmais.demo.Entities.Task;
 import com.cuidarmais.demo.Entities.EntityObjects.Enums.Status;
 import com.cuidarmais.demo.Entities.EntityObjects.Enums.SupportType;
@@ -33,12 +34,12 @@ public class TaskController {
     }
 
     @GetMapping("/listAll")
-    public List<Task> getAllTasks() {
+    public List<TaskDTO> getAllTasks() {
         return taskService.listAll();
     }
 
     @GetMapping("/status-type-filter")
-    public List<Task> getTasks(@RequestParam(required = false) SupportType supportType, 
+    public List<TaskDTO> getTasks(@RequestParam(required = false) SupportType supportType, 
                                         @RequestParam (required = false) Status status) {
         return taskService.getStatusTypeFilter(supportType, status);
     }

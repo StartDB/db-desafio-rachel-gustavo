@@ -18,4 +18,5 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
     List<Task> findByStatusOrderByDateAsc(Status status);
 
     List<Task> findBySupportTypeOrderByDateAsc(SupportType supportType);
+
 }
