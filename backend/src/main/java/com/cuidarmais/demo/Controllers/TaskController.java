@@ -37,7 +37,7 @@ public class TaskController {
         return taskService.listAll();
     }
 
-    @GetMapping("/SupportTypeOrStatusFilter")
+    @GetMapping("/status-type-filter")
     public List<Task> getTasks(@RequestParam(required = false) SupportType supportType, 
                                         @RequestParam (required = false) Status status) {
         return taskService.getTasks(supportType, status);
