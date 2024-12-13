@@ -1,0 +1,11 @@
+.input {
+    border: 1px solid var(--border-color);
+    min-height: 2.2rem;
+    border-radius: .25rem;
+    padding: 0 .75rem;
+    font-size: .8rem;
+}
+
+.input:focus {
+    outline: 1px solid #585858;
+}

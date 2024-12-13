@@ -2,9 +2,13 @@
 
 
 :root {
+  --white-color: #FFFFFF;
   --black-color: #353535;
   --background-color: #F1F1F1;
   --shadow-background-color: #9c9c9c52;
+  --border-color: #8D8D8D;
+  --link-dark-color: #1B3764;
+  --link-light-color: #265092;
 }
 
 
@@ -12,14 +16,13 @@
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
-  /* border: 1px solid red; */
+  /* border: 1px solid red;  */
 }
 
 
 body {
   font-family: "Lato", sans-serif;
   color: var(--black-color);
-  min-height: 100dvh;
   background-color: var(--background-color);
 }
 

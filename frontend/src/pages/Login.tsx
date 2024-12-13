@@ -4,10 +4,15 @@ import UserCredentialsDTO from "../services/interfaces/userCredentials.dto";
 import useUser from "../contexts/hook/useUser";
 import loginUser from "../api/auth";
 import { UserDTO } from "../services/interfaces/user.dto";
-// import { testUser } from "../services/tests/testUser";
+import { testUser } from "../services/tests/testUser";
+import MainTitle from "../components/MainTitle";
+import Input from "../components/form/Input";
+import Label from "../components/form/Label";
+import InputButton from "../components/form/InputButton";
+import styles from './Login.module.css';
 
 export function Login(){
-    const { setUser } = useUser();
+    const { user, setUser } = useUser();
     
     const [userCredentials, setuserCredentials] = useState<UserCredentialsDTO>({
         username: "",
@@ -20,15 +25,15 @@ export function Login(){
         e.preventDefault()
 
         try {
-            const userAPI: UserDTO = await loginUser(userCredentials)
-            setUser(userAPI)
-            //setUser(testUser) // TESTE EXCLUIR
-            navigate(`/dashboard/${userAPI?.id}`);
+            // const userAPI: UserDTO = await loginUser(userCredentials)
+            // setUser(userAPI)
+            setUser(testUser) // TESTE EXCLUIR
+            // navigate(`/dashboard/${userAPI?.id}`);
         } catch(error){
             alert(error)
         }
 
-        //navigate(`/dashboard/${user?.id}`); // TESTE EXCLUIR
+        navigate(`/dashboard/${user?.id}`); // TESTE EXCLUIR
     }
 
     function handleChange(e: React.ChangeEvent<HTMLInputElement>): void {
@@ -40,20 +45,21 @@ export function Login(){
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <h1>Login</h1>
+        <form className={styles.formLogin} onSubmit={handleSubmit}>
+            <MainTitle className={styles.labelJustifyCenter} content="Login"/>
 
-            <div>
-                <label>Nome do Usuário</label>
-                <input type="text" name="username" placeholder="Nome Completo" value={userCredentials.username} onChange={handleChange}/>
+            <div className={styles.row}>
+                <div className={styles.subRow}>
+                    <Label content="Nome do Usuário:" />
+                    <Input type="text" name="username" placeholder="Nome Completo" value={userCredentials.username} onChange={handleChange}/>
+                </div>
+                <div className={styles.subRow}>
+                    <Label content="Senha:" />
+                    <Input type="password"  name="password" placeholder="Senha" value={userCredentials.password} onChange={handleChange}/>
+                </div>
             </div>
 
-            <div>
-                <label>Senha</label>
-                <input type="password"  name="password" placeholder="Senha" value={userCredentials.password} onChange={handleChange}/>
-            </div>
-
-            <input type="submit" value="Entrar"/>
+            <InputButton type="submit" value="Login"/>
         </form>
     )
 }

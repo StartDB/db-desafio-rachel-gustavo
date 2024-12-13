@@ -8,7 +8,6 @@ export function Dashboard(){
     return (
         <>
             <header>
-                <NavBarDashboard />
                 <h1>{user?.firstName + " " + user?.lastName}</h1>
             </header>
             <Outlet />
