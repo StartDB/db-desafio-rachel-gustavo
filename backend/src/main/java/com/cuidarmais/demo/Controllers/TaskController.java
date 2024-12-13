@@ -3,9 +3,11 @@ package com.cuidarmais.demo.Controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cuidarmais.demo.DTO.TaskDTO.TaskDTO;
 import com.cuidarmais.demo.Entities.Task;
 import com.cuidarmais.demo.Entities.EntityObjects.Enums.Status;
 import com.cuidarmais.demo.Entities.EntityObjects.Enums.SupportType;
@@ -25,22 +27,20 @@ public class TaskController {
     private TaskService taskService;
 
     @PostMapping("/save")
-    public Task saveTask(@RequestBody Task task) {
+    public ResponseEntity<Object> saveTask(@RequestBody Task task) {
 
-        taskService.saveTask(task);
-
-        return task;
+        return taskService.saveTask(task);
     }
 
     @GetMapping("/listAll")
-    public List<Task> getAllTasks() {
+    public List<TaskDTO> getAllTasks() {
         return taskService.listAll();
     }
 
-    @GetMapping("/SupportTypeOrStatusFilter")
-    public List<Task> getTasks(@RequestParam(required = false) SupportType supportType, 
+    @GetMapping("/status-type-filter")
+    public List<TaskDTO> getTasks(@RequestParam(required = false) SupportType supportType, 
                                         @RequestParam (required = false) Status status) {
-        return taskService.getTasks(supportType, status);
+        return taskService.getStatusTypeFilter(supportType, status);
     }
     
     

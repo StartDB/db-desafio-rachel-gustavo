@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import getTasks from "../api/getTask";
-import { transformTasksSupportTypes } from "../utils/taskSupportTypeMapper";
-import { transformTasksStatus } from "../utils/taskStatusMapper";
+// import getTasks from "../api/getTask";
+// import { transformTasksSupportTypes } from "../utils/taskSupportTypeMapper";
+// import { transformTasksStatus } from "../utils/taskStatusMapper";
 import { TaskDTO } from "../services/interfaces/task.dto";
 import Task from "../components/Task.tsx";
 import { exampleTask } from "../services/tests/testTask";
@@ -24,7 +24,7 @@ export default function SearchTasks() {
     async function captureTasks(supportType?: string): Promise<void> {
         setTasks([exampleTask])
         setWarning("")
-
+        console.log(supportType)
         // try {
         //     const tasks: TaskDTO[] = await getTasks(supportType);
 

@@ -1,10 +1,16 @@
 package com.cuidarmais.demo.Services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.cuidarmais.demo.DTO.TaskDTO.TaskDTO;
+import com.cuidarmais.demo.DTO.TaskDTO.TaskDTOTransform;
 import com.cuidarmais.demo.Entities.Task;
 import com.cuidarmais.demo.Entities.EntityObjects.Enums.Status;
 import com.cuidarmais.demo.Entities.EntityObjects.Enums.SupportType;
@@ -16,26 +22,40 @@ public class TaskService {
     @Autowired
     private TaskRepository taskRepository;
 
-    public Task saveTask(Task task) {
+    public ResponseEntity<Object> saveTask(Task task) {
         
+       try {
+
         taskRepository.save(task);
+        
+        return ResponseEntity.ok("Tarefa criada com sucesso!");
 
-        return task;
+        } catch (DataIntegrityViolationException ex) {
+        
+        String detail = ex.getMostSpecificCause().getLocalizedMessage().split("Detail:")[1];
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(detail);
+
+        } catch (Exception ex) {
+
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro desconhecido.");
+    }
     }
 
-    public List<Task> listAll() {
-        return taskRepository.findAll();
+    public List<TaskDTO> listAll() {
+        return TaskDTOTransform.transformToTaskDTOList(taskRepository.findAll());
     }
 
-    public List<Task> getTasks(SupportType supportType, Status status) {
+    public List<TaskDTO> getStatusTypeFilter(SupportType supportType, Status status) {
+        List<Task> taskList = new ArrayList<Task>();
+
         if (supportType != null && status != null) {
-            return taskRepository.findBySupportTypeAndStatus(supportType, status);
+            taskList = taskRepository.findBySupportTypeAndStatusOrderByDateAsc(supportType, status);
         } else if (supportType != null) {
-            return taskRepository.findBySupportType(supportType);
+            taskList = taskRepository.findBySupportTypeOrderByDateAsc(supportType);
         } else if (status != null ) {
-            return taskRepository.findByStatus(status);
-        } else {
-            return taskRepository.findAll();
+            taskList = taskRepository.findByStatusOrderByDateAsc(status);
+        }
+        return TaskDTOTransform.transformToTaskDTOList(taskList);
         }
     }
-}
+

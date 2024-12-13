@@ -3,6 +3,7 @@ package com.cuidarmais.demo.Controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cuidarmais.demo.Entities.Elderly;
 import com.cuidarmais.demo.Services.ElderlyService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @RestController
@@ -27,10 +30,13 @@ public class ElderlyController {
     
     
     @PostMapping("/save")
-    public Elderly saveElderly(@RequestBody Elderly elderly) {
-        
-        elderlyService.saveElderly(elderly);
-        
-        return elderly;
+    public ResponseEntity<Object> saveElderly(@RequestBody Elderly elderly) {
+        return elderlyService.saveElderly(elderly);
     }
+
+    @GetMapping("/getById")
+    public Elderly getById(@RequestParam Long id) {
+        return elderlyService.getById(id);
+    }
+    
 }

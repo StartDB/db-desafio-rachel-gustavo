@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import UserCredentialsDTO from "../services/interfaces/userCredentials.dto";
-import useUser from "../contexts/hook/useUser";
-import loginUser from "../api/auth";
-import { UserDTO } from "../services/interfaces/user.dto";
+// import useUser from "../contexts/hook/useUser";
+// import loginUser from "../api/auth";
+// import { UserDTO } from "../services/interfaces/user.dto";
 import { testUser } from "../services/tests/testUser";
 import MainTitle from "../components/MainTitle";
 import Input from "../components/form/Input";
@@ -12,7 +12,7 @@ import InputButton from "../components/form/InputButton";
 import styles from './Login.module.css';
 
 export function Login(){
-    const { user, setUser } = useUser();
+    // const { user, setUser } = useUser();
     
     const [userCredentials, setuserCredentials] = useState<UserCredentialsDTO>({
         username: "",
@@ -27,7 +27,7 @@ export function Login(){
         try {
             // const userAPI: UserDTO = await loginUser(userCredentials)
             // setUser(userAPI)
-            setUser(testUser) // TESTE EXCLUIR
+            // setUser(testUser) // TESTE EXCLUIR
             // navigate(`/dashboard/${userAPI?.id}`);
         } catch(error){
             alert(error)

@@ -9,6 +9,7 @@ import com.cuidarmais.demo.Entities.EntityObjects.Address;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -39,10 +40,12 @@ public abstract class User {
 
     private String lastName;
 
+    @Column(unique = true)
     private String username;
 
     private String password;
 
+    @Column(unique = true)
     private String email;
 
     private int phone;

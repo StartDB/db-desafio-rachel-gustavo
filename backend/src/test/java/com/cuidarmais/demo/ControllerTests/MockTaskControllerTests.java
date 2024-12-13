@@ -15,7 +15,7 @@ import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.cuidarmais.demo.Controllers.TaskController;
-import com.cuidarmais.demo.Entities.Task;
+import com.cuidarmais.demo.DTO.TaskDTO.TaskDTO;
 import com.cuidarmais.demo.Services.TaskService;
 
 @WebMvcTest(TaskController.class)
@@ -28,10 +28,10 @@ public class MockTaskControllerTests {
     private TaskService taskService;
 
     @Test
-    void getTasks() throws Exception {
-        List<Task> mockList = new ArrayList<Task>();
-        when(taskService.getTasks(null, null)).thenReturn(mockList);
-        this.mockMvc.perform(get("/task/SupportTypeOrStatusFilter"))
+    void getTasksStatusAndTypeFilter() throws Exception {
+        List<TaskDTO> mockList = new ArrayList<TaskDTO>();
+        when(taskService.getStatusTypeFilter(null, null)).thenReturn(mockList);
+        this.mockMvc.perform(get("/task/status-type-filter"))
         .andExpect(status().isOk())
         .andExpect(jsonPath("$").isArray());
         }
