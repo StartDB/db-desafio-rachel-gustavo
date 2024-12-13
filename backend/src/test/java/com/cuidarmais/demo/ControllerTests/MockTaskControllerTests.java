@@ -31,7 +31,7 @@ public class MockTaskControllerTests {
     void getTasks() throws Exception {
         List<TaskDTO> mockList = new ArrayList<TaskDTO>();
         when(taskService.getStatusTypeFilter(null, null)).thenReturn(mockList);
-        this.mockMvc.perform(get("/task/SupportTypeOrStatusFilter"))
+        this.mockMvc.perform(get("/task/status-type-filter"))
         .andExpect(status().isOk())
         .andExpect(jsonPath("$").isArray());
         }
