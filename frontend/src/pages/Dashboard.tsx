@@ -11,7 +11,7 @@ export function Dashboard(){
             <header>
                 <NavBarDashboard />
             </header>
-            <main className="container-main">
+            <main className="container-main-initial">
                 <Outlet />
             </main>
         </div>

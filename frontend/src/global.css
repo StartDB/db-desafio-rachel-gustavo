@@ -34,11 +34,12 @@ body {
   transition: background-color .2s ;
 }
 
-.container-main {
+.container-main-initial {
   display: grid;
+  position: relative;
 }
 
-.container-section {
+.container-section-initial {
   background-color: var(--white-color);
   padding: 2rem;
   border-radius: .45rem;

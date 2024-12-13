@@ -8,11 +8,13 @@ import { Login } from './pages/Login.tsx'
 import { Dashboard} from './pages/Dashboard.tsx'
 import { UserProvider } from './contexts/UserContext.tsx'
 import SearchTasks from './pages/SearchTasks.tsx'
+import TaskProfile from './pages/TaskProfile.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
       <UserProvider>
         <BrowserRouter>
+
           <Routes>
               <Route path="/" element={<App />}>
                 <Route path="cadastro" element = {<Register/>} />
@@ -20,7 +22,9 @@ createRoot(document.getElementById('root')!).render(
                 <Route path="login" element = {<Login/>} />
 
                 <Route path="dashboard/:id" element={<Dashboard />}>
-                  <Route path="buscar-tarefas" element={<SearchTasks />}/>
+                  <Route path="buscar-tarefas" element={<SearchTasks />}>
+                    <Route path="tarefa/:id" element={<TaskProfile />}/>
+                  </Route>
                 </Route>
               </Route>
           </Routes>

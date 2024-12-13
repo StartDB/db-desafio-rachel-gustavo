@@ -13,7 +13,7 @@ function App() {
         <header>
           <NavBar />
         </header>
-        <main className="container-main">
+        <main className="container-main-initial">
           <Outlet />
         </main>
         <footer>

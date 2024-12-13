@@ -45,7 +45,7 @@ export function Login(){
     }
 
     return (
-        <section className="container-section">
+        <section className="container-section-initial">
             <form className={styles.formLogin} onSubmit={handleSubmit}>
                 <MainTitle className={styles.labelJustifyCenter} content="Login"/>
                 <div className={styles.row}>
