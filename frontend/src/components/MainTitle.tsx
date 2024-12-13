@@ -5,8 +5,8 @@ interface propsMainTitle {
     className?: string;
 }
 
-export default function MainTitle({className, content}: propsMainTitle){
-    const combinedClassName = className ? `${styles.mainTitle} ${className}` : '${styles.mainTitle}';
+export default function MainTitle({className , content }: propsMainTitle){
+    const combinedClassName = className ? `${styles.mainTitle} ${className}` : `${styles.mainTitle}`;
 
     return <h1 className={combinedClassName}>{content}</h1>
 }
