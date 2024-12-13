@@ -1,15 +1,24 @@
 import { Outlet } from 'react-router'
 import './App.css'
 import { NavBar } from './components/NavBar'
-//import { useState } from 'react';
+import { NavBarDashboard } from './components/NavBarDashboard'
+import { useState } from 'react';
+import useUser from './contexts/hook/useUser';
 
 function App() {
+  const { user } = useUser();
+
   return (
     <>
         <header>
           <NavBar />
         </header>
-        <Outlet />
+        <main className="container-main-initial">
+          <Outlet />
+        </main>
+        <footer>
+          <p>Teste</p>
+        </footer>
     </>
   )
 }

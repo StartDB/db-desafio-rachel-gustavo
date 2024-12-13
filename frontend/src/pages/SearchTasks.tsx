@@ -4,7 +4,10 @@ import { transformTasksSupportTypes } from "../utils/taskSupportTypeMapper";
 import { transformTasksStatus } from "../utils/taskStatusMapper";
 import { TaskDTO } from "../services/interfaces/task.dto";
 import Task from "../components/Task.tsx";
-// import { exampleTask } from "../services/tests/testTask";
+import { exampleTask } from "../services/tests/testTask";
+import MainTitle from "../components/MainTitle.tsx";
+import styles from './SearchTasks.module.css';
+import InputButton from "../components/form/InputButton.tsx";
 
 export default function SearchTasks() {
 
@@ -19,29 +22,29 @@ export default function SearchTasks() {
     });
 
     async function captureTasks(supportType?: string): Promise<void> {
-        // setTasks([exampleTask])
-        // setWarning("")
+        setTasks([exampleTask])
+        setWarning("")
 
-        try {
-            const tasks: TaskDTO[] = await getTasks(supportType);
+        // try {
+        //     const tasks: TaskDTO[] = await getTasks(supportType);
 
-            if (tasks.length == 0) {
-                throw Error("Tarefas não encontradas")
-            }
+        //     if (tasks.length == 0) {
+        //         throw Error("Tarefas não encontradas")
+        //     }
 
-            let formattedTasks: TaskDTO[] = transformTasksSupportTypes(tasks)
-            formattedTasks = transformTasksStatus(formattedTasks)
+        //     let formattedTasks: TaskDTO[] = transformTasksSupportTypes(tasks)
+        //     formattedTasks = transformTasksStatus(formattedTasks)
 
-            setTasks(formattedTasks);
-            setWarning("")
+        //     setTasks(formattedTasks);
+        //     setWarning("")
 
-        } catch (error) {
-            if ((error as Error).name == "TypeError") {
-                (error as Error).message = "Tarefas não identificadas"
-            }
-            setTasks([]);
-            setWarning((error as Error).message)
-        }
+        // } catch (error) {
+        //     if ((error as Error).name == "TypeError") {
+        //         (error as Error).message = "Tarefas não identificadas"
+        //     }
+        //     setTasks([]);
+        //     setWarning((error as Error).message)
+        // }
     }
 
     useEffect(() => {
@@ -66,32 +69,29 @@ export default function SearchTasks() {
     }
 
     return (
-        <>
-            <h1>Buscar Tarefas</h1>
-            <form>
-                <fieldset>
-                    <legend>Pesquisa</legend>
-                    <div>
-                        <label>Área de Suporte</label>
-                        <input type="radio" name="supportType" value="COMPANIONSHIP_AND_TRANSPORT" checked={search.supportType === "COMPANIONSHIP_AND_TRANSPORT"} onChange={handleChange} /><label>Acompanhamento e Ensino</label>
-
-                        <input type="radio" name="supportType" value="MAINTENANCE_AND_REPAIRS" checked={search.supportType === "MAINTENANCE_AND_REPAIRS"} onChange={handleChange} /><label>Manunteção e Reparo</label>
-
-                        <input type="radio" name="supportType" value="TEACHING_AND_TECHNOLOGY " checked={search.supportType === "TEACHING_AND_TECHNOLOGY "} onChange={handleChange} /><label>Ensino e Tecnologia</label>
-
-                        <input type="radio" name="supportType" value="SOCIAL_ACTIVITIES" checked={search.supportType === "SOCIAL_ACTIVITIES"} onChange={handleChange} /><label>Atividades Sociais</label>
-
-                        <input type="radio" name="supportType" value="PHYSICAL_ACTIVITIES" checked={search.supportType === "PHYSICAL_ACTIVITIES"} onChange={handleChange} /><label>Atividades Físicas</label>
-                    </div>
-                </fieldset>
-
-                <input type="button" value="Resetar Pesquisa" onClick={handleClick} />
-            </form>
-            <main>
-                {warning == "" ? tasks.map((task) => (
-                    <Task key={task.id} {...task} />
-                )) : warning}
-            </main>
-        </>
+        <section className="container-section-initial">
+            <MainTitle content="Buscar Tarefas"/>
+            <div className={styles.containerSearchTasks}>
+                <form className={styles.row}>
+                    <fieldset>
+                        <legend>Pesquisa</legend>
+                        <div>
+                            <label>Área de Suporte</label>
+                            <input type="radio" name="supportType" value="COMPANIONSHIP_AND_TRANSPORT" checked={search.supportType === "COMPANIONSHIP_AND_TRANSPORT"} onChange={handleChange} /><label>Acompanhamento e Ensino</label>
+                            <input type="radio" name="supportType" value="MAINTENANCE_AND_REPAIRS" checked={search.supportType === "MAINTENANCE_AND_REPAIRS"} onChange={handleChange} /><label>Manunteção e Reparo</label>
+                            <input type="radio" name="supportType" value="TEACHING_AND_TECHNOLOGY " checked={search.supportType === "TEACHING_AND_TECHNOLOGY "} onChange={handleChange} /><label>Ensino e Tecnologia</label>
+                            <input type="radio" name="supportType" value="SOCIAL_ACTIVITIES" checked={search.supportType === "SOCIAL_ACTIVITIES"} onChange={handleChange} /><label>Atividades Sociais</label>
+                            <input type="radio" name="supportType" value="PHYSICAL_ACTIVITIES" checked={search.supportType === "PHYSICAL_ACTIVITIES"} onChange={handleChange} /><label>Atividades Físicas</label>
+                        </div>
+                    </fieldset>
+                    <InputButton className={styles.buttonSearch} type="button" value="Resetar Pesquisa" onClick={handleClick} />
+                </form>
+                <main className={styles.row}>
+                    {warning == "" ? tasks.map((task) => (
+                        <Task key={task.id} {...task} />
+                    )) : warning}
+                </main>
+            </div>
+        </section>
     )
 }
