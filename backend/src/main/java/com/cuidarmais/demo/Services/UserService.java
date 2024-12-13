@@ -3,6 +3,7 @@ package com.cuidarmais.demo.Services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.cuidarmais.demo.DTO.LoginDTO;
@@ -19,11 +20,19 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User login(LoginDTO login) {
+    public ResponseEntity<?> login(LoginDTO login) {
 
-        User user = userRepository.findLogin(login.username(), login.password());
+        try {
 
-        return user;
+        User user = userRepository.findLogin(login.username(), login.password())
+        .orElseThrow(() -> new IllegalArgumentException("Usuário ou senha inválidos."));
+
+            return ResponseEntity.ok(user);
+        
+
+        } catch (Exception ex) {
+            return ResponseEntity.badRequest().body("Erro ao tentar realizar o login");
+        }
     }
     
 
