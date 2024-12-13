@@ -17,12 +17,12 @@ public class TaskDTOTransform {
            taskList.isOnline(),
             taskList.getDescription(),
              taskList.getDate(),
-             taskList.getTime(),
-              taskList.getCity(),
-               taskList.getState(),
-                taskList.getStatus(),
-                 transformToUserTaskDTO(taskList.getRequestBy()),
-                  transformToUserTaskDTO(taskList.getVolunteer()));
+              taskList.getTime(),
+               taskList.getCity(),
+                taskList.getState(),
+                 taskList.getStatus(),
+                  transformToUserTaskDTO(taskList.getRequestBy()),
+                   transformToUserTaskDTO(taskList.getVolunteer()));
     }
 
     public static UserTaskDTO transformToUserTaskDTO(User user) {
