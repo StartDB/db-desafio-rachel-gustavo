@@ -13,9 +13,9 @@ import com.cuidarmais.demo.Entities.EntityObjects.Enums.SupportType;
 @Repository
 public interface TaskRepository extends JpaRepository<Task, Long> {
     
-    List<Task> findBySupportTypeAndStatus(SupportType supportType, Status status);
+    List<Task> findBySupportTypeAndStatusOrderByDateAsc(SupportType supportType, Status status);
 
-    List<Task> findByStatus(Status status);
+    List<Task> findByStatusOrderByDateAsc(Status status);
 
-    List<Task> findBySupportType(SupportType supportType);
+    List<Task> findBySupportTypeOrderByDateAsc(SupportType supportType);
 }

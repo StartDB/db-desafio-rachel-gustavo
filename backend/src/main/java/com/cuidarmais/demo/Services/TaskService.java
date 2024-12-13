@@ -27,13 +27,13 @@ public class TaskService {
         return taskRepository.findAll();
     }
 
-    public List<Task> getTasks(SupportType supportType, Status status) {
+    public List<Task> getStatusTypeFilter(SupportType supportType, Status status) {
         if (supportType != null && status != null) {
-            return taskRepository.findBySupportTypeAndStatus(supportType, status);
+            return taskRepository.findBySupportTypeAndStatusOrderByDateAsc(supportType, status);
         } else if (supportType == null) {
-            return taskRepository.findByStatus(status);
+            return taskRepository.findByStatusOrderByDateAsc(status);
         } else if (status == null ) {
-            return taskRepository.findBySupportType(supportType);
+            return taskRepository.findBySupportTypeOrderByDateAsc(supportType);
         } else {
             return taskRepository.findAll();
         }
