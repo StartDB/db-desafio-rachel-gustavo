@@ -4,7 +4,7 @@ import { transformTasksSupportTypes } from "../utils/taskSupportTypeMapper";
 import { transformTasksStatus } from "../utils/taskStatusMapper";
 import { TaskDTO } from "../services/interfaces/task.dto";
 import Task from "../components/Task.tsx";
-// import { exampleTask } from "../services/tests/testTask";
+import { exampleTask } from "../services/tests/testTask";
 
 export default function SearchTasks() {
 
@@ -19,29 +19,29 @@ export default function SearchTasks() {
     });
 
     async function captureTasks(supportType?: string): Promise<void> {
-        // setTasks([exampleTask])
-        // setWarning("")
+        setTasks([exampleTask])
+        setWarning("")
 
-        try {
-            const tasks: TaskDTO[] = await getTasks(supportType);
+        // try {
+        //     const tasks: TaskDTO[] = await getTasks(supportType);
 
-            if (tasks.length == 0) {
-                throw Error("Tarefas não encontradas")
-            }
+        //     if (tasks.length == 0) {
+        //         throw Error("Tarefas não encontradas")
+        //     }
 
-            let formattedTasks: TaskDTO[] = transformTasksSupportTypes(tasks)
-            formattedTasks = transformTasksStatus(formattedTasks)
+        //     let formattedTasks: TaskDTO[] = transformTasksSupportTypes(tasks)
+        //     formattedTasks = transformTasksStatus(formattedTasks)
 
-            setTasks(formattedTasks);
-            setWarning("")
+        //     setTasks(formattedTasks);
+        //     setWarning("")
 
-        } catch (error) {
-            if ((error as Error).name == "TypeError") {
-                (error as Error).message = "Tarefas não identificadas"
-            }
-            setTasks([]);
-            setWarning((error as Error).message)
-        }
+        // } catch (error) {
+        //     if ((error as Error).name == "TypeError") {
+        //         (error as Error).message = "Tarefas não identificadas"
+        //     }
+        //     setTasks([]);
+        //     setWarning((error as Error).message)
+        // }
     }
 
     useEffect(() => {
@@ -66,7 +66,7 @@ export default function SearchTasks() {
     }
 
     return (
-        <>
+        <section className="container-section">
             <h1>Buscar Tarefas</h1>
             <form>
                 <fieldset>
@@ -92,6 +92,6 @@ export default function SearchTasks() {
                     <Task key={task.id} {...task} />
                 )) : warning}
             </main>
-        </>
+        </section>
     )
 }

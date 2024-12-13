@@ -12,12 +12,9 @@ function App() {
     <>
         <header>
           <NavBar />
-          {user? <NavBarDashboard /> : null}
         </header>
-        <main className="container">
-          <section className="container-section">
-            <Outlet />
-          </section>
+        <main className="container-main">
+          <Outlet />
         </main>
         <footer>
           <p>Teste</p>

@@ -20,13 +20,11 @@ createRoot(document.getElementById('root')!).render(
                 <Route path="login" element = {<Login/>} />
 
                 <Route path="dashboard/:id" element={<Dashboard />}>
-                  <Route path="buscar_tarefas" element={<SearchTasks />}/>
+                  <Route path="buscar-tarefas" element={<SearchTasks />}/>
                 </Route>
-                
               </Route>
           </Routes>
         </BrowserRouter>
       </UserProvider>
-      
   </StrictMode>,
 )

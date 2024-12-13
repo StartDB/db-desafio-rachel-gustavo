@@ -4,16 +4,3 @@
     grid-template-rows: min-content 1fr min-content;
 }
 
-.container {
-    display: grid;
-    place-content: center;
-}
-
-.container-section {
-    background-color: var(--white-color);
-    padding: 2rem;
-    border-radius: .45rem;
-    border:1px solid #d3d2d2;
-    min-width: 31rem;
-    box-shadow: 7px 7px 12px var(--shadow-background-color);
-}

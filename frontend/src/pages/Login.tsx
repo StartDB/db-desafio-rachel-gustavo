@@ -33,7 +33,7 @@ export function Login(){
             alert(error)
         }
 
-        navigate(`/dashboard/${user?.id}`); // TESTE EXCLUIR
+        navigate(`/dashboard/${testUser?.id}`); // TESTE EXCLUIR
     }
 
     function handleChange(e: React.ChangeEvent<HTMLInputElement>): void {
@@ -45,21 +45,21 @@ export function Login(){
     }
 
     return (
-        <form className={styles.formLogin} onSubmit={handleSubmit}>
-            <MainTitle className={styles.labelJustifyCenter} content="Login"/>
-
-            <div className={styles.row}>
-                <div className={styles.subRow}>
-                    <Label content="Nome do Usuário:" />
-                    <Input type="text" name="username" placeholder="Nome Completo" value={userCredentials.username} onChange={handleChange}/>
+        <section className="container-section">
+            <form className={styles.formLogin} onSubmit={handleSubmit}>
+                <MainTitle className={styles.labelJustifyCenter} content="Login"/>
+                <div className={styles.row}>
+                    <div className={styles.subRow}>
+                        <Label content="Nome do Usuário:" />
+                        <Input type="text" name="username" placeholder="Nome Completo" value={userCredentials.username} onChange={handleChange}/>
+                    </div>
+                    <div className={styles.subRow}>
+                        <Label content="Senha:" />
+                        <Input type="password"  name="password" placeholder="Senha" value={userCredentials.password} onChange={handleChange}/>
+                    </div>
                 </div>
-                <div className={styles.subRow}>
-                    <Label content="Senha:" />
-                    <Input type="password"  name="password" placeholder="Senha" value={userCredentials.password} onChange={handleChange}/>
-                </div>
-            </div>
-
-            <InputButton type="submit" value="Login"/>
-        </form>
+                <InputButton type="submit" value="Login"/>
+            </form>
+        </section>
     )
 }

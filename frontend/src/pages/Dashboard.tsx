@@ -1,16 +1,19 @@
 import { Outlet } from "react-router";
 import { NavBarDashboard } from "../components/NavBarDashboard";
 import useUser from "../contexts/hook/useUser";
+import styles from './Dashboard.module.css';
 
 export function Dashboard(){
     const { user } = useUser();
     
     return (
-        <>
+        <div className={styles.containerPage}>
             <header>
-                <h1>{user?.firstName + " " + user?.lastName}</h1>
+                <NavBarDashboard />
             </header>
-            <Outlet />
-        </>
+            <main className="container-main">
+                <Outlet />
+            </main>
+        </div>
     )
 }

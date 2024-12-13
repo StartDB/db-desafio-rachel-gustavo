@@ -16,7 +16,7 @@
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
-  /* border: 1px solid red;  */
+  /* border: 1px solid red; */
 }
 
 
@@ -32,4 +32,18 @@ body {
   font-weight: 400;
   padding: .6rem 1.5rem;
   transition: background-color .2s ;
+}
+
+.container-main {
+  display: grid;
+}
+
+.container-section {
+  background-color: var(--white-color);
+  padding: 2rem;
+  border-radius: .45rem;
+  border:1px solid #d3d2d2;
+  min-width: 31rem;
+  box-shadow: 7px 7px 12px var(--shadow-background-color);
+  place-self: center;
 }

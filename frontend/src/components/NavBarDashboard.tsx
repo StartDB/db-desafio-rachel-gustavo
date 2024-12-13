@@ -11,7 +11,7 @@ export function NavBarDashboard() {
             <div className={styles.col}>
                 <NavLink to="/" className={`${styles.link} link-nav`}>Perfil</NavLink>
                 <NavLink to="/cadastro" className={`${styles.link} link-nav`}>Minhas Tarefas</NavLink>
-                <NavLink to="buscar_tarefas" className={`${styles.link} link-nav`}>Buscar Tarefas</NavLink>
+                <NavLink to="buscar-tarefas" className={`${styles.link} link-nav`}>Buscar Tarefas</NavLink>
             </div>
         </nav>
     )
