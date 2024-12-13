@@ -38,4 +38,8 @@ public class ElderlyService {
     public List<Elderly> listAll() {
         return elderlyRepository.findAll();
     }
+
+    public Elderly getById(Long id) {
+        return elderlyRepository.findById(id).get();
+    }
 }

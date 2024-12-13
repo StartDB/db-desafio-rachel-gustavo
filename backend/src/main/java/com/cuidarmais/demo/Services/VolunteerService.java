@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.cuidarmais.demo.Entities.Elderly;
 import com.cuidarmais.demo.Entities.Volunteer;
 import com.cuidarmais.demo.Repositories.VolunteerRepository;
 
@@ -38,5 +39,9 @@ public class VolunteerService {
 
     public List<Volunteer> listAll() {
         return volunteerRepository.findAll();
+    }
+
+    public Volunteer getById(Long id) {
+        return volunteerRepository.findById(id).get();
     }
 }

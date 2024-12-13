@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 
@@ -34,6 +35,10 @@ public class VolunteerController {
         
         return volunteerService.saveVolunteer(volunteer);
     }
-    
+
+    @GetMapping("/getById")
+    public Volunteer getById(@RequestParam Long id) {
+        return volunteerService.getById(id);
+    }    
     
 }
