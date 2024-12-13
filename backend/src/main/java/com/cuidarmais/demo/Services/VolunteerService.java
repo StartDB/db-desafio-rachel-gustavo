@@ -43,4 +43,22 @@ public class VolunteerService {
     public Volunteer getById(Long id) {
         return volunteerRepository.findById(id).get();
     }
+
+    public ResponseEntity<Object> updateVolunteer(Volunteer volunteer) {
+        try {
+
+            volunteerRepository.save(volunteer);
+            
+            return ResponseEntity.ok(volunteer);
+    
+            } catch (DataIntegrityViolationException ex) {
+            
+            String detail = ex.getMostSpecificCause().getLocalizedMessage().split("Detail:")[1];
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(detail);
+    
+            } catch (Exception ex) {
+    
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro desconhecido.");
+        }
+    }
 }

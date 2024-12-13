@@ -42,4 +42,22 @@ public class ElderlyService {
     public Elderly getById(Long id) {
         return elderlyRepository.findById(id).get();
     }
+
+    public ResponseEntity<Object> updateElderly(Elderly elderly) {
+        try {
+
+            elderlyRepository.save(elderly);
+            
+            return ResponseEntity.ok("Cadastro atualizado com sucesso!");
+    
+            } catch (DataIntegrityViolationException ex) {
+            
+            String detail = ex.getMostSpecificCause().getLocalizedMessage().split("Detail:")[1];
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(detail);
+    
+            } catch (Exception ex) {
+    
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro desconhecido.");
+        }
+    }
 }
