@@ -36,6 +36,12 @@ public class VolunteerController {
         return volunteerService.saveVolunteer(volunteer);
     }
 
+    @PostMapping("/update")
+    public ResponseEntity<Object> updateVolunteer(@RequestBody Volunteer volunteer) {
+        return volunteerService.updateVolunteer(volunteer);
+    }
+    
+
     @GetMapping("/getById")
     public Volunteer getById(@RequestParam Long id) {
         return volunteerService.getById(id);

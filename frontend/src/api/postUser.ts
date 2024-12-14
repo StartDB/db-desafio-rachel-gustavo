@@ -1,6 +1,6 @@
 import { UserDTO } from "../services/interfaces/user.dto";
 
-export async function postUser(user: UserDTO): Promise<UserDTO> {
+export async function postUser(user: UserDTO): Promise<String> {
     const url = `http://localhost:8080/${user.role}/save`;
 
     const response = await fetch(url, {
@@ -11,9 +11,11 @@ export async function postUser(user: UserDTO): Promise<UserDTO> {
         body: JSON.stringify(user),
     });
 
+    const responseText = await response.text()
+
     if (!response.ok) {
-        throw new Error(`Erro: ${response.status}`)
+        throw new Error(`${responseText}.`)
     }
-    console.log(response.json())
-    return response.json()
+    console.log(responseText)
+    return responseText
 }

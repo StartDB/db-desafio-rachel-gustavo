@@ -34,6 +34,11 @@ public class ElderlyController {
         return elderlyService.saveElderly(elderly);
     }
 
+    @PostMapping("/update")
+    public ResponseEntity<Object> updateElderly(@RequestBody Elderly elderly) {
+        return elderlyService.updateElderly(elderly);
+    }
+
     @GetMapping("/getById")
     public Elderly getById(@RequestParam Long id) {
         return elderlyService.getById(id);
