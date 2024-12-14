@@ -5,5 +5,5 @@ interface propsLabel {
 }
 
 export default function Label({content}: propsLabel){
-    return <label htmlFor="" className={styles.title}>{content}</label>
+    return <label className={styles.title}>{content}</label>
 }

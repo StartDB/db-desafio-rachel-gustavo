@@ -1,0 +1,65 @@
+/* * {
+    border : 1px solid red;
+} */
+
+.containerSectionUserProfile {
+    width: 45rem;
+}
+
+form, fieldset {
+    display: grid;
+}
+
+form {
+    gap: 1.5rem;
+}
+
+fieldset {
+    border: none;
+    grid-template-columns: 1fr 1fr; 
+    gap: .75rem 1.75rem; 
+}
+
+fieldset div {
+    display: flex;
+    flex-direction: column;
+    gap: .15rem;
+}
+
+.radioForm {
+    gap: .5rem;
+}
+
+.radioUnitForm {
+    display: flex;
+    flex-direction: row;
+    gap: .5rem;
+}
+
+.radioUnitForm input {
+    min-width: 1.1rem;
+}
+
+.aboutForm {
+    grid-template-columns: 1fr;
+    
+}
+
+textarea {
+    font-family: inherit;
+    color: inherit;
+    border: 1px solid var(--border-color);
+    min-height: 8rem;
+    border-radius: .5rem;
+    padding: 0 .75rem;
+    font-size: .8rem;
+}
+
+textarea:disabled  {
+    font-family: inherit;
+    color: var(--input-disabled-color);
+    background-color: #fdfafa;
+}
+
+
+
