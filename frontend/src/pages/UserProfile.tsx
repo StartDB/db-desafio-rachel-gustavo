@@ -12,10 +12,19 @@ export default function UserProfile() {
 
     const [isDisabled, setIsDisabled] = useState<boolean>(true)
     const [buttonHTML, setbuttonHTML] = useState<string>("Editar")
+    const [isVisible, setisVisible] = useState<boolean>(false)
     
-    function handleClick(): void{
+    function handleClickForm(): void{
         setIsDisabled(false)
         setbuttonHTML("Salvar")
+        setisVisible(true)
+    }
+
+    function handleCancelClick():void {
+        setUserEdited(userFinal)
+        setbuttonHTML("Editar")
+        setIsDisabled(true)
+        setisVisible(false)
     }
 
     return (
@@ -24,7 +33,9 @@ export default function UserProfile() {
             <p>{userEdited.firstName}</p>
             <Input type="text" name="city" value={userEdited.address.city} onChange={(e) => handleChangeAddress(e, setUserEdited)} disabled={isDisabled}/>
             <p>{userEdited.address.city}</p>
-            <button onClick={handleClick}>{buttonHTML}</button>
+
+            <button style={{visibility: isVisible ? "visible" : "hidden"}}onClick={handleCancelClick}>Cancelar</button>
+            <button onClick={handleClickForm}>{buttonHTML}</button>
         </>
     )
 }
