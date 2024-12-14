@@ -1,6 +1,7 @@
 package com.cuidarmais.demo.Services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -48,19 +49,25 @@ public class VolunteerService {
     public ResponseEntity<Object> updateVolunteer(UpdateUserDTO volunteerUpdate) {
         try {
 
-            Volunteer volunteer = volunteerRepository.findById(volunteerUpdate.id()).get();
+            Optional<Volunteer> volunteerOpt = volunteerRepository.findById(volunteerUpdate.id());
 
-            volunteer = UpdateUserDTO.mergeUpdateToVolunteer(volunteerUpdate, volunteer);
+            Volunteer volunteer = volunteerOpt.orElseThrow(() -> new IllegalArgumentException("Usuário não encontrado"));
 
-            volunteerRepository.save(volunteer);
+            Volunteer finalVolunteer = UpdateUserDTO.mergeUpdateToVolunteer(volunteerUpdate, volunteer);
+
+            volunteerRepository.save(finalVolunteer);
             
-            return ResponseEntity.ok(volunteer);
+            return ResponseEntity.ok(finalVolunteer);
     
             } catch (DataIntegrityViolationException ex) {
             
             String detail = ex.getMostSpecificCause().getLocalizedMessage().split("Detail:")[1];
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(detail);
     
+            } catch (IllegalArgumentException ex) {
+                
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+            
             } catch (Exception ex) {
     
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro desconhecido.");
