@@ -1,12 +1,12 @@
 import { UserDTO } from "../services/interfaces/user.dto";
 
 export function handleChangeForm(
-    e: React.ChangeEvent<HTMLInputElement>, 
-    state: UserDTO, 
+    e: React.ChangeEvent<HTMLInputElement>,
+    state: UserDTO,
     setState: React.Dispatch<React.SetStateAction<UserDTO>>
 ): void {
     const { name, value } = e.target;
-    
+
     switch (name) {
         case 'phone':
             const regexDigits: RegExp = /^\d{1,9}$/
@@ -34,13 +34,13 @@ export function handleChangeForm(
     }
 }
 
-export function handleChangeAddress (
-    e: React.ChangeEvent<HTMLInputElement>, 
+export function handleChangeAddress(
+    e: React.ChangeEvent<HTMLInputElement>,
     setState: React.Dispatch<React.SetStateAction<UserDTO>>
 ): void {
     let { name, value } = e.target;
 
-    setState((prevState) =>{
+    setState((prevState) => {
         return {
             ...prevState,
             address: {
@@ -48,5 +48,18 @@ export function handleChangeAddress (
                 [name]: value,
             }
         }
+    });
+}
+
+export function handleChangeTextArea(
+    e: React.ChangeEvent<HTMLTextAreaElement>,
+    state: UserDTO,
+    setState: React.Dispatch<React.SetStateAction<UserDTO>>
+): void {
+    const { name, value } = e.target;
+
+    setState({
+        ...state,
+        [name]: value,
     });
 }
