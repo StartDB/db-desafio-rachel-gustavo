@@ -15,4 +15,14 @@ public class Elderly extends User {
     private List<Task> tasks = new ArrayList<>();
 
     public Elderly() {}
+
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
+    }
+
+    
 }
