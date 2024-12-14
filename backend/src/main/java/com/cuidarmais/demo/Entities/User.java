@@ -62,8 +62,9 @@ public abstract class User {
 
     public User() {}
 
-    public User(String firstName, String lastName, String username, String password, String email, int phone,
-            LocalDate birthdate, Address address) {
+    public User(Long id, String firstName, String lastName, String username, String password, String email, int phone,
+            LocalDate birthdate, Address address, String description, LocalDateTime createdAt) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
@@ -72,8 +73,9 @@ public abstract class User {
         this.phone = phone;
         this.birthdate = birthdate;
         this.address = address;
+        this.description = description;
+        this.createdAt = createdAt;
     }
-
 
     public Long getId() {
         return id;
@@ -158,4 +160,9 @@ public abstract class User {
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
 }

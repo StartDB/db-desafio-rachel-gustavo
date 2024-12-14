@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cuidarmais.demo.DTO.UpdateUserDTO;
 import com.cuidarmais.demo.Entities.Elderly;
 import com.cuidarmais.demo.Services.ElderlyService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,7 +36,7 @@ public class ElderlyController {
     }
 
     @PostMapping("/update")
-    public ResponseEntity<Object> updateElderly(@RequestBody Elderly elderly) {
+    public ResponseEntity<Object> updateElderly(@RequestBody UpdateUserDTO elderly) {
         return elderlyService.updateElderly(elderly);
     }
 
