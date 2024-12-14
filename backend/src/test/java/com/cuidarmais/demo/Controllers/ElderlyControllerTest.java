@@ -62,11 +62,9 @@ public class ElderlyControllerTest {
 
     @Test
     void testGetByIdNotFound() throws Exception {
-        // Mock para idoso inexistente
         Mockito.when(elderlyService.getById(999L))
                 .thenReturn(ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não encontrado"));
 
-        // Testa retorno de erro
         mockMvc.perform(get("/elderly/getById")
                         .param("id", "999"))
                 .andExpect(status().isNotFound())
