@@ -25,28 +25,32 @@ export default function UserProfile() {
 
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>): Promise<void>{
         e.preventDefault();
+        if(userFinal.id === 0) {
+            return
+        }
 
         if(buttonHTML == "Editar"){
             setIsDisabled(false)
             setbuttonHTML("Salvar")
             setisVisible(true)
-            return;
-        } 
-        
-        try {
-            const userUpdate: UserDTO = await updateUser(userEdited)
-        
-            setUser(userUpdate)
-
-            setUserEdited(userFinal)
-            setIsDisabled(true)
-            setbuttonHTML("Editar")
-            setisVisible(false)
-
-        } catch(error) {
-            alert(`Erro ao enviar os dados: ${error}`);
+            
+        } else {
+            try {
+                const userUpdate: UserDTO = await updateUser(userEdited)
+                
+                setUser(userUpdate)
+                setUserEdited(userUpdate)
+                
+                setbuttonHTML("Editar")
+                setisVisible(false)
+                setIsDisabled(true)
+    
+            } catch(error: any) {
+                alert(`Erro ao enviar os dados: \n${error.message}.`);
+            }
+            
         }
-
+        
     }
 
     return (
@@ -72,7 +76,7 @@ export default function UserProfile() {
 
                     <div>
                         <label>Senha:</label>
-                        <Input type="password" name="password" value={userEdited.password} onChange={(e) => handleChangeForm(e, userEdited, setUserEdited)} disabled={isDisabled} />
+                        <Input type={isVisible ? "text" : "password"} name="password" value={userEdited.password} onChange={(e) => handleChangeForm(e, userEdited, setUserEdited)} disabled={isDisabled} />
                     </div>
 
                     <div>

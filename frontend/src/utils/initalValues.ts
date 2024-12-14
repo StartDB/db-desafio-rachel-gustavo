@@ -1,6 +1,7 @@
 import { UserDTO } from "../services/interfaces/user.dto";
 
 export const initialUserProfile: UserDTO = {
+    id: 0,
     firstName: "",
     lastName: "",
     username: "",
@@ -17,5 +18,6 @@ export const initialUserProfile: UserDTO = {
         district: "",
         state: "",
     },
+    description: "",
     role: "",
 }
