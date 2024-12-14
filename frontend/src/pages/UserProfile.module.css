@@ -74,5 +74,28 @@ textarea:disabled  {
     background-color: #fdfafa;
 }
 
+footer {
+    justify-self: end;
+    gap: 1.5rem
+}
+
+.buttonCanceled {
+    color: #ec5b5bd8;
+    font-size: .9rem;
+    border: none;
+    border-radius: 0;
+    padding: 0 .3rem .2rem;
+    border-bottom: 1px solid #ec5b5bd8;
+    background-color: transparent;
+    align-self: end;
+    cursor: pointer;
+    transition: color .1s, border-bottom .1s;
+}
+
+.buttonCanceled:hover {
+    color: #ec5b5b;
+    border-bottom: 1px solid #ec5b5b;
+}
+
 
 

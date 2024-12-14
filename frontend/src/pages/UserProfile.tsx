@@ -9,6 +9,7 @@ import { updateUser } from "../api/updateUser"
 import styles from './UserProfile.module.css';
 import Label from "../components/form/Label"
 import Legend from "../components/form/Legend"
+import InputButton from "../components/form/InputButton"
 
 export default function UserProfile() {
     const { user, setUser } = useUser()
@@ -165,8 +166,11 @@ export default function UserProfile() {
                     <textarea style={{ resize: 'none' }} name="description" value={userEdited.description ? userEdited.description : ""} onChange={(e) => handleChangeTextArea(e, userEdited, setUserEdited)} disabled={isDisabled} />
                 </fieldset>
 
-                <input type="button" value="Cancelar" style={{ visibility: isVisible ? "visible" : "hidden" }} onClick={handleCancelClick} />
-                <input type="submit" value={buttonHTML} />
+                <footer>
+                    <InputButton className={styles.buttonCanceled} type="button" value="Cancelar" /*style={{ visibility: isVisible ? "visible" : "hidden" }}*/ onClick={handleCancelClick} />
+
+                    <InputButton type="submit" value={buttonHTML} disabled={userFinal.id === 0 ? true : false}/>
+                </footer>
             </form>
         </section>
 
