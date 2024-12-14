@@ -53,7 +53,7 @@ public record UpdateUserDTO(
         if (userDTO.email() != null) {
             volunteer.setEmail(userDTO.email());
         }
-        if (userDTO.phone() != 0) { // Assumindo que 0 não é um número de telefone válido
+        if (userDTO.phone() != 0) {
             volunteer.setPhone(userDTO.phone());
         }
         if (userDTO.birthdate() != null) {
