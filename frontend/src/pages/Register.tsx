@@ -2,6 +2,7 @@ import { useState } from "react";
 import { UserDTO } from "../services/interfaces/user.dto";
 import { postUser } from "../api/postUser";
 import { AddressDTO } from "../services/interfaces/adress.dto";
+import Input from "../components/form/Input";
 
 export default function Register() {
 	const INITIALDDRESS: AddressDTO = {
@@ -44,8 +45,8 @@ export default function Register() {
 	}
 
 	function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-		let { name, value } = e.target;
-
+		const { name, value } = e.target;
+		
 		switch (name) {
 			case 'phone':
 				const regexDigits: RegExp = /^\d{1,9}$/
@@ -105,7 +106,7 @@ export default function Register() {
 				<legend>Dados Pessoais</legend>
 				<div>
 					<label>Nome do Usuário</label>
-					<input type="text" name="username" value={data.username} placeholder="Informe o seu username" onChange={handleChange} />
+					<Input type="text" name="username" value={data.username} placeholder="Informe o seu username" onChange={handleChange} />
 				</div>
 
 				<div>

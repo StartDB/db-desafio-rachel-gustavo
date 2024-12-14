@@ -19,5 +19,5 @@ export const testUser: UserDTO = {
         state:"SC"
     },
     description: "",
-    role:"ELDERLY",
+    role:"elderly",
 }

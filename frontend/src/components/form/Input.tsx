@@ -5,6 +5,7 @@ interface PropsInput {
     name: string;
     placeholder?:string;
     value:string;
+    disabled?: boolean;
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
