@@ -79,9 +79,8 @@ export default function Register() {
 
 		try {
 			const response = await postUser(data);
-			const user: UserDTO = { ...response }
 
-			alert("Enviado pelo servidor: \n" + JSON.stringify(user));
+			alert(response);
 			setData(INITIALUSER);
 			setAddress(INITIALDDRESS);
 
