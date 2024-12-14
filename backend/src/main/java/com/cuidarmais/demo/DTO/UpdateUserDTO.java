@@ -37,7 +37,7 @@ public record UpdateUserDTO(
 
         double rating) {
 
-    public static Volunteer mergeUserToEntity(UpdateUserDTO userDTO, Volunteer volunteer) {
+    public static Volunteer mergeUpdateToVolunteer(UpdateUserDTO userDTO, Volunteer volunteer) {
         if (userDTO.firstName() != null) {
             volunteer.setFirstName(userDTO.firstName());
         }
@@ -78,7 +78,7 @@ public record UpdateUserDTO(
         return volunteer;
     }
 
-    public static Elderly mergeUserToEntity(UpdateUserDTO userDTO, Elderly elderly) {
+    public static Elderly mergeUpdateToElderly(UpdateUserDTO userDTO, Elderly elderly) {
         if (userDTO.firstName() != null) {
             elderly.setFirstName(userDTO.firstName());
         }
