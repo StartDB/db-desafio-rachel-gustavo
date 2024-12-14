@@ -7,12 +7,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.NoSuchElementException;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -38,7 +39,7 @@ public class ElderlyControllerTest {
             new Address("10001", "5th Avenue", "50", "Penthouse", "New York", "Manhattan", "NY"),
             "The ruthless patriarch of the Roy family.", LocalDateTime.now(), null);
 
-    Mockito.when(elderlyService.getById(1L)).thenReturn(loganRoy);
+    Mockito.when(elderlyService.getById(1L)).thenReturn(ResponseEntity.ok(loganRoy));
 
     mockMvc.perform(get("/elderly/getById")
                     .param("id", "1"))
@@ -63,13 +64,13 @@ public class ElderlyControllerTest {
     void testGetByIdNotFound() throws Exception {
         // Mock para idoso inexistente
         Mockito.when(elderlyService.getById(999L))
-                .thenThrow(new NoSuchElementException("Elderly not found"));
+                .thenReturn(ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não encontrado"));
 
         // Testa retorno de erro
         mockMvc.perform(get("/elderly/getById")
                         .param("id", "999"))
                 .andExpect(status().isNotFound())
-                .andExpect(content().string("Elderly not found"));
+                .andExpect(content().string("Usuário não encontrado"));
     }
 
     @Test

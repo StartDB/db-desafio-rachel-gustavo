@@ -41,7 +41,7 @@ public class ElderlyController {
     }
 
     @GetMapping("/getById")
-    public Elderly getById(@RequestParam Long id) {
+    public ResponseEntity<Object> getById(@RequestParam Long id) {
         return elderlyService.getById(id);
     }
     
