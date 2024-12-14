@@ -61,7 +61,7 @@ export default function UserProfile() {
 
             <header>
                 <MainTitle content="Meu Perfil" />
-                <p>ID:{userEdited.id == 0 ? "" : userEdited.id}</p>
+                <p className={styles.idUser}>ID:{userEdited.id == 0 ? " " : userEdited.id}</p>
             </header>
 
             <form onSubmit={handleSubmit}>
