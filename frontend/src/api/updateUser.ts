@@ -4,7 +4,7 @@ export async function updateUser(user: UserDTO): Promise<UserDTO> {
     const url = `http://localhost:8080/${user.role}/update`;
 
     try {
-        const response = await fetch(url, {
+        const response: Response = await fetch(url, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -13,7 +13,17 @@ export async function updateUser(user: UserDTO): Promise<UserDTO> {
         });
     
         if (!response.ok) {
-            throw new Error(`Erro inesperado. Status: ${response.status}`);
+            let errorBody: string | undefined;
+
+            try {
+                errorBody = await response.text(); 
+
+            } catch {
+                errorBody = undefined;
+            }
+    
+            const errorMessage: string = errorBody || `Status ${response.status}: ${response.statusText}`;
+            throw new Error(errorMessage);
         }
     
         return response.json()
