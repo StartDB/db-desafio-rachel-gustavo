@@ -5,9 +5,10 @@ import Input from "../components/form/Input"
 import { initialUserProfile } from "../utils/initalValues"
 import { handleChangeAddress, handleChangeForm, handleChangeTextArea } from "../utils/handleChange"
 import MainTitle from "../components/MainTitle"
+import { updateUser } from "../api/updateUser"
 
 export default function UserProfile() {
-    const { user } = useUser()
+    const { user, setUser } = useUser()
     const userFinal = user ? user : initialUserProfile
     const [userEdited, setUserEdited] = useState<UserDTO>(userFinal)
 
@@ -22,11 +23,30 @@ export default function UserProfile() {
         setisVisible(false)
     }
 
-    function handleSubmit(e: React.FormEvent<HTMLFormElement>): void{
+    async function handleSubmit(e: React.FormEvent<HTMLFormElement>): Promise<void>{
         e.preventDefault();
-        setIsDisabled(false)
-        setbuttonHTML("Salvar")
-        setisVisible(true)
+
+        if(buttonHTML == "Editar"){
+            setIsDisabled(false)
+            setbuttonHTML("Salvar")
+            setisVisible(true)
+            return;
+        } 
+        
+        try {
+            const userUpdate: UserDTO = await updateUser(userEdited)
+        
+            setUser(userUpdate)
+
+            setUserEdited(userFinal)
+            setIsDisabled(true)
+            setbuttonHTML("Editar")
+            setisVisible(false)
+
+        } catch(error) {
+            alert(`Erro ao enviar os dados: ${error}`);
+        }
+
     }
 
     return (
