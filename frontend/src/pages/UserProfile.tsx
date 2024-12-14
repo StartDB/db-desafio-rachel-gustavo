@@ -9,13 +9,22 @@ export default function UserProfile() {
     const { user } = useUser()
     const userFinal = user ? user : initialUserProfile
     const [userEdited, setUserEdited] = useState<UserDTO>(userFinal)
- 
+
+    const [isDisabled, setIsDisabled] = useState<boolean>(true)
+    const [buttonHTML, setbuttonHTML] = useState<string>("Editar")
+    
+    function handleClick(): void{
+        setIsDisabled(false)
+        setbuttonHTML("Salvar")
+    }
+
     return (
         <>
-            <Input type="text" name="firstName" value={userEdited.firstName} onChange={(e) => handleChangeForm(e, userEdited, setUserEdited)} />
+            <Input type="text" name="firstName" value={userEdited.firstName} onChange={(e) => handleChangeForm(e, userEdited, setUserEdited)} disabled={isDisabled}/>
             <p>{userEdited.firstName}</p>
-            <Input type="text" name="city" value={userEdited.address.city} onChange={(e) => handleChangeAddress(e, setUserEdited)} />
+            <Input type="text" name="city" value={userEdited.address.city} onChange={(e) => handleChangeAddress(e, setUserEdited)} disabled={isDisabled}/>
             <p>{userEdited.address.city}</p>
+            <button onClick={handleClick}>{buttonHTML}</button>
         </>
     )
 }
