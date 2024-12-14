@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.cuidarmais.demo.DTO.UpdateUserDTO;
 import com.cuidarmais.demo.Entities.Volunteer;
 import com.cuidarmais.demo.Repositories.VolunteerRepository;
 
@@ -44,8 +45,12 @@ public class VolunteerService {
         return volunteerRepository.findById(id).get();
     }
 
-    public ResponseEntity<Object> updateVolunteer(Volunteer volunteer) {
+    public ResponseEntity<Object> updateVolunteer(UpdateUserDTO volunteerUpdate) {
         try {
+
+            Volunteer volunteer = volunteerRepository.findById(volunteerUpdate.id()).get();
+
+            volunteer = UpdateUserDTO.mergeUpdateToVolunteer(volunteerUpdate, volunteer);
 
             volunteerRepository.save(volunteer);
             

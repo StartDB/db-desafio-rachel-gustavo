@@ -48,7 +48,7 @@ public class ElderlyService {
 
             elderlyRepository.save(elderly);
             
-            return ResponseEntity.ok("Cadastro atualizado com sucesso!");
+            return ResponseEntity.ok(elderly);
     
             } catch (DataIntegrityViolationException ex) {
             

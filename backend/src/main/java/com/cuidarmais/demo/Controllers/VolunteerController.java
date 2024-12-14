@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cuidarmais.demo.DTO.UpdateUserDTO;
 import com.cuidarmais.demo.Entities.Volunteer;
 import com.cuidarmais.demo.Services.VolunteerService;
 
@@ -37,7 +38,7 @@ public class VolunteerController {
     }
 
     @PostMapping("/update")
-    public ResponseEntity<Object> updateVolunteer(@RequestBody Volunteer volunteer) {
+    public ResponseEntity<Object> updateVolunteer(@RequestBody UpdateUserDTO volunteer) {
         return volunteerService.updateVolunteer(volunteer);
     }
     
