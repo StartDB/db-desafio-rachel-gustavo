@@ -14,12 +14,15 @@ import com.cuidarmais.demo.DTO.UpdateUserDTO;
 import com.cuidarmais.demo.Entities.Elderly;
 import com.cuidarmais.demo.Repositories.ElderlyRepository;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class ElderlyService {
     
     @Autowired
     public ElderlyRepository elderlyRepository;
 
+    @Transactional
     public ResponseEntity<Object> saveElderly(Elderly elderly) {
         try {
 
@@ -62,6 +65,7 @@ public class ElderlyService {
         
     }
 
+    @Transactional
     public ResponseEntity<Object> updateElderly(UpdateUserDTO elderlyUpdate) {
         try {
 
