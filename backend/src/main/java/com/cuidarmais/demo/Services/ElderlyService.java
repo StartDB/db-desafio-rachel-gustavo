@@ -1,6 +1,7 @@
 package com.cuidarmais.demo.Services;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,8 +42,24 @@ public class ElderlyService {
         return elderlyRepository.findAll();
     }
 
-    public Elderly getById(Long id) {
-        return elderlyRepository.findById(id).get();
+    public ResponseEntity<Object> getById(Long id) {
+        try {
+
+            Optional<Elderly> elderlyOpt = elderlyRepository.findById(id);
+
+            Elderly elderly = elderlyOpt.orElseThrow(() -> new NoSuchElementException("Usuário não encontrado"));
+
+            return ResponseEntity.ok(elderly);
+
+        } catch (NoSuchElementException ex) {
+                
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+
+        } catch (Exception ex) {
+
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro desconhecido.");
+    }
+        
     }
 
     public ResponseEntity<Object> updateElderly(UpdateUserDTO elderlyUpdate) {
@@ -50,14 +67,14 @@ public class ElderlyService {
 
             Optional<Elderly> elderlyOpt = elderlyRepository.findById(elderlyUpdate.id());
 
-            Elderly elderly = elderlyOpt.orElseThrow(() -> new IllegalArgumentException("Usuário não encontrado"));
+            Elderly elderly = elderlyOpt.orElseThrow(() -> new NoSuchElementException("Usuário não encontrado"));
 
             Elderly finalElderly = UpdateUserDTO.mergeUpdateToElderly(elderlyUpdate, elderly);
             elderlyRepository.save(finalElderly);
             
             return ResponseEntity.ok(finalElderly);
     
-            } catch (IllegalArgumentException ex) {
+            } catch (NoSuchElementException ex) {
                 
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
             

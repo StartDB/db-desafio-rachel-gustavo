@@ -44,7 +44,7 @@ public class VolunteerController {
     
 
     @GetMapping("/getById")
-    public Volunteer getById(@RequestParam Long id) {
+    public ResponseEntity<Object> getById(@RequestParam Long id) {
         return volunteerService.getById(id);
     }    
     

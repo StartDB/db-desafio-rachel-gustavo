@@ -45,7 +45,9 @@ public class TaskService {
         return TaskDTOTransform.transformToTaskDTOList(taskRepository.findAll());
     }
 
-    public List<TaskDTO> getStatusTypeFilter(SupportType supportType, Status status) {
+    public ResponseEntity<Object> getStatusTypeFilter(SupportType supportType, Status status) {
+        try {
+
         List<Task> taskList = new ArrayList<Task>();
 
         if (supportType != null && status != null) {
@@ -55,7 +57,12 @@ public class TaskService {
         } else if (status != null ) {
             taskList = taskRepository.findByStatusOrderByDateAsc(status);
         }
-        return TaskDTOTransform.transformToTaskDTOList(taskList);
+        
+        return ResponseEntity.ok(TaskDTOTransform.transformToTaskDTOList(taskList));
+
+        } catch (Exception ex) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro desconhecido");
         }
+    }
     }
 

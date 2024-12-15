@@ -1,6 +1,7 @@
 package com.cuidarmais.demo.Services;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,8 +43,24 @@ public class VolunteerService {
         return volunteerRepository.findAll();
     }
 
-    public Volunteer getById(Long id) {
-        return volunteerRepository.findById(id).get();
+    public ResponseEntity<Object> getById(Long id) {
+        try {
+
+            Optional<Volunteer> volunteerOpt = volunteerRepository.findById(id);
+
+            Volunteer volunteer = volunteerOpt.orElseThrow(() -> new NoSuchElementException("Usuário não encontrado"));
+
+            return ResponseEntity.ok(volunteer);
+
+        } catch (NoSuchElementException ex) {
+                
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+
+        } catch (Exception ex) {
+
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro desconhecido.");
+    }
+       
     }
 
     public ResponseEntity<Object> updateVolunteer(UpdateUserDTO volunteerUpdate) {
