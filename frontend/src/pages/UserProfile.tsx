@@ -29,9 +29,6 @@ export default function UserProfile() {
 
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>): Promise<void> {
         e.preventDefault();
-        if (userFinal.id === 0) {
-            return
-        }
 
         if (buttonHTML == "Editar") {
             setIsDisabled(false)
@@ -49,8 +46,12 @@ export default function UserProfile() {
                 setisVisible(false)
                 setIsDisabled(true)
 
+                alert("Cadastro atualizado com sucesso!")
+
             } catch (error: any) {
-                alert(`Erro ao enviar os dados: \n${error.message}.`);
+                alert("Não foi possível concluir a atualização do cadastro.\n\nPor favor, tente novamente mais tarde.")
+
+			    console.error(`Erro ao enviar os dados:  \nMensagem: ${error.message}`)
             }
 
         }
@@ -62,26 +63,19 @@ export default function UserProfile() {
 
             <header className={styles.headerForm}>
                 <MainTitle content="Meu Perfil" />
+                
+                <div className={styles.headerFormFixedValues}>
+                    <p className={styles.fixedValue}>
+                        <span>ID:</span> {userFinal.id != 0 ? userFinal.id : " "}
+                    </p>
+
+                    <p className={styles.fixedValue}>
+                        <span>Tipo de cadastro:</span> {userFinal.role ? userFinal.role == "elderly" ? "Idoso" : "Voluntário" : " "}
+                    </p>
+                </div>
             </header>
 
             <form onSubmit={handleSubmit} className={styles.formUserProfile}>
-                <fieldset className={styles.rowRadioForm}>
-                    <Legend content="Tipo de Cadastro" />
-
-                    <div className={styles.radioForm}>
-
-                        <div className={styles.radioUnitForm}>
-                            <input type="radio" name="role" id="elderly" value="elderly" checked={userEdited.role === "elderly"} onChange={(e) => handleChangeForm(e, userEdited, setUserEdited)} disabled={isDisabled} />
-                            <label htmlFor="elderly">Idoso</label>
-                        </div>
-
-                        <div className={styles.radioUnitForm}>
-                            <input type="radio" name="role" id="volunteer" value="volunteer" checked={userEdited.role === "volunteer"} onChange={(e) => handleChangeForm(e, userEdited, setUserEdited)} disabled={isDisabled} />
-                            <label htmlFor="volunteer">Voluntário</label>
-                        </div>
-                    </div>
-                </fieldset>
-
                 <fieldset className={styles.rowForm}>
                     <Legend content="Dados Pessoais" />
 
@@ -173,6 +167,5 @@ export default function UserProfile() {
                 </div>
             </form>
         </section>
-
     )
 }
