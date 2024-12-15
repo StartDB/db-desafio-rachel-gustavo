@@ -1,6 +1,8 @@
 package com.cuidarmais.demo.Services;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,16 +26,24 @@ public class UserService {
 
         try {
 
-        User user = userRepository.findLogin(login.username(), login.password())
-        .orElseThrow(() -> new IllegalArgumentException("Usuário ou senha inválidos."));
+        Optional<User> userOpt = userRepository.findByUsername(login.username());
 
-            return ResponseEntity.ok(user);
+        User user = userOpt.orElseThrow(() -> new NoSuchElementException("Usuário não encontrado."));
         
+        if (user.getPassword().equals(login.password())) {
+            return ResponseEntity.ok(user);
+        }
+        
+        throw new IllegalArgumentException("Senha inválida");
 
+        } catch (NoSuchElementException ex) {
+            return ResponseEntity.badRequest().body(ex.getMessage());
+        } catch (IllegalArgumentException ex) {
+            return ResponseEntity.badRequest().body(ex.getMessage());
         } catch (Exception ex) {
             return ResponseEntity.badRequest().body("Erro ao tentar realizar o login");
-        }
     }
     
+    }
 
 }
