@@ -2,7 +2,6 @@ import { useState } from "react"
 import useUser from "../contexts/hook/useUser"
 import { UserDTO } from "../services/interfaces/user.dto"
 import Input from "../components/form/Input"
-import { initialUserProfile } from "../utils/initalValues"
 import { handleChangeAddress, handleChangeForm, handleChangeTextArea } from "../utils/handleChange"
 import MainTitle from "../components/MainTitle"
 import { updateUser } from "../api/updateUser"
@@ -10,10 +9,11 @@ import styles from './UserProfile.module.css';
 import Label from "../components/form/Label"
 import Legend from "../components/form/Legend"
 import InputButton from "../components/form/InputButton"
+import { userInitialValues } from "../utils/initalValues"
 
 export default function UserProfile() {
     const { user, setUser } = useUser()
-    const userFinal = user ? user : initialUserProfile
+    const userFinal = user ? user : userInitialValues
     const [userEdited, setUserEdited] = useState<UserDTO>(userFinal)
 
     const [isDisabled, setIsDisabled] = useState<boolean>(true)
