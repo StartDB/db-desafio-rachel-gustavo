@@ -1,6 +1,7 @@
 package com.cuidarmais.demo.Controllers;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -12,7 +13,9 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
@@ -72,9 +75,74 @@ public class ElderlyControllerTest {
     }
 
     @Test
-    void testSaveElderly() {
+    void testSaveElderlySuccess() throws Exception {
+        String loganRoyJson = """
+            {
+              "id": 1,
+              "firstName": "Logan",
+              "lastName": "Roy",
+              "username": "loganroy",
+              "password": "securepassword",
+              "email": "logan@waystar.com",
+              "phone": 555123456,
+              "birthdate": "1940-10-14",
+              "address": {
+                "zip": "10001",
+                "street": "5th Avenue",
+                "number": "50",
+                "suite": "Penthouse",
+                "city": "New York",
+                "district": "Manhattan",
+                "state": "NY"
+              },
+              "description": "The ruthless patriarch of the Roy family."
+            }
+            """;
+    Mockito.when(elderlyService.saveElderly(Mockito.any(Elderly.class)))
+            .thenReturn(ResponseEntity.ok("Cadastro salvo com sucesso!"));
 
-    }
+    mockMvc.perform(post("/elderly/save")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(loganRoyJson))
+            .andExpect(status().isOk())
+            .andExpect(content().string("Cadastro salvo com sucesso!"));
+}
+
+    @Test
+    void testSaveElderlyDataIntegrityViolation() throws Exception {
+        String duplicateLoganRoyJson = """
+            {
+              "id": 1,
+              "firstName": "Logan",
+              "lastName": "Roy",
+              "username": "loganroy",
+              "password": "securepassword",
+              "email": "logan@waystar.com",
+              "phone": 555123456,
+              "birthdate": "1940-10-14",
+              "address": {
+                "zip": "10001",
+                "street": "5th Avenue",
+                "number": "50",
+                "suite": "Penthouse",
+                "city": "New York",
+                "district": "Manhattan",
+                "state": "NY"
+              },
+              "description": "The ruthless patriarch of the Roy family."
+            }
+            """;
+    String detailMessage = "Detail: Key (username)=(loganroy) already exists.";
+    Mockito.when(elderlyService.saveElderly(Mockito.any(Elderly.class)))
+            .thenThrow(new DataIntegrityViolationException(detailMessage));
+
+    mockMvc.perform(post("/elderly/save")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(duplicateLoganRoyJson))
+            .andExpect(status().isBadRequest())
+            .andExpect(content().string(detailMessage.split("Detail:")[1].trim()));
+}
+
 
     @Test
     void testUpdateElderly() {
