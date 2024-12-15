@@ -63,6 +63,16 @@ export default function UserProfile() {
 
             <header className={styles.headerForm}>
                 <MainTitle content="Meu Perfil" />
+                
+                <div className={styles.headerFormFixedValues}>
+                    <p className={styles.fixedValue}>
+                        <span>ID:</span> {userFinal.id != 0 ? userFinal.id : " "}
+                    </p>
+
+                    <p className={styles.fixedValue}>
+                        <span>Tipo de cadastro:</span> {userFinal.role ? userFinal.role == "elderly" ? "Idoso" : "Voluntário" : " "}
+                    </p>
+                </div>
             </header>
 
             <form onSubmit={handleSubmit} className={styles.formUserProfile}>
