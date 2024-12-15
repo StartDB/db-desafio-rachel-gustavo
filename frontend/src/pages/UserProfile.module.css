@@ -2,11 +2,11 @@
     border : 1px solid red;
 } */
 
-.containerSectionUserProfile {
+.sectionUserProfile {
     width: 45rem;
 }
 
-header {
+.headerForm {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -19,46 +19,44 @@ header {
     font-size: .8rem;
 }
 
-form, fieldset {
+.formUserProfile, .rowForm, .rowRadioForm {
     display: grid;
 }
 
-form {
+.formUserProfile {
     gap: 1.5rem;
 }
 
-fieldset {
-    border: none;
+.rowForm {
     grid-template-columns: 1fr 1fr; 
-    gap: .75rem 1.75rem; 
 }
 
-fieldset div {
+.rowForm , .rowRadioForm  {
+    gap: .75rem 1.75rem;
+    border: none; 
+}
+
+.rowForm div, .rowRadioForm .radioForm {
     display: flex;
     flex-direction: column;
     gap: .15rem;
 }
 
-.radioForm {
-    gap: .5rem;
-}
-
 .radioUnitForm {
     display: flex;
-    flex-direction: row;
-    gap: .5rem;
+    align-items: center;
+    gap: .23rem;
 }
 
 .radioUnitForm input {
     min-width: 1.1rem;
-}
+} 
 
 .aboutForm {
     grid-template-columns: 1fr;
-    
 }
 
-textarea {
+.textAreaForm {
     font-family: inherit;
     color: inherit;
     border: 1px solid var(--border-color);
@@ -66,17 +64,19 @@ textarea {
     border-radius: .5rem;
     padding: 0 .75rem;
     font-size: .8rem;
+    resize: none;
 }
 
-textarea:disabled  {
+.textAreaForm:disabled  {
     font-family: inherit;
     color: var(--input-disabled-color);
     background-color: #fdfafa;
 }
 
-footer {
-    justify-self: end;
-    gap: 1.5rem
+.footerFormUserProfile {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1.5rem;
 }
 
 .buttonCanceled {

@@ -40,7 +40,7 @@ body {
   position: relative;
 }
 
-.container-section-initial {
+.container-section-base {
   background-color: var(--white-color);
   padding: 2rem;
   border-radius: .45rem;
@@ -48,4 +48,8 @@ body {
   min-width: 31rem;
   box-shadow: 7px 7px 12px var(--shadow-background-color);
   place-self: center;
+}
+
+.container-section-home, .container-section-dashboard {
+  margin: 3rem;
 }

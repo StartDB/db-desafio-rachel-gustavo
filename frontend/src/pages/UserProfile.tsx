@@ -58,18 +58,19 @@ export default function UserProfile() {
     }
 
     return (
-        <section className={`${styles.containerSectionUserProfile} container-section-initial`}>
+        <section className={`${styles.sectionUserProfile} container-section-base container-section-dashboard`}>
 
-            <header>
+            <header className={styles.headerForm}>
                 <MainTitle content="Meu Perfil" />
                 <p className={styles.idUser}>ID:{userEdited.id == 0 ? " " : userEdited.id}</p>
             </header>
 
-            <form onSubmit={handleSubmit}>
-                <fieldset>
+            <form onSubmit={handleSubmit} className={styles.formUserProfile}>
+                <fieldset className={styles.rowRadioForm}>
                     <Legend content="Tipo de Cadastro" />
 
                     <div className={styles.radioForm}>
+
                         <div className={styles.radioUnitForm}>
                             <input type="radio" name="role" id="elderly" value="elderly" checked={userEdited.role === "elderly"} onChange={(e) => handleChangeForm(e, userEdited, setUserEdited)} disabled={isDisabled} />
                             <label htmlFor="elderly">Idoso</label>
@@ -82,7 +83,7 @@ export default function UserProfile() {
                     </div>
                 </fieldset>
 
-                <fieldset>
+                <fieldset className={styles.rowForm}>
                     <Legend content="Dados Pessoais" />
 
                     <div>
@@ -121,7 +122,7 @@ export default function UserProfile() {
                     </div>
                 </fieldset>
 
-                <fieldset>
+                <fieldset className={styles.rowForm}>
                     <Legend content="Endereço" />
 
                     <div>
@@ -160,17 +161,17 @@ export default function UserProfile() {
                     </div>
                 </fieldset>
 
-                <fieldset className={styles.aboutForm}>
+                <fieldset className={`${styles.rowForm} ${styles.aboutForm}`}>
                     <Legend content="Sobre mim" />
 
-                    <textarea style={{ resize: 'none' }} name="description" value={userEdited.description ? userEdited.description : ""} onChange={(e) => handleChangeTextArea(e, userEdited, setUserEdited)} disabled={isDisabled} />
+                    <textarea className={styles.textAreaForm} name="description" value={userEdited.description ? userEdited.description : ""} onChange={(e) => handleChangeTextArea(e, userEdited, setUserEdited)} disabled={isDisabled} />
                 </fieldset>
 
-                <footer>
+                <div className={styles.footerFormUserProfile}>
                     <InputButton className={styles.buttonCanceled} type="button" value="Cancelar" /*style={{ visibility: isVisible ? "visible" : "hidden" }}*/ onClick={handleCancelClick} />
 
                     <InputButton type="submit" value={buttonHTML} disabled={userFinal.id === 0 ? true : false}/>
-                </footer>
+                </div>
             </form>
         </section>
 
