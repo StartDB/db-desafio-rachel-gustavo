@@ -65,23 +65,6 @@ export default function UserProfile() {
             </header>
 
             <form onSubmit={handleSubmit} className={styles.formUserProfile}>
-                <fieldset className={styles.rowRadioForm}>
-                    <Legend content="Tipo de Cadastro" />
-
-                    <div className={styles.radioForm}>
-
-                        <div className={styles.radioUnitForm}>
-                            <input type="radio" name="role" id="elderly" value="elderly" checked={userEdited.role === "elderly"} onChange={(e) => handleChangeForm(e, userEdited, setUserEdited)} disabled={isDisabled} />
-                            <label htmlFor="elderly">Idoso</label>
-                        </div>
-
-                        <div className={styles.radioUnitForm}>
-                            <input type="radio" name="role" id="volunteer" value="volunteer" checked={userEdited.role === "volunteer"} onChange={(e) => handleChangeForm(e, userEdited, setUserEdited)} disabled={isDisabled} />
-                            <label htmlFor="volunteer">Voluntário</label>
-                        </div>
-                    </div>
-                </fieldset>
-
                 <fieldset className={styles.rowForm}>
                     <Legend content="Dados Pessoais" />
 
