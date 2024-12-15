@@ -47,7 +47,7 @@ public class ElderlyService {
 
             Optional<Elderly> elderlyOpt = elderlyRepository.findById(id);
 
-            Elderly elderly = elderlyOpt.orElseThrow(() -> new IllegalArgumentException("Usuário não encontrado"));
+            Elderly elderly = elderlyOpt.orElseThrow(() -> new NoSuchElementException("Usuário não encontrado"));
 
             return ResponseEntity.ok(elderly);
 
