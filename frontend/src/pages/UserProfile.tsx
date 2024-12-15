@@ -62,7 +62,6 @@ export default function UserProfile() {
 
             <header className={styles.headerForm}>
                 <MainTitle content="Meu Perfil" />
-                <p className={styles.idUser}>ID:{userEdited.id == 0 ? " " : userEdited.id}</p>
             </header>
 
             <form onSubmit={handleSubmit} className={styles.formUserProfile}>
@@ -168,7 +167,7 @@ export default function UserProfile() {
                 </fieldset>
 
                 <div className={styles.footerFormUserProfile}>
-                    <InputButton className={styles.buttonCanceled} type="button" value="Cancelar" /*style={{ visibility: isVisible ? "visible" : "hidden" }}*/ onClick={handleCancelClick} />
+                    <input style={{ visibility: isVisible ? "visible" : "hidden" }} className={styles.buttonCanceled} type="button" value="Cancelar"  onClick={handleCancelClick} />
 
                     <InputButton type="submit" value={buttonHTML} disabled={userFinal.id === 0 ? true : false}/>
                 </div>

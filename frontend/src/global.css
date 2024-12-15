@@ -17,8 +17,7 @@
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
-  /* border: 1px solid red; */
-}
+} 
 
 
 body {
@@ -51,5 +50,5 @@ body {
 }
 
 .container-section-home, .container-section-dashboard {
-  margin: 3rem;
+  margin: 3rem 0;
 }

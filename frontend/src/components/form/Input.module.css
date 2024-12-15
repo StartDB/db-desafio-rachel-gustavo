@@ -15,5 +15,5 @@
 input:disabled {
     font-family: inherit;
     color: var(--input-disabled-color);
-    background-color: #fdfafa;
+    background-color: #f7f5f562;
 }

@@ -9,7 +9,7 @@ interface PropsInputButton {
 }
 
 export default function InputButton({className, ...rest}: PropsInputButton ) {
-    const combinedClassName = className ?  `${className} ${styles.btn}` : `${styles.button}`;
+    const combinedClassName = className ?  `${className} ${styles.button}` : `${styles.button}`;
 
     return <input className={combinedClassName}{...rest}/>
 }

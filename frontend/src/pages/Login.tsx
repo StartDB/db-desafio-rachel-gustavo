@@ -51,11 +51,11 @@ export function Login() {
                 <div className={styles.row}>
                     <div className={styles.subRow}>
                         <Label content="Nome do Usuário:" />
-                        <Input type="text" name="username" placeholder="Nome Completo" value={userCredentials.username} onChange={handleChange} />
+                        <Input type="text" name="username" placeholder="Nome Completo" value={userCredentials.username} onChange={handleChange} className={styles.inputHeight}/>
                     </div>
                     <div className={styles.subRow}>
                         <Label content="Senha:" />
-                        <Input type="password" name="password" placeholder="Senha" value={userCredentials.password} onChange={handleChange} />
+                        <Input type="password" name="password" placeholder="Senha" value={userCredentials.password} onChange={handleChange} className={styles.inputHeight}/>
                     </div>
                 </div>
                 <InputButton type="submit" value="Login" />

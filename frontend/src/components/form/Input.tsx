@@ -6,9 +6,12 @@ interface PropsInput {
     placeholder?:string;
     value:string;
     disabled?: boolean;
+    className?: string;
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export default function Input({...rest}: PropsInput) {
-    return <input className={styles.input} {...rest}/>
+export default function Input({className, ...rest}: PropsInput) {
+    const combinedClassName = className ?  `${className} ${styles.input}` : `${styles.input}`;
+
+    return <input className={combinedClassName} {...rest}/>
 }

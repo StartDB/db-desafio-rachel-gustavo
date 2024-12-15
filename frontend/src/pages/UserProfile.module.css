@@ -1,22 +1,9 @@
-/* * {
-    border : 1px solid red;
-} */
-
 .sectionUserProfile {
-    width: 45rem;
+    min-width: 45rem;
 }
 
 .headerForm {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
     padding-bottom: 2rem;
-}
-
-.idUser {
-    color: #cac9c9;
-    font-size: .8rem;
 }
 
 .formUserProfile, .rowForm, .rowRadioForm {
@@ -62,7 +49,7 @@
     border: 1px solid var(--border-color);
     min-height: 8rem;
     border-radius: .5rem;
-    padding: 0 .75rem;
+    padding: 1rem;
     font-size: .8rem;
     resize: none;
 }
@@ -70,7 +57,7 @@
 .textAreaForm:disabled  {
     font-family: inherit;
     color: var(--input-disabled-color);
-    background-color: #fdfafa;
+    background-color: #f7f5f562;
 }
 
 .footerFormUserProfile {
@@ -83,7 +70,6 @@
     color: #ec5b5bd8;
     font-size: .9rem;
     border: none;
-    border-radius: 0;
     padding: 0 .3rem .2rem;
     border-bottom: 1px solid #ec5b5bd8;
     background-color: transparent;

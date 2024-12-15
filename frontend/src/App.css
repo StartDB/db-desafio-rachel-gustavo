@@ -1,5 +1,6 @@
 #root {
     min-height: 100dvh;
+    max-width: 100dvw;
     display: grid;
     grid-template-rows: min-content 1fr min-content;
 }
