@@ -1,6 +1,6 @@
 import { UserDTO } from "../services/interfaces/user.dto";
 
-export const initialUserProfile: UserDTO = {
+export const userInitialValues: UserDTO = {
     id: 0,
     firstName: "",
     lastName: "",
