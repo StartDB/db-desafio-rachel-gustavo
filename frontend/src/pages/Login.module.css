@@ -9,6 +9,10 @@
     font-size: 2.5rem;
 }
 
+.inputHeight{
+    min-height: 2.3rem;
+}
+
 .row {
     display: grid;
     gap: 1rem;

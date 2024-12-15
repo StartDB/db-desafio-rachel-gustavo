@@ -1,6 +1,8 @@
 .input {
+    font-family: inherit;
+    color: inherit;
     border: 1px solid var(--border-color);
-    min-height: 2.2rem;
+    min-height: 1.75rem;
     border-radius: .25rem;
     padding: 0 .75rem;
     font-size: .8rem;
@@ -8,4 +10,10 @@
 
 .input:focus {
     outline: 1px solid #585858;
+}
+
+input:disabled {
+    font-family: inherit;
+    color: var(--input-disabled-color);
+    background-color: #f7f5f562;
 }

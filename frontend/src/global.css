@@ -9,6 +9,7 @@
   --border-color: #8D8D8D;
   --link-dark-color: #1B3764;
   --link-light-color: #265092;
+  --input-disabled-color: #585858;
 }
 
 
@@ -16,8 +17,7 @@
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
-  /* border: 1px solid red; */
-}
+} 
 
 
 body {
@@ -39,7 +39,7 @@ body {
   position: relative;
 }
 
-.container-section-initial {
+.container-section-base {
   background-color: var(--white-color);
   padding: 2rem;
   border-radius: .45rem;
@@ -47,4 +47,8 @@ body {
   min-width: 31rem;
   box-shadow: 7px 7px 12px var(--shadow-background-color);
   place-self: center;
+}
+
+.container-section-home, .container-section-dashboard {
+  margin: 3rem 0;
 }

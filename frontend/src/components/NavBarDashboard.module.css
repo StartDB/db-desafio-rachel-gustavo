@@ -1,6 +1,6 @@
 .container {
     background-color: #65B4F4;
-    min-width: 100dvw;
+    max-width: 100dvw;
     color: #FFFFFF;
     display: flex;
     justify-content: space-between;

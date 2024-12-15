@@ -1,8 +1,8 @@
 .button {
     border: 1px solid var(--border-color);
     min-height: 2.5rem;
-    border-radius: .25rem;
-    padding: .75rem .75rem;
+    border-radius: .3rem;
+    padding: .5rem 2.5rem;
     font-size: 1.1rem;
     font-weight: bold;
     background-color: var(--link-dark-color);
@@ -11,6 +11,13 @@
     transition: background-color .2s ;
 }
 
-.button:hover {
+.button:disabled {
+    cursor: auto;
+    color: var(--input-disabled-color);
+    background-color: #fdfafa;
+}
+
+.button:enabled:hover {
     background-color: var(--link-light-color);
 }
+
