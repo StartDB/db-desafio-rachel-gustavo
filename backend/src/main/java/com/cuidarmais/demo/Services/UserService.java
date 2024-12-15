@@ -22,7 +22,7 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public ResponseEntity<?> login(LoginDTO login) {
+    public ResponseEntity<Object> login(LoginDTO login) {
 
         try {
 
