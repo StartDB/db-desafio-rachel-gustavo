@@ -25,7 +25,7 @@ export default function Register() {
 			navigate("/login");
 
 		} catch (error: any) {
-			alert("Não foi possível concluir o cadastro.\nPor favor, tente novamente mais tarde.")
+			alert("Não foi possível concluir o cadastro.\n\nPor favor, tente novamente mais tarde.")
 			console.error(`Erro ao enviar os dados:  \nMensagem: ${error.message}`)
 		}
 	}

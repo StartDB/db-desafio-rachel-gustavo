@@ -29,9 +29,6 @@ export default function UserProfile() {
 
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>): Promise<void> {
         e.preventDefault();
-        if (userFinal.id === 0) {
-            return
-        }
 
         if (buttonHTML == "Editar") {
             setIsDisabled(false)
@@ -49,8 +46,12 @@ export default function UserProfile() {
                 setisVisible(false)
                 setIsDisabled(true)
 
+                alert("Cadastro atualizado com sucesso!")
+
             } catch (error: any) {
-                alert(`Erro ao enviar os dados: \n${error.message}.`);
+                alert("Não foi possível concluir a atualização do cadastro.\n\nPor favor, tente novamente mais tarde.")
+
+			    console.error(`Erro ao enviar os dados:  \nMensagem: ${error.message}`)
             }
 
         }
@@ -156,6 +157,5 @@ export default function UserProfile() {
                 </div>
             </form>
         </section>
-
     )
 }
