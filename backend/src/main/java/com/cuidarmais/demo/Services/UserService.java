@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.cuidarmais.demo.DTO.LoginDTO;
-import com.cuidarmais.demo.DTO.ProfileDTO;
+import com.cuidarmais.demo.DTO.LoginResponseDTO;
 import com.cuidarmais.demo.Entities.User;
 import com.cuidarmais.demo.Repositories.UserRepository;
 
@@ -32,8 +32,8 @@ public class UserService {
         User user = userOpt.orElseThrow(() -> new NoSuchElementException("Usuário não encontrado."));
         
         if (user.getPassword().equals(login.password())) {
-            ProfileDTO profile = ProfileDTO.transformToProfileDTO(user);
-            return ResponseEntity.ok(profile);
+            LoginResponseDTO loginResponse = LoginResponseDTO.transformToLoginResponseDTO(user);
+            return ResponseEntity.ok(loginResponse);
         }
         
         throw new IllegalArgumentException("Senha inválida");
