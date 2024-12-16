@@ -16,12 +16,15 @@ import com.cuidarmais.demo.Entities.EntityObjects.Enums.Status;
 import com.cuidarmais.demo.Entities.EntityObjects.Enums.SupportType;
 import com.cuidarmais.demo.Repositories.TaskRepository;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class TaskService {
 
     @Autowired
     private TaskRepository taskRepository;
 
+    @Transactional
     public ResponseEntity<Object> saveTask(Task task) {
         
        try {

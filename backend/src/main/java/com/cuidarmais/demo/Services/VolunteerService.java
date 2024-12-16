@@ -14,12 +14,15 @@ import com.cuidarmais.demo.DTO.UpdateUserDTO;
 import com.cuidarmais.demo.Entities.Volunteer;
 import com.cuidarmais.demo.Repositories.VolunteerRepository;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class VolunteerService {
 
     @Autowired
     private VolunteerRepository volunteerRepository;
 
+    @Transactional
     public ResponseEntity<Object> saveVolunteer(Volunteer volunteer) {
 
         try {
