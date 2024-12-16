@@ -42,7 +42,7 @@ public class VolunteerController {
         return volunteerService.updateVolunteer(volunteer);
     }
     
-
+    @GetMapping("/getProfileById")
     public ResponseEntity<Object> getProfileById(@RequestParam Long id) {
         return volunteerService.getProfileById(id);
     }    
