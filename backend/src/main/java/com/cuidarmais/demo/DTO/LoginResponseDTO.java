@@ -4,10 +4,11 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import com.cuidarmais.demo.Entities.User;
+import com.cuidarmais.demo.Entities.Volunteer;
 import com.cuidarmais.demo.Entities.EntityObjects.Address;
 
 public record LoginResponseDTO (Long id, String firstName, String lastName, String username, String password, String email, int phone,
-            LocalDate birthdate, Address address, String description, LocalDateTime createdAt) {
+            LocalDate birthdate, Address address, String description, LocalDateTime createdAt, String role) {
 
     public static LoginResponseDTO transformToLoginResponseDTO(User user) {
         return new LoginResponseDTO(
@@ -21,6 +22,7 @@ public record LoginResponseDTO (Long id, String firstName, String lastName, Stri
             user.getBirthdate(),          
             user.getAddress(), 
             user.getDescription(), 
-            user.getCreatedAt());
+            user.getCreatedAt(),
+            (user instanceof Volunteer) ? "volunteer" : "elderly");
     }
 }
