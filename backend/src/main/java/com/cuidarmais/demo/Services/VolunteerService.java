@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.cuidarmais.demo.DTO.ProfileDTO;
 import com.cuidarmais.demo.DTO.UpdateUserDTO;
 import com.cuidarmais.demo.Entities.Volunteer;
 import com.cuidarmais.demo.Repositories.VolunteerRepository;
@@ -46,14 +47,16 @@ public class VolunteerService {
         return volunteerRepository.findAll();
     }
 
-    public ResponseEntity<Object> getById(Long id) {
+    public ResponseEntity<Object> getProfileById(Long id) {
         try {
 
             Optional<Volunteer> volunteerOpt = volunteerRepository.findById(id);
 
             Volunteer volunteer = volunteerOpt.orElseThrow(() -> new NoSuchElementException("Usuário não encontrado"));
 
-            return ResponseEntity.ok(volunteer);
+            ProfileDTO profile = ProfileDTO.transformToProfileDTO(volunteer);
+
+            return ResponseEntity.ok(profile);
 
         } catch (NoSuchElementException ex) {
                 
