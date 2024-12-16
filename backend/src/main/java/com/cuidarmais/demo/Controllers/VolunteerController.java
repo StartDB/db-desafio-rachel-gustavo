@@ -46,5 +46,10 @@ public class VolunteerController {
     public ResponseEntity<Object> getProfileById(@RequestParam Long id) {
         return volunteerService.getProfileById(id);
     }    
+
+    @GetMapping("/myTasks")
+    public ResponseEntity<Object> getMyTasks(@RequestParam Long id) {
+        return volunteerService.getMyTasks(id);
+    }
     
 }

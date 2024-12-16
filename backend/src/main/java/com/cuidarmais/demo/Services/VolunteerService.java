@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 
 import com.cuidarmais.demo.DTO.ProfileDTO;
 import com.cuidarmais.demo.DTO.UpdateUserDTO;
+import com.cuidarmais.demo.DTO.TaskDTO.TaskDTO;
+import com.cuidarmais.demo.DTO.TaskDTO.TaskDTOTransform;
 import com.cuidarmais.demo.Entities.Volunteer;
 import com.cuidarmais.demo.Repositories.VolunteerRepository;
 
@@ -95,5 +97,26 @@ public class VolunteerService {
     
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro desconhecido.");
         }
+    }
+
+    public ResponseEntity<Object> getMyTasks(Long id) {
+       try {
+
+            Optional<Volunteer> volunteerOpt = volunteerRepository.findById(id);
+
+            Volunteer volunteer = volunteerOpt.orElseThrow(() -> new NoSuchElementException("Usuário não encontrado"));
+
+            List<TaskDTO> taskList = TaskDTOTransform.transformToTaskDTOList(volunteer.getTasks());
+
+            return ResponseEntity.ok(taskList);
+
+            } catch (NoSuchElementException ex) {
+                
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+
+            } catch (Exception ex) {
+
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro desconhecido");
+            }
     }
 }
