@@ -30,7 +30,7 @@ export function Login() {
             // setUser(testUser) // TESTE EXCLUIR
             navigate(`/dashboard/${userAPI?.id}`);
         } catch (error) {
-            alert(error)
+            console.error(error)
         }
         
         //navigate(`/dashboard/${testUser?.id}`); // TESTE EXCLUIR

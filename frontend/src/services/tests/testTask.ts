@@ -16,6 +16,10 @@ export const exampleTask: TaskDTO = {
         firstName:"Gustavo",
         lastName: "Silva",
     },
-    volunteer: null, // Ainda sem voluntário
+    volunteer: {
+        id:104,
+        firstName: "Amanda",
+        lastName: "Carneiro",
+    },
     assessment: null // Avaliação ainda não realizada
 };
