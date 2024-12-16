@@ -69,7 +69,7 @@ export default function SearchTasks() {
     }
 
     return (
-        <section className="container-section-base container-section-dashboard">
+        <section className="container-section-base">
             <MainTitle content="Buscar Tarefas"/>
             <div className={styles.containerSearchTasks}>
                 <form className={styles.row}>

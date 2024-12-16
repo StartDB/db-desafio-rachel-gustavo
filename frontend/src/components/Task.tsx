@@ -19,7 +19,7 @@ export default function Task({ id, title, description, date, time, supportType, 
 
     return (
         <>
-            <article className={`${styles.containerTask} container-section-initial`}>
+            <article className={`${styles.containerTask}`}>
                 <header>
                     <h2>{title}</h2>
                     <div>

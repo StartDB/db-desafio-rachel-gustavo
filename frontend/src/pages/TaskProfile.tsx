@@ -5,7 +5,7 @@ export default function TaskProfile() {
     
     return (
         <main className={styles.containerBackgroundMain}>
-            <section className="container-section-base container-section-dashboard">
+            <section className="container-section-base">
                 <MainTitle content="Página da Tarefa" />
             </section>
         </main>

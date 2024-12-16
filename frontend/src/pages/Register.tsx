@@ -31,7 +31,7 @@ export default function Register() {
 	}
 
 	return (
-		<section className={`${styles.sectionContainer} container-section-base container-section-dashboard`}>
+		<section className={`container-section-base`}>
 			 <header className={styles.headerForm}>
                 <MainTitle content="Criar uma nova conta" />
             </header>
