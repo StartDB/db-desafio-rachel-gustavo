@@ -4,8 +4,8 @@ import styles from './TaskProfile.module.css';
 export default function TaskProfile() {
     
     return (
-        <main className={`${styles.containerTaskProfile} container-section-initial`}>
-            <section className="container-section-initial">
+        <main className={styles.containerBackgroundMain}>
+            <section className="container-section-base container-section-dashboard">
                 <MainTitle content="Página da Tarefa" />
             </section>
         </main>
