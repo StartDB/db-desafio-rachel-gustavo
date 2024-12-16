@@ -62,6 +62,10 @@ public abstract class User {
 
     public User() {}
 
+    public User(Long id) {
+        this.id = id;
+    }
+
     public User(Long id, String firstName, String lastName, String username, String password, String email, int phone,
             LocalDate birthdate, Address address, String description, LocalDateTime createdAt) {
         this.id = id;

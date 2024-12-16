@@ -25,6 +25,10 @@ public class TaskDTOTransform {
                    transformToUserTaskDTO(taskList.getVolunteer()));
     }
 
+    public static List<TaskDTO> transformToTaskDTOList (List<Task> taskList) {
+        return taskList.stream().map(task -> transformToTaskDTO(task)).collect(Collectors.toList());
+    }
+
     public static UserTaskDTO transformToUserTaskDTO(User user) {
         if (user == null) {
             return null;
@@ -32,7 +36,4 @@ public class TaskDTOTransform {
         return new UserTaskDTO(user.getId(), user.getFirstName(), user.getLastName());
     }
 
-    public static List<TaskDTO> transformToTaskDTOList (List<Task> taskList) {
-        return taskList.stream().map(task -> transformToTaskDTO(task)).collect(Collectors.toList());
-    }
 }

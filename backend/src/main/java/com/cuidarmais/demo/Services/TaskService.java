@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import com.cuidarmais.demo.DTO.TaskDTO.TaskDTO;
 import com.cuidarmais.demo.DTO.TaskDTO.TaskDTOTransform;
 import com.cuidarmais.demo.Entities.Task;
+import com.cuidarmais.demo.Entities.Volunteer;
 import com.cuidarmais.demo.Entities.EntityObjects.Enums.Status;
 import com.cuidarmais.demo.Entities.EntityObjects.Enums.SupportType;
 import com.cuidarmais.demo.Repositories.TaskRepository;
@@ -91,14 +92,16 @@ public class TaskService {
     }
     }
 
-    public ResponseEntity<Object> updateTaskStatus(Long id, Status status) {
+    public ResponseEntity<Object> updateTaskStatus(Long id, Status status, Long volunteerId) {
         try {
 
             Optional<Task> taskOpt = taskRepository.findById(id);
 
             Task task = taskOpt.orElseThrow(() -> new NoSuchElementException("Tarefa não encontrada"));
 
-            task.setStatus(status);;
+            task.setStatus(status);
+            task.setVolunteer(new Volunteer(volunteerId));
+
             taskRepository.save(task);
             taskRepository.flush();
             
