@@ -49,8 +49,8 @@ public class TaskController {
     }
 
     @GetMapping("/updateStatus")
-    public ResponseEntity<Object> updateTaskStatus(@RequestParam Long id, Status status, Long volunteerId) {
-        return taskService.updateTaskStatus(id, status, volunteerId);
+    public ResponseEntity<Object> updateTaskStatus(@RequestParam Long id, @RequestParam String button, @RequestParam (required = false) Long volunteerId) {
+        return taskService.updateTaskStatus(id, button, volunteerId);
     }
     
     

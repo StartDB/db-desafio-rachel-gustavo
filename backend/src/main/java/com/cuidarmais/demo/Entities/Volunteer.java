@@ -31,6 +31,10 @@ public class Volunteer extends User {
         this.tasks = tasks;
     }
 
+    public Volunteer(Long id) {
+        super(id);
+    }
+
     public double getRating() {
         return rating;
     }

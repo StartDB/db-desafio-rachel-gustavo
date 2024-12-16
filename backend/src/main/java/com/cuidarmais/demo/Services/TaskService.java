@@ -21,7 +21,6 @@ import com.cuidarmais.demo.Entities.EntityObjects.Enums.Status;
 import com.cuidarmais.demo.Entities.EntityObjects.Enums.SupportType;
 import com.cuidarmais.demo.Repositories.TaskRepository;
 
-import jakarta.transaction.Transactional;
 
 @Service
 public class TaskService {
@@ -29,7 +28,6 @@ public class TaskService {
     @Autowired
     private TaskRepository taskRepository;
 
-    @Transactional
     public ResponseEntity<Object> saveTask(Task task) {
         
        try {
@@ -92,20 +90,41 @@ public class TaskService {
     }
     }
 
-    public ResponseEntity<Object> updateTaskStatus(Long id, Status status, Long volunteerId) {
+    public ResponseEntity<Object> updateTaskStatus(Long id, String button, Long volunteerId) {
         try {
 
             Optional<Task> taskOpt = taskRepository.findById(id);
 
             Task task = taskOpt.orElseThrow(() -> new NoSuchElementException("Tarefa não encontrada"));
 
-            task.setStatus(status);
-            task.setVolunteer(new Volunteer(volunteerId));
+            switch (button) {
+                case "accept":
+                    task.setStatus(Status.ACCEPTED);
+                    task.setVolunteer(new Volunteer(volunteerId));
+                    break;
+
+                case "unlink":
+                    task.setStatus(Status.AVAILABLE);
+                    task.setVolunteer(null);
+                    break;
+
+                case "complete":
+                    task.setStatus(Status.COMPLETED);
+                    break; 
+                    
+                case "cancel":
+                    task.setStatus(Status.CANCELED);
+                    break;
+                default:
+                    break;
+            }
 
             taskRepository.save(task);
             taskRepository.flush();
+
+            Task updateTask  = taskRepository.findById(id).get();
             
-            return ResponseEntity.ok(TaskDTOTransform.transformToTaskDTO(task));
+            return ResponseEntity.ok(TaskDTOTransform.transformToTaskDTO(updateTask));
     
             } catch (NoSuchElementException ex) {
                 
