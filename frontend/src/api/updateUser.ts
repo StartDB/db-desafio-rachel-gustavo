@@ -29,19 +29,6 @@ export async function updateUser(user: UserDTO): Promise<UserDTO> {
         return response.json()
 
     } catch(error: any) {
-        if (error instanceof TypeError) {
-            console.log(error.message)
-            
-        } else if(error instanceof Error) {
-            console.log(error.message)
-
-        } else if (error instanceof SyntaxError) {
-            console.log(error.message)
-
-        } else {
-            console.log(error.message)
-        }
-        
         throw error;
     }
     

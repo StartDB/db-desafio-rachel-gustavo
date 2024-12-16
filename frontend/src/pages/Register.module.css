@@ -1,0 +1,48 @@
+.sectionContainer {
+    min-width: 45rem;
+}
+
+.headerForm {
+    padding-bottom: 2rem;
+}
+
+.formContainer, .rowForm, .rowRadioForm {
+    display: grid;
+}
+
+.formContainer {
+    gap: 1.5rem;
+}
+
+.rowForm {
+    grid-template-columns: 1fr 1fr; 
+}
+
+.rowForm , .rowRadioForm  {
+    gap: .75rem 1.75rem;
+    border: none; 
+}
+
+.rowForm div, .rowRadioForm .radioForm {
+    display: flex;
+    flex-direction: column;
+    gap: .15rem;
+}
+
+.radioUnitForm {
+    display: flex;
+    align-items: center;
+    gap: .23rem;
+}
+
+.radioUnitForm input {
+    min-width: 1.1rem;
+} 
+
+.footerContainer {
+    padding-top: 2rem;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1.5rem;
+}
+

@@ -4,9 +4,26 @@
 
 .headerForm {
     padding-bottom: 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
 }
 
-.formUserProfile, .rowForm, .rowRadioForm {
+.headerFormFixedValues {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: .5rem;
+    font-size: .75rem;
+    color: var(--input-disabled-color);
+}
+
+.fixedValue span {
+    font-weight: bold;
+}
+
+.formUserProfile, .rowForm {
     display: grid;
 }
 
@@ -16,28 +33,16 @@
 
 .rowForm {
     grid-template-columns: 1fr 1fr; 
-}
-
-.rowForm , .rowRadioForm  {
     gap: .75rem 1.75rem;
     border: none; 
 }
 
-.rowForm div, .rowRadioForm .radioForm {
+
+.rowForm div {
     display: flex;
     flex-direction: column;
     gap: .15rem;
 }
-
-.radioUnitForm {
-    display: flex;
-    align-items: center;
-    gap: .23rem;
-}
-
-.radioUnitForm input {
-    min-width: 1.1rem;
-} 
 
 .aboutForm {
     grid-template-columns: 1fr;
