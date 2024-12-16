@@ -1,5 +1,4 @@
 import { TaskDTO } from "../interfaces/task.dto";
-import { testUser } from "./testUser";
 
 export const exampleTask: TaskDTO = {
     id: 1,

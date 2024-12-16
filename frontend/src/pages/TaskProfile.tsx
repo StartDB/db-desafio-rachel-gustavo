@@ -9,18 +9,20 @@ import { exampleTask } from "../services/tests/testTask";
 import { handleChangeTask, handleChangeTextAreaTask } from "../utils/handleChange";
 import Input from "../components/form/Input";
 import getTask from "../api/getTask";
+import { mapTaskStatus } from "../utils/taskStatusMapper";
 
 export default function TaskProfile() {
     const navigate = useNavigate();
-    const [isDisabled, setIsDisabled] = useState<boolean>(true)
+    const [isDisabled] = useState<boolean>(true)
     const [taskEdited, setTaskEdited] = useState<TaskDTO>(exampleTask)
+
     const params = useParams()
     
     async function captureTask(taskId: number): Promise<void> {
         try{
             const task: TaskDTO = await getTask(taskId)
-            setTaskEdited(task)
-
+            const formattedTask: TaskDTO = mapTaskStatus(task)
+            setTaskEdited(formattedTask )
         } catch(error: any)  {
             alert("Não foi possível atualizar a página.\n\nPor favor, tente novamente mais tarde.")
             console.error(`Erro ao puxar os dados:  \nMensagem: ${error.message}`)
@@ -43,7 +45,7 @@ export default function TaskProfile() {
             <section className="container-section-base">
                 <header>
                     <MainTitle content="Página da Tarefa" />
-                    <p>Disponível</p>
+                    <p>{taskEdited.status}</p>
                 </header>
 
                 <form>
