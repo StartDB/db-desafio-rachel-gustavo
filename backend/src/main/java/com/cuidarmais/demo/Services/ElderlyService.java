@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.orm.jpa.JpaSystemException;
 import org.springframework.stereotype.Service;
 
+import com.cuidarmais.demo.DTO.ProfileDTO;
 import com.cuidarmais.demo.DTO.UpdateUserDTO;
 import com.cuidarmais.demo.Entities.Elderly;
 import com.cuidarmais.demo.Repositories.ElderlyRepository;
@@ -46,14 +47,16 @@ public class ElderlyService {
         return elderlyRepository.findAll();
     }
 
-    public ResponseEntity<Object> getById(Long id) {
+    public ResponseEntity<Object> getProfileById(Long id) {
         try {
 
             Optional<Elderly> elderlyOpt = elderlyRepository.findById(id);
 
             Elderly elderly = elderlyOpt.orElseThrow(() -> new NoSuchElementException("Usuário não encontrado"));
 
-            return ResponseEntity.ok(elderly);
+            ProfileDTO profile = ProfileDTO.transformToProfileDTO(elderly);
+
+            return ResponseEntity.ok(profile);
 
         } catch (NoSuchElementException ex) {
                 

@@ -42,9 +42,9 @@ public class ElderlyControllerTest {
             new Address("10001", "5th Avenue", "50", "Penthouse", "New York", "Manhattan", "NY"),
             "The ruthless patriarch of the Roy family.", LocalDateTime.now(), null);
 
-    Mockito.when(elderlyService.getById(1L)).thenReturn(ResponseEntity.ok(loganRoy));
+    Mockito.when(elderlyService.getProfileById(1L)).thenReturn(ResponseEntity.ok(loganRoy));
 
-    mockMvc.perform(get("/elderly/getById")
+    mockMvc.perform(get("/elderly/getProfileById")
                     .param("id", "1"))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$.id").value(1L))
@@ -65,10 +65,10 @@ public class ElderlyControllerTest {
 
     @Test
     void testGetByIdNotFound() throws Exception {
-        Mockito.when(elderlyService.getById(999L))
+        Mockito.when(elderlyService.getProfileById(999L))
                 .thenReturn(ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não encontrado"));
 
-        mockMvc.perform(get("/elderly/getById")
+        mockMvc.perform(get("/elderly/getProfileById")
                         .param("id", "999"))
                 .andExpect(status().isNotFound())
                 .andExpect(content().string("Usuário não encontrado"));
