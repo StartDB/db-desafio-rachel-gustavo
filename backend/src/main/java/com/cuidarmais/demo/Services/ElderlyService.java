@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.orm.jpa.JpaSystemException;
 import org.springframework.stereotype.Service;
 
 import com.cuidarmais.demo.DTO.UpdateUserDTO;
@@ -65,7 +66,6 @@ public class ElderlyService {
         
     }
 
-    @Transactional
     public ResponseEntity<Object> updateElderly(UpdateUserDTO elderlyUpdate) {
         try {
 
@@ -75,6 +75,7 @@ public class ElderlyService {
 
             Elderly finalElderly = UpdateUserDTO.mergeUpdateToElderly(elderlyUpdate, elderly);
             elderlyRepository.save(finalElderly);
+            elderlyRepository.flush();
             
             return ResponseEntity.ok(finalElderly);
     
@@ -87,6 +88,10 @@ public class ElderlyService {
             String detail = ex.getMostSpecificCause().getLocalizedMessage().split("Detail:")[1];
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(detail);
     
+            } catch (JpaSystemException ex) {
+
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erro em atualizar os dados");
+
             } catch (Exception ex) {
     
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro desconhecido.");

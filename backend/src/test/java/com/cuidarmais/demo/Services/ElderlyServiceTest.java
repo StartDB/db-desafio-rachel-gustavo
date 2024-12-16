@@ -7,10 +7,8 @@ import com.cuidarmais.demo.Repositories.ElderlyRepository;
 
 import jakarta.transaction.Transactional;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -117,21 +115,11 @@ public class ElderlyServiceTest {
                                         "New character", LocalDateTime.now(), null);
         
         elderlyService.saveElderly(conflictingElderly);
-
-        Object responseTom = elderlyService.getById(conflictingElderly.getId()).getBody();
+        elderlyRepository.flush();
 
         ResponseEntity<Object> response = elderlyService.updateElderly(updateDTO);
-
-        Object responseTrue = elderlyService.getById(loganRoy.getId()).getBody();
-
-        Elderly updatedElderly = (Elderly) response.getBody();
-
-        System.out.println(((Elderly) responseTom).getEmail() + "PEGA AQUI");
-        System.out.println(((Elderly) responseTrue).getEmail() + "PEGA AQUI");
-        System.out.println(updatedElderly.getEmail() + "PEGA AQUI");
-
-        assertEquals(((Elderly) responseTrue).getEmail(), updatedElderly.getEmail());;
+        
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
-        assertTrue(response.getBody().toString().contains("Detail:"));
+        assertEquals(response.getBody(), " Key (email)=(tom@waystar.com) already exists.");
     }
 }
