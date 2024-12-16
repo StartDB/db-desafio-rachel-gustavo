@@ -44,5 +44,11 @@ public class ElderlyController {
     public ResponseEntity<Object> getProfileById(@RequestParam Long id) {
         return elderlyService.getProfileById(id);
     }
+
+    @GetMapping("/myTasks")
+    public ResponseEntity<Object> getMyTasks(@RequestParam Long id) {
+        return elderlyService.getMyTasks(id);
+    }
+    
     
 }
