@@ -1,23 +1,42 @@
-import { NavLink, useNavigate } from "react-router";
+import { NavLink, useNavigate, useParams } from "react-router";
 import MainTitle from "../components/MainTitle";
 import styles from './TaskProfile.module.css';
 import Legend from "../components/form/Legend";
 import Label from "../components/form/Label";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TaskDTO } from "../services/interfaces/task.dto";
 import { exampleTask } from "../services/tests/testTask";
-import { handleChangeTask, handleChangeTextArea, handleChangeTextAreaTask } from "../utils/handleChange";
+import { handleChangeTask, handleChangeTextAreaTask } from "../utils/handleChange";
 import Input from "../components/form/Input";
+import getTask from "../api/getTask";
 
 export default function TaskProfile() {
     const navigate = useNavigate();
     const [isDisabled, setIsDisabled] = useState<boolean>(true)
     const [taskEdited, setTaskEdited] = useState<TaskDTO>(exampleTask)
+    const params = useParams()
+    
+    async function captureTask(taskId: number): Promise<void> {
+        try{
+            const task: TaskDTO = await getTask(taskId)
+            setTaskEdited(task)
+
+        } catch(error: any)  {
+            alert("Não foi possível atualizar a página.\n\nPor favor, tente novamente mais tarde.")
+            console.error(`Erro ao puxar os dados:  \nMensagem: ${error.message}`)
+        }
+    }
+
+    useEffect(() => {
+        captureTask(Number(params.taskId));
+    }, []);
+
 
     function returnPreviousPage(e: React.MouseEvent<HTMLAnchorElement>): void {
         e.preventDefault()
         navigate(-1)
     }
+
 
     return (
         <main className={styles.containerBackgroundMain}>
@@ -30,7 +49,7 @@ export default function TaskProfile() {
                 <form>
                     <fieldset>
                         <Legend content="Dados gerais" />
-                        
+
                         <div>
                             <Label content="Título:" />
                             <Input type="text" name="title" value={taskEdited.title} onChange={(e) => handleChangeTask(e, taskEdited, setTaskEdited)} disabled={isDisabled} />
@@ -73,7 +92,7 @@ export default function TaskProfile() {
 
                         <div>
                             <Label content="Área de Suporte" />
-    
+
                             <div>
                                 <input type="radio" name="supportType" value="COMPANIONSHIP_AND_TRANSPORT" checked={taskEdited.supportType === "COMPANIONSHIP_AND_TRANSPORT"} onChange={(e) => handleChangeTask(e, taskEdited, setTaskEdited)} disabled={isDisabled} />
                                 <label>Acompanhamento e Ensino</label>

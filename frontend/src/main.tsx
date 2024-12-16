@@ -26,7 +26,7 @@ createRoot(document.getElementById('root')!).render(
                   <Route index element={<UserProfile />}/>
                   <Route path="meu-perfil" element={<UserProfile />}/>
                   <Route path="buscar-tarefas" element={<SearchTasks />}>
-                    <Route path="tarefa/:id" element={<TaskProfile />}/>
+                    <Route path="tarefa/:taskId" element={<TaskProfile />}/>
                   </Route>
                 </Route>
               </Route>

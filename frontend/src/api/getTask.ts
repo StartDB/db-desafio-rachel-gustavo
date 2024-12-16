@@ -1,16 +1,29 @@
 import { TaskDTO } from "../services/interfaces/task.dto";
 
-export default async function getTasks(supportType?: string): Promise<TaskDTO[]> {
-    const initialUrl: string = "http://localhost:8080/task/SupportTypeOrStatusFilter?status=AVAILABLE";
+export default async function getTasks(taskId: number): Promise<TaskDTO> {
+    const url: string = `http://localhost:8080/task/getTask?id=${taskId}`;
 
-    const finalUrl:string = supportType ? `${initialUrl}&&supportType=${supportType}` : initialUrl
+    try {
+        const response: Response = await fetch(url)
 
-    const response: Response = await fetch(finalUrl)
+        if (!response.ok) {
+            let errorBody: string | undefined;
 
-    if (!response.ok) {
-        throw new Error("Tarefas não identificadas.")
+            try {
+                errorBody = await response.text(); 
+
+            } catch {
+                errorBody = undefined;
+            }
+
+            const errorMessage: string = errorBody || `Status ${response.status}: ${response.statusText}`;
+            throw new Error(errorMessage);
+        }
+
+        return response.json()
+
+    } catch(error: any){
+        throw error;
+
     }
-
-
-    return response.json()
 }
