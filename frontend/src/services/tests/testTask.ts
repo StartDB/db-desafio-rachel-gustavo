@@ -12,7 +12,11 @@ export const exampleTask: TaskDTO = {
     city: "São Paulo",
     state: "SP",
     status: "AVAILABLE",
-    requestBy: testUser,
+    requestBy: {
+        id:102,
+        firstName:"Gustavo",
+        lastName: "Silva",
+    },
     volunteer: null, // Ainda sem voluntário
     assessment: null // Avaliação ainda não realizada
 };
