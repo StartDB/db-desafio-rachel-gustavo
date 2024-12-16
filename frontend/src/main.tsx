@@ -10,6 +10,7 @@ import { UserProvider } from './contexts/UserContext.tsx'
 import SearchTasks from './pages/SearchTasks.tsx'
 import TaskProfile from './pages/TaskProfile.tsx'
 import UserProfile from './pages/UserProfile.tsx'
+import MyTasks from './pages/MyTasks.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -25,6 +26,7 @@ createRoot(document.getElementById('root')!).render(
                 <Route path="dashboard/:id" element={<Dashboard />}>
                   <Route index element={<UserProfile />}/>
                   <Route path="meu-perfil" element={<UserProfile />}/>
+                  <Route path="minhas-tarefas" element={<MyTasks />}/>
                   <Route path="buscar-tarefas" element={<SearchTasks />} />
                   <Route path="tarefa/:taskId" element={<TaskProfile />}/>
                 </Route>

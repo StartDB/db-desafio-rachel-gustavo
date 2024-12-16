@@ -1,0 +1,13 @@
+.containerTasks {
+    display: grid;
+    grid-template-columns: min-content min-content;
+    gap: 2rem;
+}
+
+.row {
+    color:blue
+}
+
+.subRow {
+    background-color: yellow;
+}
