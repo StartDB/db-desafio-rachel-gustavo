@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.orm.jpa.JpaSystemException;
 import org.springframework.stereotype.Service;
+
 
 import com.cuidarmais.demo.DTO.TaskDTO.TaskDTO;
 import com.cuidarmais.demo.DTO.TaskDTO.TaskDTOTransform;
@@ -87,6 +89,38 @@ public class TaskService {
 
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro desconhecido.");
     }
+    }
+
+    public ResponseEntity<Object> updateTaskStatus(Long id, Status status) {
+        try {
+
+            Optional<Task> taskOpt = taskRepository.findById(id);
+
+            Task task = taskOpt.orElseThrow(() -> new NoSuchElementException("Tarefa não encontrada"));
+
+            task.setStatus(status);;
+            taskRepository.save(task);
+            taskRepository.flush();
+            
+            return ResponseEntity.ok(TaskDTOTransform.transformToTaskDTO(task));
+    
+            } catch (NoSuchElementException ex) {
+                
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+            
+            } catch (DataIntegrityViolationException ex) {
+            
+            String detail = ex.getMostSpecificCause().getLocalizedMessage().split("Detail:")[1];
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(detail);
+    
+            } catch (JpaSystemException ex) {
+
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erro em atualizar o status");
+
+            } catch (Exception ex) {
+    
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro desconhecido.");
+        }
     }
     }
 
