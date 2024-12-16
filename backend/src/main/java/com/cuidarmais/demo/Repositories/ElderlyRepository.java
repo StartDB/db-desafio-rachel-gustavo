@@ -7,8 +7,10 @@ import com.cuidarmais.demo.Entities.Elderly;
 import java.util.Optional;
 
 
+
 @Repository
 public interface ElderlyRepository extends JpaRepository<Elderly, Long>{
 
     Optional<Elderly> findById(Long id);
+    
 }
