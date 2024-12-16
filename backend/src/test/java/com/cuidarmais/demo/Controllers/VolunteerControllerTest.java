@@ -39,9 +39,9 @@ public class VolunteerControllerTest {
                 new Address("10001", "Park Avenue", "10", "Suite 1100", "New York", "Manhattan", "NY"),
                 "Ambitious and strategic.", null, 4.9, null);
 
-        Mockito.when(volunteerService.getById(1L)).thenReturn(ResponseEntity.ok(kendallRoy));
+        Mockito.when(volunteerService.getProfileById(1L)).thenReturn(ResponseEntity.ok(kendallRoy));
 
-        mockMvc.perform(get("/volunteer/getById")
+        mockMvc.perform(get("/volunteer/getProfileById")
                         .param("id", "1"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(1L))
@@ -62,10 +62,10 @@ public class VolunteerControllerTest {
 
     @Test
     void testGetByIdNotFound() throws Exception {
-        Mockito.when(volunteerService.getById(999L))
+        Mockito.when(volunteerService.getProfileById(999L))
                 .thenReturn(ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não encontrado"));
 
-        mockMvc.perform(get("/volunteer/getById")
+        mockMvc.perform(get("/volunteer/getProfileById")
                         .param("id", "999"))
                 .andExpect(status().isNotFound())
                 .andExpect(content().string("Usuário não encontrado"));

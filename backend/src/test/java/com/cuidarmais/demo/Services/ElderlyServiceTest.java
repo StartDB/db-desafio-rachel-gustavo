@@ -1,5 +1,6 @@
 package com.cuidarmais.demo.Services;
 
+import com.cuidarmais.demo.DTO.ProfileDTO;
 import com.cuidarmais.demo.DTO.UpdateUserDTO;
 import com.cuidarmais.demo.Entities.Elderly;
 import com.cuidarmais.demo.Entities.EntityObjects.Address;
@@ -55,20 +56,20 @@ public class ElderlyServiceTest {
 
     @Test
     public void testGetById_Success() {
-        ResponseEntity<Object> response = elderlyService.getById(loganRoy.getId());
+        ResponseEntity<Object> response = elderlyService.getProfileById(loganRoy.getId());
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertNotNull(response.getBody());
-        assertTrue(response.getBody() instanceof Elderly);
+        assertTrue(response.getBody() instanceof ProfileDTO);
 
-        Elderly responseElderly = (Elderly) response.getBody();
-        assertEquals(loganRoy.getId(), responseElderly.getId());
-        assertEquals(loganRoy.getFirstName(), responseElderly.getFirstName());
+        ProfileDTO responseElderly = (ProfileDTO) response.getBody();
+        assertEquals(loganRoy.getId(), responseElderly.id());
+        assertEquals(loganRoy.getFirstName(), responseElderly.firstName());
     }
 
     @Test
     public void testGetById_NotFound() {
-        ResponseEntity<Object> response = elderlyService.getById(999L);
+        ResponseEntity<Object> response = elderlyService.getProfileById(999L);
 
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
         assertEquals("Usuário não encontrado", response.getBody());

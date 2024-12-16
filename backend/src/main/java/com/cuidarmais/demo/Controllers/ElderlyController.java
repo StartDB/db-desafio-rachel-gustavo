@@ -40,9 +40,15 @@ public class ElderlyController {
         return elderlyService.updateElderly(elderly);
     }
 
-    @GetMapping("/getById")
-    public ResponseEntity<Object> getById(@RequestParam Long id) {
-        return elderlyService.getById(id);
+    @GetMapping("/getProfileById")
+    public ResponseEntity<Object> getProfileById(@RequestParam Long id) {
+        return elderlyService.getProfileById(id);
     }
+
+    @GetMapping("/myTasks")
+    public ResponseEntity<Object> getMyTasks(@RequestParam Long id) {
+        return elderlyService.getMyTasks(id);
+    }
+    
     
 }
