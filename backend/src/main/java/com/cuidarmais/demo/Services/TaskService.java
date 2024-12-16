@@ -2,6 +2,8 @@ package com.cuidarmais.demo.Services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -66,6 +68,25 @@ public class TaskService {
         } catch (Exception ex) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro desconhecido");
         }
+    }
+
+    public ResponseEntity<Object> getTaskById(Long id) {
+        try {
+
+            Optional<Task> taskOpt = taskRepository.findById(id);
+
+            Task task = taskOpt.orElseThrow(() -> new NoSuchElementException("Tarefa não encontrada"));
+
+            return ResponseEntity.ok(TaskDTOTransform.transformToTaskDTO(task));
+
+        } catch (NoSuchElementException ex) {
+                
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+
+        } catch (Exception ex) {
+
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro desconhecido.");
+    }
     }
     }
 
