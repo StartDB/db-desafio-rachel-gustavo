@@ -42,5 +42,17 @@ public class TaskController {
                                         @RequestParam (required = false) Status status) {
         return taskService.getStatusTypeFilter(supportType, status);
     }
+
+    @GetMapping("/getTask")
+    public ResponseEntity<Object> getTaskById(@RequestParam Long id) {
+        return taskService.getTaskById(id);
+    }
+
+    @GetMapping("/updateStatus")
+    public ResponseEntity<Object> updateTaskStatus(@RequestParam Long id, @RequestParam String button, @RequestParam (required = false) Long volunteerId) {
+        return taskService.updateTaskStatus(id, button, volunteerId);
+    }
+    
+    
     
 }
