@@ -1,9 +1,10 @@
-import { NavLink, Outlet } from "react-router"; //useNavigate
+import { NavLink} from "react-router"; //useNavigate
 import { TaskDTO } from "../services/interfaces/task.dto";
 import styles from './Task.module.css';
+import useUser from "../contexts/hook/useUser";
 
 export default function Task({ id, title, description, date, time, supportType, city, state, status, requestBy, isOnline }: TaskDTO) {
-    // const navigate = useNavigate();
+    const { user } = useUser();
 
     function formatDate(date: string): string {
         let formattedDate = date.split("-")
@@ -19,7 +20,7 @@ export default function Task({ id, title, description, date, time, supportType, 
 
     return (
         <>
-            <article className={`${styles.containerTask} container-section-initial`}>
+            <article className={`${styles.containerTask}`}>
                 <header>
                     <h2>{title}</h2>
                     <div>
@@ -56,12 +57,10 @@ export default function Task({ id, title, description, date, time, supportType, 
                         <p>{isOnline ? "Online " : "Presencial"}</p>
                         <p>{status}</p>
                         
-                        <NavLink to={`tarefa/${id}`}>Expandir</NavLink>
+                        <NavLink to={`/dashboard/${user?.id}/tarefa/${id}`}>Expandir</NavLink>
                     </div>
                 </footer>
             </article>
-
-            <Outlet />
         </>
     )
 }

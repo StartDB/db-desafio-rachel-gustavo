@@ -44,11 +44,8 @@ body {
   padding: 2rem;
   border-radius: .45rem;
   border:1px solid #d3d2d2;
-  min-width: 31rem;
+  min-width: 45rem;
   box-shadow: 7px 7px 12px var(--shadow-background-color);
   place-self: center;
-}
-
-.container-section-home, .container-section-dashboard {
   margin: 3rem 0;
 }

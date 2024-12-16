@@ -59,7 +59,7 @@ export default function UserProfile() {
     }
 
     return (
-        <section className={`${styles.sectionUserProfile} container-section-base container-section-dashboard`}>
+        <section className={`container-section-base`}>
 
             <header className={styles.headerForm}>
                 <MainTitle content="Meu Perfil" />

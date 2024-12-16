@@ -1,3 +1,7 @@
+.containerSectionMain {
+    min-width: 31rem;
+}
+
 .formLogin {
     display: grid;
     padding: 2rem;
