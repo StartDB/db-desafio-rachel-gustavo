@@ -12,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.orm.jpa.JpaSystemException;
 import org.springframework.stereotype.Service;
 
-
 import com.cuidarmais.demo.DTO.TaskDTO.TaskDTO;
 import com.cuidarmais.demo.DTO.TaskDTO.TaskDTOTransform;
 import com.cuidarmais.demo.Entities.Task;
@@ -20,6 +19,7 @@ import com.cuidarmais.demo.Entities.Volunteer;
 import com.cuidarmais.demo.Entities.EntityObjects.Enums.Status;
 import com.cuidarmais.demo.Entities.EntityObjects.Enums.SupportType;
 import com.cuidarmais.demo.Repositories.TaskRepository;
+import com.cuidarmais.demo.Repositories.VolunteerRepository;
 
 
 @Service
@@ -27,6 +27,8 @@ public class TaskService {
 
     @Autowired
     private TaskRepository taskRepository;
+
+    @Autowired VolunteerRepository volunteerRepository;
 
     public ResponseEntity<Object> saveTask(Task task) {
         
@@ -100,7 +102,12 @@ public class TaskService {
             switch (button) {
                 case "accept":
                     task.setStatus(Status.ACCEPTED);
-                    task.setVolunteer(new Volunteer(volunteerId));
+
+                    Optional<Volunteer> volunteerOpt = volunteerRepository.findById(volunteerId);
+
+                    Volunteer volunteer = volunteerOpt.orElseThrow(() -> new NoSuchElementException("Voluntário não encontrado"));
+
+                    task.setVolunteer(volunteer);
                     break;
 
                 case "unlink":
@@ -120,11 +127,8 @@ public class TaskService {
             }
 
             taskRepository.save(task);
-            taskRepository.flush();
-
-            Task updateTask  = taskRepository.findById(id).get();
             
-            return ResponseEntity.ok(TaskDTOTransform.transformToTaskDTO(updateTask));
+            return ResponseEntity.ok(TaskDTOTransform.transformToTaskDTO(task));
     
             } catch (NoSuchElementException ex) {
                 
