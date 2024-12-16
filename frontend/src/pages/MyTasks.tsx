@@ -7,6 +7,7 @@ import { userInitialValues } from "../utils/initalValues";
 import { TaskDTO } from "../services/interfaces/task.dto";
 import { transformTasksSupportTypes } from "../utils/taskSupportTypeMapper";
 import { transformTasksStatus } from "../utils/taskStatusMapper";
+import styles from './MyTasks.module.css';
 
 export default function MyTasks() {
 
@@ -47,8 +48,8 @@ export default function MyTasks() {
     return (
         <section>
             <MainTitle content="Minhas Tarefas"/>
-            <div>
-                <main>
+            <div className={styles.containerTasks}>
+                <main className={styles.row}>
                 {warning == "" ? tasks.map((task) => (
                                         <Task key={task.id} {...task} />
                                     )) : warning}
