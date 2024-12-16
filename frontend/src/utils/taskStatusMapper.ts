@@ -14,6 +14,6 @@ export function mapTaskStatus(task: TaskDTO): TaskDTO {
     }
 }
 
-export function transformTasksStatus(taks: TaskDTO[]): TaskDTO[]{
-    return taks.map((task) => mapTaskStatus(task))
+export function transformTasksStatus(tasks: TaskDTO[]): TaskDTO[]{
+    return tasks.map((task) => mapTaskStatus(task))
 }
