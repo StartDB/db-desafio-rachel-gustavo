@@ -1,3 +1,4 @@
+import { TaskDTO } from "../services/interfaces/task.dto";
 import { UserDTO } from "../services/interfaces/user.dto";
 
 export function handleChangeForm(
@@ -55,6 +56,32 @@ export function handleChangeTextArea(
     e: React.ChangeEvent<HTMLTextAreaElement>,
     state: UserDTO,
     setState: React.Dispatch<React.SetStateAction<UserDTO>>
+): void {
+    const { name, value } = e.target;
+
+    setState({
+        ...state,
+        [name]: value,
+    });
+}
+
+export function handleChangeTask(
+    e: React.ChangeEvent<HTMLInputElement>,
+    state: TaskDTO,
+    setState: React.Dispatch<React.SetStateAction<TaskDTO>>
+): void {
+    const { name, value, checked } = e.target;
+
+    setState({
+        ...state,
+        [name]: name == "isOnline" ? checked : value,
+    });
+}
+
+export function handleChangeTextAreaTask(
+    e: React.ChangeEvent<HTMLTextAreaElement>,
+    state: TaskDTO,
+    setState: React.Dispatch<React.SetStateAction<TaskDTO>>
 ): void {
     const { name, value } = e.target;
 
