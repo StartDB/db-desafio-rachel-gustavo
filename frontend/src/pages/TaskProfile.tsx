@@ -10,42 +10,132 @@ import { handleChangeTask, handleChangeTextAreaTask } from "../utils/handleChang
 import Input from "../components/form/Input";
 import getTask from "../api/getTask";
 import { mapTaskStatus } from "../utils/taskStatusMapper";
+import useUser from "../contexts/hook/useUser";
+import { userInitialValues } from "../utils/initalValues";
+import getTaskUpdate from "../api/getTaskUpdate";
+import { UserDTO } from "../services/interfaces/user.dto";
 
 export default function TaskProfile() {
     const navigate = useNavigate();
+
+    const { user } = useUser();
+    const userFinal = user ? user : userInitialValues;
+    const [userCurrent] = useState<UserDTO>(userFinal)
+
     const [isDisabled] = useState<boolean>(true)
     const [taskEdited, setTaskEdited] = useState<TaskDTO>(exampleTask)
+    const [formattedStatus, setFormattedStatus] = useState<string>("Disponível")
+
+    const [buttonContent, setButtonContent] = useState<string>("Aceitar Tarefa")
+    const [isVisible, setIsVisible] = useState<boolean>(false)
+    const [isVisibleButton, setIsVisibleButton] = useState<boolean>(true)
 
     const params = useParams()
     
-    async function captureTask(taskId: number): Promise<void> {
-        try{
-            const task: TaskDTO = await getTask(taskId)
-            const formattedTask: TaskDTO = mapTaskStatus(task)
-            setTaskEdited(formattedTask )
-        } catch(error: any)  {
-            alert("Não foi possível atualizar a página.\n\nPor favor, tente novamente mais tarde.")
-            console.error(`Erro ao puxar os dados:  \nMensagem: ${error.message}`)
+
+    function setCurrentPage(task: TaskDTO): void {
+        const role = userFinal.role;
+        const status = task.status
+        const volunteerId = task.volunteer?.id
+
+        switch (role) {
+            case "volunteer":
+                if (status === "AVAILABLE") {
+                    setButtonContent("Aceitar Tarefa")
+                    setIsVisible(false)
+                    setIsVisibleButton(true)
+                }
+
+                if (userFinal.id == volunteerId) {
+                    if (status === "ACCEPTED") {
+                        setButtonContent("Desvincular Tarefa")
+                        setIsVisible(true)
+
+                    } else if (status === "COMPLETED") {
+                        setIsVisibleButton(false)
+                        setIsVisible(true)
+                    }
+                }
+
+                break
+            default:
+                console.log("Tipo de cadastro não identificado")
         }
     }
 
     useEffect(() => {
-        captureTask(Number(params.taskId));
+        async function captureTask(taskId: number): Promise<void> {
+            try {
+                const task: TaskDTO = await getTask(taskId)
+
+                setTaskEdited(task)
+                setFormattedStatus(() => {
+                    return mapTaskStatus(task).status
+                })
+
+                setCurrentPage(task)
+
+            } catch (error: any) {
+                alert("Não foi possível atualizar a página.\n\nPor favor, tente novamente mais tarde.")
+                console.error(`Erro ao puxar os dados:  \nMensagem: ${error.message}`)
+            }
+        }
+
+        captureTask(Number(params.taskId))
+
     }, []);
 
+    async function updateTask(valueButton: string): Promise<void> {
+        try {
+            const taskUpdated: TaskDTO = await getTaskUpdate(taskEdited.id, valueButton, Number(userCurrent.id))
+
+            setTaskEdited(taskUpdated)
+            setFormattedStatus(() => {
+                return mapTaskStatus(taskUpdated).status
+            })
+
+        } catch (error: any) {
+            throw error
+        }
+
+    }
+
+    function handleClick(): void {
+        try {
+            switch (buttonContent) {
+                case "Aceitar Tarefa":
+                    updateTask("accept")
+
+                    setButtonContent("Desvincular Tarefa")
+                    setIsVisible(true)
+                    alert("Tarefa aceita com sucesso!\n\nEntre em contato pelo telefone ou email com o solicitante abaixo!")
+                    break
+
+                case "Desvincular Tarefa":
+                    updateTask("unlink")
+
+                    setButtonContent("Aceitar Tarefa")
+                    setIsVisible(false)
+                    break
+            }
+
+        } catch (error: any) {
+            alert("Não foi possível atualizar a página.\n\nPor favor, tente novamente mais tarde.")
+            console.error(`Erro ao puxar os dados:  \nMensagem: ${error.message}`)
+        }
+    }
 
     function returnPreviousPage(e: React.MouseEvent<HTMLAnchorElement>): void {
         e.preventDefault()
         navigate(-1)
     }
 
-
     return (
         <main className={styles.containerBackgroundMain}>
             <section className="container-section-base">
                 <header>
                     <MainTitle content="Página da Tarefa" />
-                    <p>{taskEdited.status}</p>
+                    <p>{formattedStatus}</p>
                 </header>
 
                 <form>
@@ -123,8 +213,20 @@ export default function TaskProfile() {
                     </fieldset>
                 </form>
 
-                <div>
+                <div >
                     <div>
+                        <h2>Solicitante</h2>
+                        <div>
+                            <h3>{taskEdited.requestBy.firstName} {taskEdited.requestBy.lastName}</h3>
+                            <NavLink
+                                style={{ visibility: isVisible ? "visible" : "hidden" }}
+                                to={`perfil-publico/${taskEdited.requestBy.id}`}>
+                                Expandir
+                            </NavLink>
+                        </div>
+                    </div>
+
+                    <div style={{ visibility: isVisible ? "visible" : "hidden" }}>
                         <h2>Voluntário Responsável</h2>
                         <div>
                             <h3>{taskEdited.volunteer?.firstName} {taskEdited.volunteer?.lastName}</h3>
@@ -132,18 +234,11 @@ export default function TaskProfile() {
                         </div>
                     </div>
 
-                    <div>
-                        <h2>Solicitante</h2>
-                        <div>
-                            <h3>{taskEdited.requestBy.firstName} {taskEdited.requestBy.lastName}</h3>
-                            <NavLink to={`perfil-publico/${taskEdited.requestBy.id}`}>Expandir</NavLink>
-                        </div>
-                    </div>
                 </div>
 
                 <footer>
                     <a href="#" onClick={returnPreviousPage}>Voltar</a>
-                    <button>Aceitar Tarefa</button>
+                    <button style={{ visibility: isVisibleButton ? "visible" : "hidden" }} onClick={handleClick}>{buttonContent}</button>
                 </footer>
             </section>
         </main>
