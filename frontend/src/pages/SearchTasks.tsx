@@ -7,6 +7,7 @@ import Task from "../components/Task.tsx";
 import MainTitle from "../components/MainTitle.tsx";
 import styles from './SearchTasks.module.css';
 import InputButton from "../components/form/InputButton.tsx";
+import { exampleTask } from "../services/tests/testTask.ts";
 
 export default function SearchTasks() {
 
@@ -21,29 +22,29 @@ export default function SearchTasks() {
     });
 
     async function captureTasks(supportType?: string): Promise<void> {
-        // setTasks([exampleTask])
-        // setWarning("")
-        // console.log(supportType)
-        try {
-            const tasks: TaskDTO[] = await getTasks(supportType);
+        setTasks([exampleTask])
+        setWarning("")
+        console.log(supportType)
+    //     try {
+    //         const tasks: TaskDTO[] = await getTasks(supportType);
 
-            if (tasks.length == 0) {
-                throw Error("Tarefas não encontradas")
-            }
+    //         if (tasks.length == 0) {
+    //             throw Error("Tarefas não encontradas")
+    //         }
 
-            let formattedTasks: TaskDTO[] = transformTasksSupportTypes(tasks)
-            formattedTasks = transformTasksStatus(formattedTasks)
+    //         const formattedTasks: TaskDTO[] = transformTasksSupportTypes(tasks)
+    //         
 
-            setTasks(formattedTasks);
-            setWarning("")
+    //         setTasks(formattedTasks);
+    //         setWarning("")
 
-        } catch (error) {
-            if ((error as Error).name == "TypeError") {
-                (error as Error).message = "Tarefas não identificadas"
-            }
-            setTasks([]);
-            setWarning((error as Error).message)
-        }
+    //     } catch (error) {
+    //         if ((error as Error).name == "TypeError") {
+    //             (error as Error).message = "Tarefas não identificadas"
+    //         }
+    //         setTasks([]);
+    //         setWarning((error as Error).message)
+    //     }
     }
 
     useEffect(() => {

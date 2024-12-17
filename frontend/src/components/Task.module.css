@@ -1,34 +1,67 @@
-.containerTask {
+.containerTaskCard {
     display: grid;
     grid-template-rows: min-content min-content min-content;
-    background-color: yellow;
-    font-size: .8rem;
-    padding: 1.2rem 1.5rem;
+    background-color: rgb(252, 252, 252);
+    font-size: .9rem;
+    padding: 1.5rem;
     gap: 1rem;
-    min-width: 34rem;
+    min-width: 37rem;
+    border: 1px solid var(--border-color);
+    border-left: 4px solid var(--black-color);
+    box-shadow: 5px 5px 5px var(--shadow-background-color);
+    border-top-right-radius: .5rem;
+    border-bottom-right-radius: .5rem;
 }
 
-h2 {
-    padding-bottom: .5rem;
-}
-
-h3 {
-    font-size: .85rem;
-}
-
-header {
+.containerTaskCard > header {
     display: flex;
     flex-direction: column;
-    gap: .2rem;
+    gap: 1rem;
 }
 
-.flex {
+.containerHeaderTaskCard {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: start;
+    gap: .2rem .8rem ;
+}
+
+.titleTaskCard {
+    font-size: 1.5rem;
+}
+
+.containerHeaderTaskCard > div {
     display: flex;
     align-items: center;
-    gap: .2rem;
+    gap: .15rem;
 }
 
-footer {
+.containerFooterTaskCard {
+    display: grid;
+    grid-template-columns: auto min-content;
+    align-content: center;
+}
+
+.containerFooterTaskCard > div {
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+}
+
+.containerFooterTaskCard > div:first-child {
+    gap: .15rem;
+}
+
+.containerStatusOnlineButton {
+    gap: 1rem
+}
+
+.miniContainer {
+    font-size: .85rem;
+    padding: .35rem .5rem;
+    border-radius: .25rem;
+    font-weight: bold;
+}
+
+.miniContainer {
+    background-color: rgb(233, 233, 233);
 }

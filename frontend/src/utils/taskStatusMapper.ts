@@ -17,3 +17,7 @@ export function mapTaskStatus(task: TaskDTO): TaskDTO {
 export function transformTasksStatus(tasks: TaskDTO[]): TaskDTO[]{
     return tasks.map((task) => mapTaskStatus(task))
 }
+
+export function mapStatus(status: string): string {
+    return statusMap[status] || "(Sem status)"
+}
