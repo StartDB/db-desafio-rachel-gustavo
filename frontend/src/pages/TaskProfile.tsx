@@ -61,7 +61,7 @@ export default function TaskProfile() {
                     }
                 }
                 break
-
+                
             default:
                 console.log("Tipo de cadastro não identificado")
         }
@@ -98,7 +98,7 @@ export default function TaskProfile() {
                 return mapTaskStatus(taskUpdated).status
             })
 
-            alert("Tarefa aceita com sucesso!\n\nEntre em contato pelo telefone ou email com o solicitante abaixo!")
+            
         } catch (error: any) {
             throw error
         }
@@ -111,14 +111,17 @@ export default function TaskProfile() {
                 case "Aceitar Tarefa":
                     updateTask("accept")
 
+                    setStyleStatus("accepted")
                     setButtonContent("Desvincular Tarefa")
                     setIsVisible(true)
 
+                    alert("Tarefa aceita com sucesso!\n\nEntre em contato pelo telefone ou email com o solicitante abaixo!")
                     break
 
                 case "Desvincular Tarefa":
                     updateTask("unlink")
-
+                    
+                    setStyleStatus("available")
                     setButtonContent("Aceitar Tarefa")
                     setIsVisible(false)
                     break
