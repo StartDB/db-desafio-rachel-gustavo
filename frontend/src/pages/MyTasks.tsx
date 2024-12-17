@@ -6,7 +6,6 @@ import useUser from "../contexts/hook/useUser";
 import { userInitialValues } from "../utils/initalValues";
 import { TaskDTO } from "../services/interfaces/task.dto";
 import { transformTasksSupportTypes } from "../utils/taskSupportTypeMapper";
-import { transformTasksStatus } from "../utils/taskStatusMapper";
 import styles from './MyTasks.module.css';
 
 export default function MyTasks() {
@@ -27,7 +26,6 @@ export default function MyTasks() {
                 }
     
                 let formattedTasks: TaskDTO[] = transformTasksSupportTypes(tasks)
-                formattedTasks = transformTasksStatus(formattedTasks)
     
                 setTasks(formattedTasks);
                 setWarning("")

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import getTasks from "../api/getTasks";
 import { transformTasksSupportTypes } from "../utils/taskSupportTypeMapper";
-import { transformTasksStatus } from "../utils/taskStatusMapper";
 import { TaskDTO } from "../services/interfaces/task.dto";
 import Task from "../components/Task.tsx";
 import MainTitle from "../components/MainTitle.tsx";
@@ -31,8 +30,7 @@ export default function SearchTasks() {
                 throw Error("Tarefas não encontradas")
             }
 
-            let formattedTasks: TaskDTO[] = transformTasksSupportTypes(tasks)
-            formattedTasks = transformTasksStatus(formattedTasks)
+            const formattedTasks: TaskDTO[] = transformTasksSupportTypes(tasks)
 
             setTasks(formattedTasks);
             setWarning("")
