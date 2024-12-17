@@ -55,6 +55,7 @@ public abstract class User {
     @Embedded
     private Address address;
 
+    @Column(length = 400)
     private String description;
 
     @CreationTimestamp

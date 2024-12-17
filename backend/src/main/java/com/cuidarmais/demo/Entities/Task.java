@@ -6,6 +6,7 @@ import java.time.LocalTime;
 import com.cuidarmais.demo.Entities.EntityObjects.Enums.Status;
 import com.cuidarmais.demo.Entities.EntityObjects.Enums.SupportType;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -31,6 +32,7 @@ public class Task {
 
     private boolean isOnline;
 
+    @Column(length = 400)
     private String description;
 
     private LocalDate date;
