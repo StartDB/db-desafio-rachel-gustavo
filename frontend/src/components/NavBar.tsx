@@ -12,11 +12,12 @@ export function NavBar() {
             <div className={styles.col}>
                 <NavLink to="/" className={`${styles.link} link-nav`}>Sobre nós</NavLink>
                 <NavLink to="/" className={`${styles.link} link-nav`}>Como funciona?</NavLink>
+                <NavLink to={user ? `dashboard/${user?.id}`:'/login'} className={`${styles.link} link-nav`}>Dashboard</NavLink>
             </div>
 
             <div className={styles.col}>
-                <NavLink to="/cadastro" className={`${styles.link} link-nav`}>Cadastrar</NavLink>
-                <NavLink to={user ? "/" : "/login"} className={`${styles.link} link-nav`}>{user ? "Sair" : "Login"}</NavLink>
+                {user ? <></>: <NavLink to="/cadastro" className={`${styles.link} link-nav`}>Cadastrar</NavLink>}
+                <NavLink to={user ? "/logout" : "/login"} className={`${styles.link} link-nav`}>{user ? "Sair" : "Login"}</NavLink>
             </div>
         </nav>
     )

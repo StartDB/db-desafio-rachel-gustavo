@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cuidarmais.demo.DTO.LoginDTO;
@@ -31,6 +32,12 @@ public class UserController {
     public ResponseEntity<Object> login(@RequestBody LoginDTO login) {
 
         return userService.login(login);
+    }
+
+    @GetMapping("/getUserByToken")
+    public ResponseEntity<Object> getUserByToken(@RequestParam String token) {
+
+        return userService.getUserByToken(token);
     }
     
 }

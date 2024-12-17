@@ -11,6 +11,7 @@ import SearchTasks from './pages/SearchTasks.tsx'
 import TaskProfile from './pages/TaskProfile.tsx'
 import UserProfile from './pages/UserProfile.tsx'
 import MyTasks from './pages/MyTasks.tsx'
+import Logout from './pages/Logout.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -22,6 +23,7 @@ createRoot(document.getElementById('root')!).render(
                 <Route path="cadastro" element = {<Register/>} />
 
                 <Route path="login" element = {<Login/>} />
+                <Route path="logout" element = {<Logout/>}/>
 
                 <Route path="dashboard/:id" element={<Dashboard />}>
                   <Route index element={<UserProfile />}/>
