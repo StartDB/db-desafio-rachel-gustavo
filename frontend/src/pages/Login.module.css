@@ -1,5 +1,6 @@
 .containerSectionMain {
     min-width: 31rem;
+    place-self: center;
 }
 
 .formLogin {
