@@ -27,13 +27,11 @@ export function Login() {
         try {
             const userAPI: UserDTO = await loginUser(userCredentials)
             setUser(userAPI)
-            // setUser(testUser) // TESTE EXCLUIR
             navigate(`/dashboard/${userAPI?.id}`);
         } catch (error) {
             console.error(error)
         }
         
-        //navigate(`/dashboard/${testUser?.id}`); // TESTE EXCLUIR
     }
 
     function handleChange(e: React.ChangeEvent<HTMLInputElement>): void {

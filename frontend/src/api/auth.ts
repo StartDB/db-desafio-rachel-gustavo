@@ -16,5 +16,10 @@ export default async function loginUser(userCredentials: UserCredentialsDTO):Pro
         throw new Error(`Erro: ${response.status}`)
     }
 
-    return response.json()
+    const user = await response.json();
+    if (response.ok) {
+        localStorage.setItem("user_token", JSON.stringify(user.token));
+    }
+
+    return user;
 }
