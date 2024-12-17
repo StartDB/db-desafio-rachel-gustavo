@@ -9,30 +9,43 @@ import { exampleTask } from "../services/tests/testTask";
 import { handleChangeTask, handleChangeTextAreaTask } from "../utils/handleChange";
 import Input from "../components/form/Input";
 import getTask from "../api/getTask";
-import { mapTaskStatus } from "../utils/taskStatusMapper";
+import { mapStatus } from "../utils/taskStatusMapper";
 import useUser from "../contexts/hook/useUser";
 import { userInitialValues } from "../utils/initalValues";
 import getTaskUpdate from "../api/getTaskUpdate";
 import { UserDTO } from "../services/interfaces/user.dto";
+import { statusColors } from "../services/records/statusColors";
+
+enum statusType {
+    AVAILABLE = "AVAILABLE",
+    ACCEPTED = "ACCEPTED",
+    COMPLETED  = "COMPLETED",
+    CANCELED  = "CANCELED ",
+}
+
+enum optionButtonContent {
+    acceptedTask = "Aceitar Tarefa",
+    unlikedTask = "Desvincular Tarefa" 
+}
 
 export default function TaskProfile() {
     const navigate = useNavigate();
 
     const { user } = useUser();
+    const params = useParams()
     const userFinal = user ? user : userInitialValues;
     const [userCurrent] = useState<UserDTO>(userFinal)
 
     const [isDisabled] = useState<boolean>(true)
     const [taskEdited, setTaskEdited] = useState<TaskDTO>(exampleTask)
-    const [formattedStatus, setFormattedStatus] = useState<string>("Disponível")
+    const [formattedStatus, setFormattedStatus] = useState<string>("Indisponível")
 
-    const [buttonContent, setButtonContent] = useState<string>("Aceitar Tarefa")
     const [isVisible, setIsVisible] = useState<boolean>(false)
-    const [isVisibleButton, setIsVisibleButton] = useState<boolean>(true)
-    const [styleStatus, setStyleStatus] = useState<string>("available")
+    const [isVisibleButton, setIsVisibleButton] = useState<boolean>(false)
+    const [isVisibleMiniCards, setIsVisibleMiniCards] = useState<boolean>(true)
 
-    const params = useParams()
-
+    const [buttonContent, setButtonContent] = useState<string>(optionButtonContent.acceptedTask)
+    const [statusColor, setStatusColor] = useState<string>("")
 
     function setCurrentPage(task: TaskDTO): void {
         const role = userFinal.role;
@@ -41,29 +54,31 @@ export default function TaskProfile() {
 
         switch (role) {
             case "volunteer":
-                if (status === "AVAILABLE") {
-                    setButtonContent("Aceitar Tarefa")
+                if (status === statusType.AVAILABLE) {
+                    setButtonContent(optionButtonContent.acceptedTask)
                     setIsVisible(false)
                     setIsVisibleButton(true)
-                    setStyleStatus("available")
                 }
 
                 if (userFinal.id == volunteerId) {
-                    if (status === "ACCEPTED") {
-                        setButtonContent("Desvincular Tarefa")
+                    if (status === statusType.ACCEPTED) {
+                        setButtonContent(optionButtonContent.unlikedTask)
                         setIsVisible(true)
-                        setStyleStatus("accepted")
+                        setIsVisibleButton(true)
 
-                    } else if (status === "COMPLETED") {
-                        setIsVisibleButton(false)
+                    } else if (status === statusType.COMPLETED) {
                         setIsVisible(true)
-                        setStyleStatus("completed")
+                        setIsVisibleButton(false)
+                        setIsVisibleMiniCards(false)
                     }
                 }
-                break
                 
+                break
+
             default:
                 console.log("Tipo de cadastro não identificado")
+                setIsVisible(false)
+                setIsVisibleButton(false)
         }
     }
 
@@ -73,10 +88,12 @@ export default function TaskProfile() {
                 const task: TaskDTO = await getTask(taskId)
 
                 setTaskEdited(task)
-                setFormattedStatus(() => {
-                    return mapTaskStatus(task).status
-                })
 
+                setStatusColor(statusColors[task.status])
+                setFormattedStatus(() => {
+                    return mapStatus(task.status)
+                })
+                
                 setCurrentPage(task)
 
             } catch (error: any) {
@@ -86,7 +103,6 @@ export default function TaskProfile() {
         }
 
         captureTask(Number(params.taskId))
-
     }, []);
 
     async function updateTask(valueButton: string): Promise<void> {
@@ -94,43 +110,47 @@ export default function TaskProfile() {
             const taskUpdated: TaskDTO = await getTaskUpdate(taskEdited.id, valueButton, Number(userCurrent.id))
 
             setTaskEdited(taskUpdated)
-            setFormattedStatus(() => {
-                return mapTaskStatus(taskUpdated).status
-            })
 
+            setStatusColor(statusColors[taskUpdated.status])
+            setFormattedStatus(() => {
+                return mapStatus(taskUpdated.status)
+            })
             
+
         } catch (error: any) {
             throw error
         }
-
+        
     }
 
     function handleClick(): void {
         try {
             switch (buttonContent) {
-                case "Aceitar Tarefa":
-                    updateTask("accept")
+                case optionButtonContent.acceptedTask:
 
-                    setStyleStatus("accepted")
-                    setButtonContent("Desvincular Tarefa")
+                    updateTask("accept")
+                    setButtonContent(optionButtonContent.unlikedTask)
                     setIsVisible(true)
 
                     alert("Tarefa aceita com sucesso!\n\nEntre em contato pelo telefone ou email com o solicitante abaixo!")
                     break
 
-                case "Desvincular Tarefa":
+                case optionButtonContent.unlikedTask:
+
                     updateTask("unlink")
-                    
-                    setStyleStatus("available")
-                    setButtonContent("Aceitar Tarefa")
+                    setButtonContent(optionButtonContent.acceptedTask)
                     setIsVisible(false)
                     break
             }
 
+            setIsVisibleButton(true)
+            setStatusColor(statusColors[taskEdited.status])
+            
         } catch (error: any) {
             alert("Não foi possível atualizar a página.\n\nPor favor, tente novamente mais tarde.")
             console.error(`Erro ao puxar os dados:  \nMensagem: ${error.message}`)
         }
+    
     }
 
     function returnPreviousPage(e: React.MouseEvent<HTMLAnchorElement>): void {
@@ -142,7 +162,7 @@ export default function TaskProfile() {
         <section className="container-section-base">
             <header className={styles.containerHeader}>
                 <MainTitle content={`Tarefa nº ${taskEdited.id}`} />
-                <p className={`${styles.containerStatus} ${styles[styleStatus]}`}>{formattedStatus}</p>
+                <p className={`${styles.containerStatus} ${statusColor}`}>{formattedStatus}</p>
             </header>
 
             <form>
@@ -218,13 +238,14 @@ export default function TaskProfile() {
                 </fieldset>
             </form>
 
-            <div className={styles.containerMiniCards}>
+            <div style={{ visibility: isVisibleMiniCards ? "visible" : "hidden" }} className={styles.containerMiniCards}>
                 <div>
                     <h2>Solicitante</h2>
                     <div className={styles.containerMiniCard}>
                         <h3>{taskEdited.requestBy.firstName} {taskEdited.requestBy.lastName}</h3>
 
                         <NavLink
+                            className="navigationLink"
                             style={{ visibility: isVisible ? "visible" : "hidden" }}
                             to={`perfil-publico/${taskEdited.requestBy.id}`}>
                             Expandir
@@ -236,14 +257,14 @@ export default function TaskProfile() {
                 <h2>Voluntário Responsável</h2>
                     <div className={styles.containerMiniCard} >
                         <h3>{taskEdited.volunteer?.firstName} {taskEdited.volunteer?.lastName}</h3>
-                        <NavLink to={`perfil-publico/${taskEdited.volunteer?.id}`}>Expandir</NavLink>
+                        <NavLink className="navigationLink" to={`perfil-publico/${taskEdited.volunteer?.id}`}>Expandir</NavLink>
                     </div>
                 </div>
 
             </div>
 
             <footer className={styles.containerFooter}>
-                <a className={styles.linkReturn} href="#" onClick={returnPreviousPage}>Voltar</a>
+                <a className={`navigationLink ${styles.linkReturn}`} href="#" onClick={returnPreviousPage}>Voltar</a>
                 <button className={styles.buttonMain} style={{ visibility: isVisibleButton ? "visible" : "hidden" }} onClick={handleClick}>{buttonContent}</button>
             </footer>
         </section>

@@ -2,26 +2,10 @@
     font-size: .85rem;
     padding: .5rem .75rem;
     border-radius: .5rem;
-    background-color: ghostwhite;
     font-weight: bold;
 }
 
-.available {
-    background-color: #d4f3d4;
-    color: #5d995d;;
-}
-
-.accepted {
-    background-color: #f3ebd4;
-    color: #99845d;;
-}
-
-.completed {
-    background-color: #d4edf3;
-    color: #5d9099;;
-}
-
-.containerHeader{
+.containerHeader {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -121,20 +105,16 @@
     box-shadow: 5px 5px 5px var(--shadow-background-color);
 }
 
-.containerMiniCard a, .linkReturn {
-    font-size: .8rem;
-    color: var(--black-color);
-    font-weight: bold;
-    transition: color .2s;
+.containerMiniCard h3 {
+    font-size: .9rem;
 }
 
-.containerMiniCard a:hover,.linkReturn:hover {
-    color: black;
-}
+
 
 .containerFooter {
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 .linkReturn {
