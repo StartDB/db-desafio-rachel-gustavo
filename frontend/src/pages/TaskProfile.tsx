@@ -11,7 +11,7 @@ import Input from "../components/form/Input";
 import getTask from "../api/getTask";
 import { mapStatus } from "../utils/taskStatusMapper";
 import useUser from "../contexts/hook/useUser";
-import { userInitialValues } from "../utils/initalValues";
+import { userInitialValues } from "../utils/initialValues";
 import getTaskUpdate from "../api/getTaskUpdate";
 import { UserDTO } from "../services/interfaces/user.dto";
 import { statusColors } from "../services/records/statusColors";
@@ -107,7 +107,7 @@ export default function TaskProfile() {
 
     async function updateTask(valueButton: string): Promise<void> {
         try {
-            const taskUpdated: TaskDTO = await getTaskUpdate(taskEdited.id, valueButton, Number(userCurrent.id))
+            const taskUpdated: TaskDTO = await getTaskUpdate(taskEdited.id?taskEdited.id:0, valueButton, Number(userCurrent.id))
 
             setTaskEdited(taskUpdated)
 
@@ -215,7 +215,7 @@ export default function TaskProfile() {
                         <div className={styles.rowSupportsTypes}>
                             <div>
                                 <input type="radio" name="supportType" value="COMPANIONSHIP_AND_TRANSPORT" checked={taskEdited.supportType === "COMPANIONSHIP_AND_TRANSPORT"} onChange={(e) => handleChangeTask(e, taskEdited, setTaskEdited)} disabled={isDisabled} />
-                                <label>Acompanhamento e Ensino</label>
+                                <label>Acompanhamento e Transporte</label>
                             </div>
                             <div>
                                 <input type="radio" name="supportType" value="MAINTENANCE_AND_REPAIRS" checked={taskEdited.supportType === "MAINTENANCE_AND_REPAIRS"} onChange={(e) => handleChangeTask(e, taskEdited, setTaskEdited)} disabled={isDisabled} />

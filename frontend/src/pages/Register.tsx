@@ -2,8 +2,8 @@ import { useState } from "react";
 import { UserDTO } from "../services/interfaces/user.dto";
 import { postUser } from "../api/postUser";
 import Input from "../components/form/Input";
-import { userInitialValues } from "../utils/initalValues";
-import { handleChangeAddress, handleChangeForm } from "../utils/handleChange";
+import { userInitialValues } from "../utils/initialValues";
+import { handleChangeAddress, handleChangeUserForm } from "../utils/handleChange";
 import { useNavigate } from "react-router";
 import styles from './Register.module.css';
 import MainTitle from "../components/MainTitle";
@@ -44,12 +44,12 @@ export default function Register() {
 						<Label content="Tipo de cadastro" />
 
 						<div className={styles.radioUnitForm}>
-							<input type="radio" name="role" id="elderly" value="elderly" checked={data.role === "elderly"} onChange={(e) => handleChangeForm(e, data, setData)} />
+							<input type="radio" name="role" id="elderly" value="elderly" checked={data.role === "elderly"} onChange={(e) => handleChangeUserForm(e, data, setData)} />
 							<label htmlFor="elderly">Idoso</label>
 						</div>
 
 						<div className={styles.radioUnitForm}>
-							<input type="radio" name="role" id="volunteer" value="volunteer" checked={data.role === "volunteer"} onChange={(e) => handleChangeForm(e, data, setData)}/>
+							<input type="radio" name="role" id="volunteer" value="volunteer" checked={data.role === "volunteer"} onChange={(e) => handleChangeUserForm(e, data, setData)}/>
 							<label htmlFor="volunteer">Voluntário</label>
 						</div>
 					</div>
@@ -60,37 +60,37 @@ export default function Register() {
 
 					<div>
 						<Label content="Nome do Usuário:"/>
-						<Input type="text" name="username" value={data.username} placeholder="Informe o seu nome de usuário" onChange={(e) => handleChangeForm(e, data, setData)}/>
+						<Input type="text" name="username" value={data.username} placeholder="Informe o seu nome de usuário" onChange={(e) => handleChangeUserForm(e, data, setData)}/>
 					</div>
 
 					<div>
 						<Label content="Senha:"/>
-						<Input type="password" name="password" value={data.password} placeholder="Informe a sua senha" onChange={(e) => handleChangeForm(e, data, setData)}/>
+						<Input type="password" name="password" value={data.password} placeholder="Informe a sua senha" onChange={(e) => handleChangeUserForm(e, data, setData)}/>
 					</div>
 
 					<div>
 						<Label content="Primeiro Nome:"/>
-						<Input type="text" name="firstName" value={data.firstName} placeholder="Informe o seu primeiro nome" onChange={(e) => handleChangeForm(e, data, setData)}/>
+						<Input type="text" name="firstName" value={data.firstName} placeholder="Informe o seu primeiro nome" onChange={(e) => handleChangeUserForm(e, data, setData)}/>
 					</div>
 
 					<div>
 						<Label content="Sobrenome:"/>
-						<Input type="text" name="lastName" value={data.lastName} placeholder="Informe o seu sobrenome" onChange={(e) => handleChangeForm(e, data, setData)}/>
+						<Input type="text" name="lastName" value={data.lastName} placeholder="Informe o seu sobrenome" onChange={(e) => handleChangeUserForm(e, data, setData)}/>
 					</div>
 
 					<div>
 						<Label content="E-mail:"/>
-						<Input type="email" name="email" value={data.email} placeholder="Informe o seu email" onChange={(e) => handleChangeForm(e, data, setData)}/>
+						<Input type="email" name="email" value={data.email} placeholder="Informe o seu email" onChange={(e) => handleChangeUserForm(e, data, setData)}/>
 					</div>
 
 					<div>
 						<Label content="Telefone:"/>
-						<Input type="tel" name="phone" value={data.phone == 0 ? "" : data.phone.toString()} placeholder="Informe o seu telefone" onChange={(e) => handleChangeForm(e, data, setData)}/>
+						<Input type="tel" name="phone" value={data.phone == 0 ? "" : data.phone.toString()} placeholder="Informe o seu telefone" onChange={(e) => handleChangeUserForm(e, data, setData)}/>
 					</div>
 
 					<div>
 						<Label content="Data de nascimento:"/>
-						<Input type="date" name="birthdate" value={data.birthdate} onChange={(e) => handleChangeForm(e, data, setData)}/>
+						<Input type="date" name="birthdate" value={data.birthdate} onChange={(e) => handleChangeUserForm(e, data, setData)}/>
 					</div>
 				</fieldset>
 

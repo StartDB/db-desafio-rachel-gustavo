@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import com.cuidarmais.demo.DTO.TaskDTO.TaskDTO;
 import com.cuidarmais.demo.DTO.TaskDTO.TaskDTOTransform;
+import com.cuidarmais.demo.DTO.TaskDTO.TaskSaveResponseDTO;
 import com.cuidarmais.demo.Entities.Task;
 import com.cuidarmais.demo.Entities.Volunteer;
 import com.cuidarmais.demo.Entities.EntityObjects.Enums.Status;
@@ -36,7 +37,7 @@ public class TaskService {
 
         taskRepository.save(task);
         
-        return ResponseEntity.ok("Tarefa criada com sucesso!");
+        return ResponseEntity.ok(new TaskSaveResponseDTO(task.getId(), "Tarefa Criada com Sucesso"));
 
         } catch (DataIntegrityViolationException ex) {
         

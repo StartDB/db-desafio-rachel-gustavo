@@ -1,7 +1,7 @@
 import { TaskDTO } from "../services/interfaces/task.dto";
 import { UserDTO } from "../services/interfaces/user.dto";
 
-export function handleChangeForm(
+export function handleChangeUserForm(
     e: React.ChangeEvent<HTMLInputElement>,
     state: UserDTO,
     setState: React.Dispatch<React.SetStateAction<UserDTO>>
