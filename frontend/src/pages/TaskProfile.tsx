@@ -31,11 +31,12 @@ export default function TaskProfile() {
     const [isVisibleButton, setIsVisibleButton] = useState<boolean>(true)
 
     const params = useParams()
+    
 
-    function setCurrentPage(): void {
+    function setCurrentPage(task: TaskDTO): void {
         const role = userFinal.role;
-        const status = taskEdited.status
-        const volunteerId = taskEdited.volunteer?.id
+        const status = task.status
+        const volunteerId = task.volunteer?.id
 
         switch (role) {
             case "volunteer":
@@ -72,7 +73,7 @@ export default function TaskProfile() {
                     return mapTaskStatus(task).status
                 })
 
-                setCurrentPage()
+                setCurrentPage(task)
 
             } catch (error: any) {
                 alert("Não foi possível atualizar a página.\n\nPor favor, tente novamente mais tarde.")
@@ -107,6 +108,7 @@ export default function TaskProfile() {
 
                     setButtonContent("Desvincular Tarefa")
                     setIsVisible(true)
+                    alert("Tarefa aceita com sucesso!\n\nEntre em contato pelo telefone ou email com o solicitante abaixo!")
                     break
 
                 case "Desvincular Tarefa":
