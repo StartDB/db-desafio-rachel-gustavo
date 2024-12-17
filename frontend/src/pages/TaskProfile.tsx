@@ -19,13 +19,13 @@ import { statusColors } from "../services/records/statusColors";
 enum statusType {
     AVAILABLE = "AVAILABLE",
     ACCEPTED = "ACCEPTED",
-    COMPLETED  = "COMPLETED",
-    CANCELED  = "CANCELED ",
+    COMPLETED = "COMPLETED",
+    CANCELED = "CANCELED ",
 }
 
 enum optionButtonContent {
     acceptedTask = "Aceitar Tarefa",
-    unlikedTask = "Desvincular Tarefa" 
+    unlikedTask = "Desvincular Tarefa"
 }
 
 export default function TaskProfile() {
@@ -72,7 +72,7 @@ export default function TaskProfile() {
                         setIsVisibleMiniCards(false)
                     }
                 }
-                
+
                 break
 
             default:
@@ -93,7 +93,7 @@ export default function TaskProfile() {
                 setFormattedStatus(() => {
                     return mapStatus(task.status)
                 })
-                
+
                 setCurrentPage(task)
 
             } catch (error: any) {
@@ -115,12 +115,12 @@ export default function TaskProfile() {
             setFormattedStatus(() => {
                 return mapStatus(taskUpdated.status)
             })
-            
+
 
         } catch (error: any) {
             throw error
         }
-        
+
     }
 
     function handleClick(): void {
@@ -145,12 +145,12 @@ export default function TaskProfile() {
 
             setIsVisibleButton(true)
             setStatusColor(statusColors[taskEdited.status])
-            
+
         } catch (error: any) {
             alert("Não foi possível atualizar a página.\n\nPor favor, tente novamente mais tarde.")
             console.error(`Erro ao puxar os dados:  \nMensagem: ${error.message}`)
         }
-    
+
     }
 
     function returnPreviousPage(e: React.MouseEvent<HTMLAnchorElement>): void {
@@ -247,17 +247,21 @@ export default function TaskProfile() {
                         <NavLink
                             className="navigationLink"
                             style={{ visibility: isVisible ? "visible" : "hidden" }}
-                            to={`perfil-publico/${taskEdited.requestBy.id}`}>
+                            to={`perfil-publico/elderly/${taskEdited.requestBy.id}`}>
                             Expandir
                         </NavLink>
                     </div>
                 </div>
 
                 <div style={{ visibility: isVisible ? "visible" : "hidden" }}>
-                <h2>Voluntário Responsável</h2>
+                    <h2>Voluntário Responsável</h2>
                     <div className={styles.containerMiniCard} >
                         <h3>{taskEdited.volunteer?.firstName} {taskEdited.volunteer?.lastName}</h3>
-                        <NavLink className="navigationLink" to={`perfil-publico/${taskEdited.volunteer?.id}`}>Expandir</NavLink>
+                        <NavLink
+                            className="navigationLink"
+                            to={`perfil-publico/volunteer/${taskEdited.volunteer?.id}`}>
+                            Expandir
+                        </NavLink>
                     </div>
                 </div>
 
