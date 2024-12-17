@@ -52,7 +52,7 @@ export default function UserProfile() {
             } catch (error: any) {
                 alert("Não foi possível concluir a atualização do cadastro.\n\nPor favor, tente novamente mais tarde.")
 
-			    console.error(`Erro ao enviar os dados:  \nMensagem: ${error.message}`)
+			    console.error(`Erro ao enviar os dados:  \nNome: ${error.name} \nMensagem: ${error.message}`)
             }
 
         }

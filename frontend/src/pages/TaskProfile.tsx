@@ -98,7 +98,7 @@ export default function TaskProfile() {
 
             } catch (error: any) {
                 alert("Não foi possível atualizar a página.\n\nPor favor, tente novamente mais tarde.")
-                console.error(`Erro ao puxar os dados:  \nMensagem: ${error.message}`)
+                console.error(`Erro ao puxar os dados:  \nNome: ${error.name} \nMensagem: ${error.message}`)
             }
         }
 
