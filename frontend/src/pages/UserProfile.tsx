@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import useUser from "../contexts/hook/useUser"
 import { UserDTO } from "../services/interfaces/user.dto"
 import Input from "../components/form/Input"
@@ -14,11 +14,16 @@ import { userInitialValues } from "../utils/initalValues"
 export default function UserProfile() {
     const { user, setUser } = useUser()
     const userFinal = user ? user : userInitialValues
-    const [userEdited, setUserEdited] = useState<UserDTO>(userFinal)
+    const [userEdited, setUserEdited] = useState<UserDTO>(userInitialValues)
 
     const [isDisabled, setIsDisabled] = useState<boolean>(true)
     const [buttonHTML, setbuttonHTML] = useState<string>("Editar")
     const [isVisible, setisVisible] = useState<boolean>(false)
+
+    useEffect(() => {
+        const userFinal = user ? user : userInitialValues
+        setUserEdited(userFinal)
+    }, [user])
 
     function handleCancelClick(): void {
         setUserEdited(userFinal)

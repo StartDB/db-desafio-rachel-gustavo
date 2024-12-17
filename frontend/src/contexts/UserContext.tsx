@@ -21,7 +21,6 @@ function UserProvider({ children }: UserProviderProps) {
     useEffect(() => {
       const fetchUser = async () => {
         const userToken = localStorage.getItem("user_token");
-        console.log(userToken);
   
         if (userToken) {
           try {

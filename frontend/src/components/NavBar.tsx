@@ -17,7 +17,7 @@ export function NavBar() {
 
             <div className={styles.col}>
                 {user ? <></>: <NavLink to="/cadastro" className={`${styles.link} link-nav`}>Cadastrar</NavLink>}
-                <NavLink to={user ? "/" : "/login"} className={`${styles.link} link-nav`}>{user ? "Sair" : "Login"}</NavLink>
+                <NavLink to={user ? "/logout" : "/login"} className={`${styles.link} link-nav`}>{user ? "Sair" : "Login"}</NavLink>
             </div>
         </nav>
     )
