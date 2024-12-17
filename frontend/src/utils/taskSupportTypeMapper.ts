@@ -2,7 +2,7 @@ import { TaskDTO } from "../services/interfaces/task.dto"
 
 // Record
 export const supportTypeMap: Record <string, string> = {
-    COMPANIONSHIP_AND_TRANSPORT: "Acompanhamento e Ensino",
+    COMPANIONSHIP_AND_TRANSPORT: "Acompanhamento e Transporte",
     MAINTENANCE_AND_REPAIRS: "Manunteção e Reparo",
     TEACHING_AND_TECHNOLOGY : "Ensino e Tecnologia",
     SOCIAL_ACTIVITIES: "Atividades Sociais",

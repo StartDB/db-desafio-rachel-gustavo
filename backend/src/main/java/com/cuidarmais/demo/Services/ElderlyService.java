@@ -13,9 +13,11 @@ import org.springframework.stereotype.Service;
 
 import com.cuidarmais.demo.DTO.ProfileDTO;
 import com.cuidarmais.demo.DTO.UpdateUserDTO;
+import com.cuidarmais.demo.DTO.UserResponseDTO;
 import com.cuidarmais.demo.DTO.TaskDTO.TaskDTO;
 import com.cuidarmais.demo.DTO.TaskDTO.TaskDTOTransform;
 import com.cuidarmais.demo.Entities.Elderly;
+import com.cuidarmais.demo.Infrastructure.Utils.TokenService;
 import com.cuidarmais.demo.Repositories.ElderlyRepository;
 
 import jakarta.transaction.Transactional;
@@ -25,6 +27,9 @@ public class ElderlyService {
     
     @Autowired
     public ElderlyRepository elderlyRepository;
+
+    @Autowired
+    TokenService tokenService;
 
     @Transactional
     public ResponseEntity<Object> saveElderly(Elderly elderly) {
@@ -81,8 +86,10 @@ public class ElderlyService {
             Elderly finalElderly = UpdateUserDTO.mergeUpdateToElderly(elderlyUpdate, elderly);
             elderlyRepository.save(finalElderly);
             elderlyRepository.flush();
+
+            UserResponseDTO userResponse = UserResponseDTO.transformToUserResponseDTO(finalElderly, tokenService.generateToken(finalElderly));
             
-            return ResponseEntity.ok(finalElderly);
+            return ResponseEntity.ok(userResponse);
     
             } catch (NoSuchElementException ex) {
                 

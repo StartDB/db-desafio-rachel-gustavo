@@ -13,6 +13,7 @@ import UserProfile from './pages/UserProfile.tsx'
 import MyTasks from './pages/MyTasks.tsx'
 import Logout from './pages/Logout.tsx'
 import PublicProfile from './pages/PublicProfile.tsx'
+import CreateTask from './pages/CreateTask.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -31,7 +32,8 @@ createRoot(document.getElementById('root')!).render(
                   <Route path="meu-perfil" element={<UserProfile />}/>
                   <Route path="minhas-tarefas" element={<MyTasks />}/>
                   <Route path="buscar-tarefas" element={<SearchTasks />} />
-                  <Route path="tarefa/:taskId" element={<TaskProfile />}/>
+                  <Route path="tarefa/:taskId" element={<TaskProfile />}/> 
+                  <Route path="criar-tarefa" element={<CreateTask />}/>
                   <Route path="tarefa/:taskId/perfil-publico/:role/:publicId" element={<PublicProfile />}/>
                 </Route>
               </Route>

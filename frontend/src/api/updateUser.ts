@@ -25,8 +25,13 @@ export async function updateUser(user: UserDTO): Promise<UserDTO> {
             const errorMessage: string = errorBody || `Status ${response.status}: ${response.statusText}`;
             throw new Error(errorMessage);
         }
-    
-        return response.json()
+        
+            const updateUser = await response.json();
+            if (response.ok) {
+                localStorage.setItem("user_token", JSON.stringify(updateUser.token));
+            }
+
+            return updateUser;
 
     } catch(error: any) {
         throw error;

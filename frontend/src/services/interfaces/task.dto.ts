@@ -1,5 +1,5 @@
 export interface TaskDTO {
-    id: number
+    id?: number
     title: string
     supportType: string
     isOnline: boolean
@@ -11,8 +11,9 @@ export interface TaskDTO {
     status: string
     requestBy: {
         id: number
-        firstName: string
-        lastName: string
+        firstName?: string
+        lastName?: string
+        role: string | undefined
     },
     volunteer?: null | {
         id: number

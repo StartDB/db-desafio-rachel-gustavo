@@ -15,6 +15,7 @@ export const exampleTask: TaskDTO = {
         id:102,
         firstName:"Gustavo",
         lastName: "Silva",
+        role: "elderly"
     },
     volunteer: {
         id:104,
