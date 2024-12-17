@@ -59,7 +59,7 @@ export default function Register() {
 					<Legend content="Dados Pessoais" />
 
 					<div>
-						<Label content="Nome do Usuário:"/>
+						<Label content="Nome do usuário:"/>
 						<Input type="text" name="username" value={data.username} placeholder="Informe o seu nome de usuário" onChange={(e) => handleChangeForm(e, data, setData)}/>
 					</div>
 
@@ -69,7 +69,7 @@ export default function Register() {
 					</div>
 
 					<div>
-						<Label content="Primeiro Nome:"/>
+						<Label content="Primeiro nome:"/>
 						<Input type="text" name="firstName" value={data.firstName} placeholder="Informe o seu primeiro nome" onChange={(e) => handleChangeForm(e, data, setData)}/>
 					</div>
 
