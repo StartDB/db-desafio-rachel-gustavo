@@ -35,9 +35,9 @@ public class UserController {
     }
 
     @GetMapping("/getUserByToken")
-    public ResponseEntity<Object> getUserByToken(@RequestParam String id) {
+    public ResponseEntity<Object> getUserByToken(@RequestParam String token) {
 
-        return userService.getUserByToken(id);
+        return userService.getUserByToken(token);
     }
     
 }
