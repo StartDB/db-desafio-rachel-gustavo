@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.cuidarmais.demo.DTO.LoginDTO;
 import com.cuidarmais.demo.DTO.LoginResponseDTO;
 import com.cuidarmais.demo.Entities.User;
+import com.cuidarmais.demo.Infrastructure.Utils.TokenService;
 import com.cuidarmais.demo.Repositories.UserRepository;
 
 @Service
@@ -18,6 +19,9 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    TokenService tokenService;
 
     public List<User> listAll() {
         return userRepository.findAll();
@@ -32,7 +36,7 @@ public class UserService {
         User user = userOpt.orElseThrow(() -> new NoSuchElementException("Usuário não encontrado."));
         
         if (user.getPassword().equals(login.password())) {
-            LoginResponseDTO loginResponse = LoginResponseDTO.transformToLoginResponseDTO(user);
+            LoginResponseDTO loginResponse = LoginResponseDTO.transformToLoginResponseDTO(user, tokenService.generateToken(user));
             return ResponseEntity.ok(loginResponse);
         }
         

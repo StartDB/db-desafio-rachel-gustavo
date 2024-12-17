@@ -8,9 +8,10 @@ import com.cuidarmais.demo.Entities.Volunteer;
 import com.cuidarmais.demo.Entities.EntityObjects.Address;
 
 public record LoginResponseDTO (Long id, String firstName, String lastName, String username, String password, String email, int phone,
-            LocalDate birthdate, Address address, String description, LocalDateTime createdAt, String role) {
+            LocalDate birthdate, Address address, String description, LocalDateTime createdAt, String role, String token) {
 
-    public static LoginResponseDTO transformToLoginResponseDTO(User user) {
+    public static LoginResponseDTO transformToLoginResponseDTO(User user, String generatedToken) {
+        System.out.println(generatedToken);
         return new LoginResponseDTO(
             user.getId(), 
             user.getFirstName(), 
@@ -23,6 +24,7 @@ public record LoginResponseDTO (Long id, String firstName, String lastName, Stri
             user.getAddress(), 
             user.getDescription(), 
             user.getCreatedAt(),
-            (user instanceof Volunteer) ? "volunteer" : "elderly");
+            (user instanceof Volunteer) ? "volunteer" : "elderly",
+            generatedToken);
     }
 }
