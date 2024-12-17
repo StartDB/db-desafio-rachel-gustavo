@@ -25,7 +25,8 @@ enum statusType {
 
 enum optionButtonContent {
     acceptedTask = "Aceitar Tarefa",
-    unlikedTask = "Desvincular Tarefa" 
+    unlikedTask = "Desvincular Tarefa",
+    completedTask = "Completar Tarefa" 
 }
 
 export default function TaskProfile() {
@@ -74,7 +75,12 @@ export default function TaskProfile() {
                 }
                 
                 break
-
+            case "elderly":
+                if (status === statusType.ACCEPTED) {
+                    setButtonContent(optionButtonContent.completedTask)
+                    setIsVisible(false)
+                    setIsVisibleButton(true)
+                }
             default:
                 console.log("Tipo de cadastro não identificado")
                 setIsVisible(false)

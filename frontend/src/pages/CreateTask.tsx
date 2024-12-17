@@ -115,7 +115,7 @@ export default function CreateTask() {
                     </div>
                 </fieldset>
                 <div className={styles.footerContainer}>
-					<InputButton type="submit" value="Criar" />
+					<InputButton type="submit" value="Criar Tarefa" />
 				</div>
             </form>
     </section>
