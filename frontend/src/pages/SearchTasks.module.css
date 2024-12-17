@@ -1,27 +1,62 @@
+.sectionSearchTasks {
+    min-width: 60rem;
+}
+
+.containerHeaderSearchTasks {
+    padding-bottom: 2rem;
+}
+
 .containerSearchTasks {
     display: grid;
-    grid-template-columns: min-content min-content;
-    gap: 2rem;
+    grid-template-columns: min-content 1fr;
+    gap: 3rem;
 }
 
-
-.subRow {
-    background-color: yellow;
+.containerSupportTypes{
+    border: none;
+    padding-bottom: 1.5rem;
 }
 
-.buttonSearch {
+.containerSupportTypes > legend {
+    padding-bottom: 1rem;
+}
+
+.containerRadiosSupportTypes {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem
+}
+
+.containerRadiosSupportTypes > div {
+    display: grid;
+    grid-template-columns: min-content max-content;
+    gap: .2rem
+}
+
+.containerRadiosSupportTypes > div > input {
+    min-width: 1.1rem;
+}
+
+.buttonSearchTasks {
     background-color: transparent;
-    font-size: .85rem;
-    padding: .15rem 0;
+    font-size: .9rem;
+    font-weight: bold;
+    padding: .15rem .1rem;
     color: var(--black-color);
     border: none;
-    border-bottom: 1px solid var(--black-color);
+    border-bottom: 2px solid var(--black-color);
     border-radius: 0;
     min-height: min-content;
+    cursor: pointer;
+    transition: color .2s;
 }
 
-.buttonSearch:hover {
-    background-color: transparent;
+.buttonSearchTasks:hover {
     color: black;
+    border-bottom: 2px solid black;
 }
 
+.containerMainSectionSearchTasks {
+    display: grid;
+    gap: 2rem;
+}

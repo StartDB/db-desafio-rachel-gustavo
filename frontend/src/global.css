@@ -46,7 +46,7 @@ body {
   border:1px solid #d3d2d2;
   min-width: 45rem;
   box-shadow: 7px 7px 12px var(--shadow-background-color);
-  place-self: center;
+  place-self: start center;
   margin: 3rem 0;
 }
 
@@ -74,4 +74,11 @@ body {
 .completed {
   background-color: #d4edf3;
   color: #5d9099;;
+}
+
+.mainSectionWarning {
+  place-self: start center;
+  max-width: 40ch;
+  color: #888888;
+  font-style: italic;
 }
