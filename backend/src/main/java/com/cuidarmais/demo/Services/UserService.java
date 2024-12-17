@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.cuidarmais.demo.DTO.LoginDTO;
-import com.cuidarmais.demo.DTO.LoginResponseDTO;
+import com.cuidarmais.demo.DTO.UserResponseDTO;
 import com.cuidarmais.demo.Entities.User;
 import com.cuidarmais.demo.Infrastructure.Utils.TokenService;
 import com.cuidarmais.demo.Repositories.UserRepository;
@@ -36,7 +36,7 @@ public class UserService {
         User user = userOpt.orElseThrow(() -> new NoSuchElementException("Usuário não encontrado."));
         
         if (user.getPassword().equals(login.password())) {
-            LoginResponseDTO loginResponse = LoginResponseDTO.transformToLoginResponseDTO(user, tokenService.generateToken(user));
+            UserResponseDTO loginResponse = UserResponseDTO.transformToUserResponseDTO(user, tokenService.generateToken(user));
             return ResponseEntity.ok(loginResponse);
         }
         
@@ -62,7 +62,7 @@ public class UserService {
 
         User user = userOpt.orElseThrow(() -> new NoSuchElementException("Usuário não encontrado."));
         
-        LoginResponseDTO loginResponse = LoginResponseDTO.transformToLoginResponseDTO(user, tokenService.generateToken(user));
+        UserResponseDTO loginResponse = UserResponseDTO.transformToUserResponseDTO(user, tokenService.generateToken(user));
         return ResponseEntity.ok(loginResponse);
 
         } catch (NoSuchElementException ex) {

@@ -7,12 +7,12 @@ import com.cuidarmais.demo.Entities.User;
 import com.cuidarmais.demo.Entities.Volunteer;
 import com.cuidarmais.demo.Entities.EntityObjects.Address;
 
-public record LoginResponseDTO (Long id, String firstName, String lastName, String username, String password, String email, int phone,
+public record UserResponseDTO (Long id, String firstName, String lastName, String username, String password, String email, int phone,
             LocalDate birthdate, Address address, String description, LocalDateTime createdAt, String role, String token) {
 
-    public static LoginResponseDTO transformToLoginResponseDTO(User user, String generatedToken) {
+    public static UserResponseDTO transformToUserResponseDTO(User user, String generatedToken) {
         System.out.println(generatedToken);
-        return new LoginResponseDTO(
+        return new UserResponseDTO(
             user.getId(), 
             user.getFirstName(), 
             user.getLastName(), 
