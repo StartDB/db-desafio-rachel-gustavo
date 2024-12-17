@@ -86,7 +86,7 @@ export default function UserProfile() {
                     <Legend content="Dados Pessoais" />
 
                     <div>
-                        <Label content="Nome do Usuário:" />
+                        <Label content="Nome do usuário:" />
                         <Input type="text" name="username" value={userEdited.username} onChange={(e) => handleChangeUserForm(e, userEdited, setUserEdited)} disabled={isDisabled} />
                     </div>
 
@@ -96,7 +96,7 @@ export default function UserProfile() {
                     </div>
 
                     <div>
-                        <Label content="Primeiro Nome:" />
+                        <Label content="Primeiro nome:" />
                         <Input type="text" name="firstName" value={userEdited.firstName} onChange={(e) => handleChangeUserForm(e, userEdited, setUserEdited)} disabled={isDisabled} />
                     </div>
 
