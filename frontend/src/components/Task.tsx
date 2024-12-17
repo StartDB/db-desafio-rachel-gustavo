@@ -1,10 +1,10 @@
-import { NavLink } from "react-router"; //useNavigate
+import { NavLink } from "react-router";
 import { TaskDTO } from "../services/interfaces/task.dto";
 import styles from './Task.module.css';
 import useUser from "../contexts/hook/useUser";
 import { useState } from "react";
+import { statusColors } from "../services/records/statusColors";
 import { mapStatus } from "../utils/taskStatusMapper";
-import { statusColors } from "../utils/records/statusColors";
 
 
 export default function Task({ id, title, description, date, time, supportType, city, state, status, requestBy, isOnline }: TaskDTO) {
@@ -31,11 +31,11 @@ export default function Task({ id, title, description, date, time, supportType, 
                     <h2 className={styles.titleTaskCard}>{title}</h2>
 
                     <div className={styles.containerHeaderTaskCard}>
-                        <div className={styles.flex}>
+                        <div>
                             <h3>Data:</h3>
                             <p>{formatDate(date)}</p>
                         </div>
-                        <div className={styles.flex}>
+                        <div>
                             <h3>Hora:</h3>
                             <p>{formatTime(time)}</p>
                         </div>
@@ -44,7 +44,7 @@ export default function Task({ id, title, description, date, time, supportType, 
                             <h3>Local:</h3>
                             <p>{`${city}/${state}`}</p>
                         </div>
-                        <div className={styles.flex}>
+                        <div>
                             <h3>Área de Suporte:</h3>
                             <p>{supportType}</p>
                         </div>
@@ -52,20 +52,20 @@ export default function Task({ id, title, description, date, time, supportType, 
                     </div>
                 </header>
 
-                <main className={styles.row}>
+                <main>
                     <h3>Descrição:</h3>
                     <p>{description.length > 200 ? description.slice(0, 200) + "..." : description}</p>
                 </main>
 
                 <footer className={styles.containerFooterTaskCard}>
-                    <div className={styles.flex}>
+                    <div>
                         <h3>Solicitante:</h3>
                         <p>{`${requestBy.firstName} ${requestBy.lastName}`}</p>
                     </div>
 
                     <div className={styles.containerStatusOnlineButton}>
-                        <p className={styles.miniContainer}>{isOnline ? "Online " : "Presencial"}</p>
-
+                        <p className={`${styles.miniContainer} ${styles.backgroundColorIsOnline}`}>{isOnline ? "Online " : "Presencial"}</p>
+                        
                         <p className={`${styles.miniContainer} ${statusColor}`}>{mapStatus(status)}</p>
 
                         <NavLink className="navigationLink" to={`/dashboard/${user?.id}/tarefa/${id}`}>Expandir</NavLink>

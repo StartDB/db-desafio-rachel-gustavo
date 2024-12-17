@@ -3,7 +3,7 @@
     grid-template-rows: min-content min-content min-content;
     background-color: rgb(252, 252, 252);
     font-size: .9rem;
-    padding: 1.5rem;
+    padding: 1.2rem 1.5rem;
     gap: 1rem;
     min-width: 37rem;
     border: 1px solid var(--border-color);
@@ -11,6 +11,10 @@
     box-shadow: 5px 5px 5px var(--shadow-background-color);
     border-top-right-radius: .5rem;
     border-bottom-right-radius: .5rem;
+}
+
+.containerTaskCard h3 {
+    font-size: inherit;
 }
 
 .containerTaskCard > header {
@@ -62,6 +66,6 @@
     font-weight: bold;
 }
 
-.miniContainer {
+.backgroundColorIsOnline {
     background-color: rgb(233, 233, 233);
 }
