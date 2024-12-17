@@ -26,7 +26,8 @@ enum statusType {
 enum optionButtonContent {
     acceptedTask = "Aceitar Tarefa",
     unlikedTask = "Desvincular Tarefa",
-    completedTask = "Completar Tarefa" 
+    completedTask = "Completar Tarefa",
+    canceled = "Cancelar Tarefa"
 }
 
 export default function TaskProfile() {
@@ -74,13 +75,17 @@ export default function TaskProfile() {
                     }
                 }
                 
-                break
+                break;
+
             case "elderly":
-                if (status === statusType.ACCEPTED) {
-                    setButtonContent(optionButtonContent.completedTask)
-                    setIsVisible(false)
+                if (!(status === statusType.COMPLETED || status === statusType.CANCELED)){
+                    setButtonContent(optionButtonContent.canceled)
+                    setIsVisible(true)
                     setIsVisibleButton(true)
-                }
+            }
+
+                break;
+                
             default:
                 console.log("Tipo de cadastro não identificado")
                 setIsVisible(false)
@@ -136,6 +141,7 @@ export default function TaskProfile() {
 
                     updateTask("accept")
                     setButtonContent(optionButtonContent.unlikedTask)
+                    setIsVisibleButton(true)
                     setIsVisible(true)
 
                     alert("Tarefa aceita com sucesso!\n\nEntre em contato pelo telefone ou email com o solicitante abaixo!")
@@ -145,11 +151,15 @@ export default function TaskProfile() {
 
                     updateTask("unlink")
                     setButtonContent(optionButtonContent.acceptedTask)
+                    setIsVisibleButton(true)
                     setIsVisible(false)
                     break
+                
+                case optionButtonContent.canceled:
+                    updateTask("cancel")
+                    setIsVisibleButton(false)
             }
 
-            setIsVisibleButton(true)
             setStatusColor(statusColors[taskEdited.status])
             
         } catch (error: any) {
@@ -157,6 +167,15 @@ export default function TaskProfile() {
             console.error(`Erro ao puxar os dados:  \nMensagem: ${error.message}`)
         }
     
+    }
+
+    function completeTask() {
+        try{
+           updateTask("complete") 
+        } catch (error: any) {
+            alert("Não foi possível atualizar a página.\n\nPor favor, tente novamente mais tarde.")
+            console.error(`Erro ao puxar os dados:  \nMensagem: ${error.message}`)
+        }
     }
 
     function returnPreviousPage(e: React.MouseEvent<HTMLAnchorElement>): void {
@@ -271,6 +290,7 @@ export default function TaskProfile() {
 
             <footer className={styles.containerFooter}>
                 <a className={`navigationLink ${styles.linkReturn}`} href="#" onClick={returnPreviousPage}>Voltar</a>
+                <button className={styles.buttonMain} style={{visibility: ((user?.role === "elderly") && (taskEdited.status === statusType.ACCEPTED)) ? "visible" : "hidden"}} onClick={completeTask}>Concluir</button>
                 <button className={styles.buttonMain} style={{ visibility: isVisibleButton ? "visible" : "hidden" }} onClick={handleClick}>{buttonContent}</button>
             </footer>
         </section>
