@@ -12,9 +12,11 @@ import org.springframework.stereotype.Service;
 
 import com.cuidarmais.demo.DTO.ProfileDTO;
 import com.cuidarmais.demo.DTO.UpdateUserDTO;
+import com.cuidarmais.demo.DTO.UserResponseDTO;
 import com.cuidarmais.demo.DTO.TaskDTO.TaskDTO;
 import com.cuidarmais.demo.DTO.TaskDTO.TaskDTOTransform;
 import com.cuidarmais.demo.Entities.Volunteer;
+import com.cuidarmais.demo.Infrastructure.Utils.TokenService;
 import com.cuidarmais.demo.Repositories.VolunteerRepository;
 
 import jakarta.transaction.Transactional;
@@ -24,6 +26,9 @@ public class VolunteerService {
 
     @Autowired
     private VolunteerRepository volunteerRepository;
+
+    @Autowired
+    TokenService tokenService;
 
     @Transactional
     public ResponseEntity<Object> saveVolunteer(Volunteer volunteer) {
@@ -81,8 +86,11 @@ public class VolunteerService {
             Volunteer finalVolunteer = UpdateUserDTO.mergeUpdateToVolunteer(volunteerUpdate, volunteer);
 
             volunteerRepository.save(finalVolunteer);
+            volunteerRepository.flush();
+
+            UserResponseDTO userResponse = UserResponseDTO.transformToUserResponseDTO(finalVolunteer, tokenService.generateToken(finalVolunteer));
             
-            return ResponseEntity.ok(finalVolunteer);
+            return ResponseEntity.ok(userResponse);
     
             } catch (DataIntegrityViolationException ex) {
             
