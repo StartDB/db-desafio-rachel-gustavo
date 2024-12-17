@@ -27,9 +27,10 @@ export default function TaskProfile() {
     const [formattedStatus, setFormattedStatus] = useState<string>("Disponível")
 
     const [buttonContent, setButtonContent] = useState<string>("Aceitar Tarefa")
-    const [isVisible, setIsVisible] = useState<boolean>(true)
+    const [isVisible, setIsVisible] = useState<boolean>(false)
     const [isVisibleButton, setIsVisibleButton] = useState<boolean>(true)
-    const [styleStatus, setstyleStatus] = useState<string>("completed")
+    const [styleStatus, setStyleStatus] = useState<string>("available")
+
     const params = useParams()
 
 
@@ -44,23 +45,23 @@ export default function TaskProfile() {
                     setButtonContent("Aceitar Tarefa")
                     setIsVisible(false)
                     setIsVisibleButton(true)
-                    setstyleStatus("available")
+                    setStyleStatus("available")
                 }
 
                 if (userFinal.id == volunteerId) {
                     if (status === "ACCEPTED") {
                         setButtonContent("Desvincular Tarefa")
                         setIsVisible(true)
-                        setstyleStatus("accepted")
+                        setStyleStatus("accepted")
 
                     } else if (status === "COMPLETED") {
                         setIsVisibleButton(false)
                         setIsVisible(true)
-                        setstyleStatus("completed")
+                        setStyleStatus("completed")
                     }
                 }
-
                 break
+
             default:
                 console.log("Tipo de cadastro não identificado")
         }
@@ -79,7 +80,7 @@ export default function TaskProfile() {
                 setCurrentPage(task)
 
             } catch (error: any) {
-                //alert("Não foi possível atualizar a página.\n\nPor favor, tente novamente mais tarde.")
+                alert("Não foi possível atualizar a página.\n\nPor favor, tente novamente mais tarde.")
                 console.error(`Erro ao puxar os dados:  \nMensagem: ${error.message}`)
             }
         }
