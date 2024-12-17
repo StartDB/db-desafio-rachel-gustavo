@@ -52,4 +52,25 @@ public class UserService {
     
     }
 
+    public ResponseEntity<Object> getUserByToken(String token) {
+
+        try {
+
+        String username = tokenService.validadeToken(token);
+
+        Optional<User> userOpt = userRepository.findByUsername(username);
+
+        User user = userOpt.orElseThrow(() -> new NoSuchElementException("Usuário não encontrado."));
+        
+        LoginResponseDTO loginResponse = LoginResponseDTO.transformToLoginResponseDTO(user, tokenService.generateToken(user));
+        return ResponseEntity.ok(loginResponse);
+
+        } catch (NoSuchElementException ex) {
+            return ResponseEntity.badRequest().body(ex.getMessage());
+        } catch (Exception ex) {
+            return ResponseEntity.badRequest().body("Erro ao validar a entrada automática");
+    }
+    
+    }
+
 }
