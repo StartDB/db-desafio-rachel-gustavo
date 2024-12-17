@@ -2,19 +2,19 @@ import { useEffect, useState } from "react"
 import useUser from "../contexts/hook/useUser"
 import { UserDTO } from "../services/interfaces/user.dto"
 import Input from "../components/form/Input"
-import { handleChangeAddress, handleChangeForm, handleChangeTextArea } from "../utils/handleChange"
+import { handleChangeAddress, handleChangeUserForm, handleChangeTextArea } from "../utils/handleChange"
 import MainTitle from "../components/MainTitle"
 import { updateUser } from "../api/updateUser"
 import styles from './UserProfile.module.css';
 import Label from "../components/form/Label"
 import Legend from "../components/form/Legend"
 import InputButton from "../components/form/InputButton"
-import { userInitialValues } from "../utils/initalValues"
+import { userInitialValues } from "../utils/initialValues"
 
 export default function UserProfile() {
     const { user, setUser } = useUser()
     const userFinal = user ? user : userInitialValues
-    const [userEdited, setUserEdited] = useState<UserDTO>(userInitialValues)
+    const [userEdited, setUserEdited] = useState<UserDTO>(userFinal)
 
     const [isDisabled, setIsDisabled] = useState<boolean>(true)
     const [buttonHTML, setbuttonHTML] = useState<string>("Editar")
@@ -87,37 +87,37 @@ export default function UserProfile() {
 
                     <div>
                         <Label content="Nome do Usuário:" />
-                        <Input type="text" name="username" value={userEdited.username} onChange={(e) => handleChangeForm(e, userEdited, setUserEdited)} disabled={isDisabled} />
+                        <Input type="text" name="username" value={userEdited.username} onChange={(e) => handleChangeUserForm(e, userEdited, setUserEdited)} disabled={isDisabled} />
                     </div>
 
                     <div>
                         <Label content="Senha:" />
-                        <Input type={isVisible ? "text" : "password"} name="password" value={userEdited.password} onChange={(e) => handleChangeForm(e, userEdited, setUserEdited)} disabled={isDisabled} />
+                        <Input type={isVisible ? "text" : "password"} name="password" value={userEdited.password} onChange={(e) => handleChangeUserForm(e, userEdited, setUserEdited)} disabled={isDisabled} />
                     </div>
 
                     <div>
                         <Label content="Primeiro Nome:" />
-                        <Input type="text" name="firstName" value={userEdited.firstName} onChange={(e) => handleChangeForm(e, userEdited, setUserEdited)} disabled={isDisabled} />
+                        <Input type="text" name="firstName" value={userEdited.firstName} onChange={(e) => handleChangeUserForm(e, userEdited, setUserEdited)} disabled={isDisabled} />
                     </div>
 
                     <div>
                         <Label content="Sobrenome:" />
-                        <Input type="text" name="lastName" value={userEdited.lastName} onChange={(e) => handleChangeForm(e, userEdited, setUserEdited)} disabled={isDisabled} />
+                        <Input type="text" name="lastName" value={userEdited.lastName} onChange={(e) => handleChangeUserForm(e, userEdited, setUserEdited)} disabled={isDisabled} />
                     </div>
 
                     <div>
                         <Label content="E-mail:" />
-                        <Input type="email" name="email" value={userEdited.email} onChange={(e) => handleChangeForm(e, userEdited, setUserEdited)} disabled={isDisabled} />
+                        <Input type="email" name="email" value={userEdited.email} onChange={(e) => handleChangeUserForm(e, userEdited, setUserEdited)} disabled={isDisabled} />
                     </div>
 
                     <div>
                         <Label content="Telefone:" />
-                        <Input type="tel" name="phone" value={userEdited.phone == 0 ? "" : userEdited.phone.toString()} onChange={(e) => handleChangeForm(e, userEdited, setUserEdited)} disabled={isDisabled} />
+                        <Input type="tel" name="phone" value={userEdited.phone == 0 ? "" : userEdited.phone.toString()} onChange={(e) => handleChangeUserForm(e, userEdited, setUserEdited)} disabled={isDisabled} />
                     </div>
 
                     <div>
                         <Label content="Data de nascimento:" />
-                        <Input type="date" name="birthdate" value={userEdited.birthdate} onChange={(e) => handleChangeForm(e, userEdited, setUserEdited)} disabled={isDisabled} />
+                        <Input type="date" name="birthdate" value={userEdited.birthdate} onChange={(e) => handleChangeUserForm(e, userEdited, setUserEdited)} disabled={isDisabled} />
                     </div>
                 </fieldset>
 

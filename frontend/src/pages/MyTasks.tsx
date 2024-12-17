@@ -3,7 +3,7 @@ import getMyTasks from "../api/getMyTasks";
 import MainTitle from "../components/MainTitle";
 import Task from "../components/Task";
 import useUser from "../contexts/hook/useUser";
-import { userInitialValues } from "../utils/initalValues";
+import { userInitialValues } from "../utils/initialValues";
 import { TaskDTO } from "../services/interfaces/task.dto";
 import { transformTasksSupportTypes } from "../utils/taskSupportTypeMapper";
 import styles from './MyTasks.module.css';

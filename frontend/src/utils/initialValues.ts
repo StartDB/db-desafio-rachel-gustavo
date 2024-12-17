@@ -1,3 +1,4 @@
+import { TaskDTO } from "../services/interfaces/task.dto";
 import { UserDTO } from "../services/interfaces/user.dto";
 
 export const userInitialValues: UserDTO = {
@@ -20,4 +21,21 @@ export const userInitialValues: UserDTO = {
     },
     description: "",
     role: "",
+}
+
+export const taskInitialValues: TaskDTO = {
+    title: "",
+    supportType: "",
+    isOnline: false,
+    description: "",
+    date: "",
+    time: "",
+    city: "",
+    state: "",
+    status: "AVAILABLE",
+    requestBy: {
+        id: 0,
+        role: "elderly"
+    },
+    assessment: null // Avaliação ainda não realizada
 }
