@@ -13,7 +13,7 @@ export default async function loginUser(userCredentials: UserCredentialsDTO):Pro
     });
 
     if(!response.ok) {
-        throw new Error(`Erro: ${response.status}`)
+        alert(await response.text());
     }
 
     const user = await response.json();
