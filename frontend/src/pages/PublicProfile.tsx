@@ -16,9 +16,9 @@ export default function PublicProfile() {
     const [userPublic, setUserPublic]= useState<UserDTO>(userInitialValues)
 
     useEffect( () => {
-        async function getPublicProfileUser(): Promise<void> {
+        async function getPublicProfileUser(userId: string | undefined, role: string | undefined): Promise<void> {
             try {
-                const userAPI: UserDTO = await getPublicUser(Number(publicId), String(role))
+                const userAPI: UserDTO = await getPublicUser(userId, role)
 
                 setUserPublic(userAPI)
 
@@ -28,7 +28,7 @@ export default function PublicProfile() {
             }
         }
 
-        getPublicProfileUser()
+        getPublicProfileUser(publicId, role)
     }, [])
 
     function returnPreviousPage(e: React.MouseEvent<HTMLAnchorElement>): void {

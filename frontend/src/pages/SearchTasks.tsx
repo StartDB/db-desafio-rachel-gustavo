@@ -8,11 +8,8 @@ import styles from './SearchTasks.module.css';
 // import { exampleTask } from "../services/tests/testTask.ts";
 import Legend from "../components/form/Legend.tsx";
 import Label from "../components/form/Label.tsx";
+import { TaskWarnings } from "../services/enums/taskWarnings.ts";
 
-enum TaskWarnings {
-    NoTasksFound = "Tarefas não encontradas",
-    TasksNotIdentified = "Tarefas não identificadas",
-}
 
 interface SearchDTO {
     supportType: string

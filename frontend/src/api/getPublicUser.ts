@@ -1,6 +1,6 @@
 import { UserDTO } from "../services/interfaces/user.dto";
 
-export default async function getPublicUser(publicId: number, role: string): Promise<UserDTO> {
+export default async function getPublicUser(publicId: string | undefined, role: string | undefined): Promise<UserDTO> {
     const url: string = `http://localhost:8080/${role}/getProfileById?id=${publicId}`;
 
     try {

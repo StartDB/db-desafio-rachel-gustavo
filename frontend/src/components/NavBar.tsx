@@ -7,11 +7,11 @@ export function NavBar() {
 
     return (
         <nav className={styles.container}>
-            <NavLink to="/" className={`${styles.link} link-nav`}>Página Inicial</NavLink>
+            <NavLink to="/" className={`${styles.link} link-nav`}>Home</NavLink>
 
             <div className={styles.col}>
-                <NavLink to="/" className={`${styles.link} link-nav`}>Sobre nós</NavLink>
-                <NavLink to="/" className={`${styles.link} link-nav`}>Como funciona?</NavLink>
+                <NavLink to="/#sobre" className={`${styles.link} link-nav`}>Sobre nós</NavLink>
+                <NavLink to="/#como-funciona" className={`${styles.link} link-nav`}>Como funciona?</NavLink>
                 <NavLink to={user ? `dashboard/${user?.id}`:'/login'} className={`${styles.link} link-nav`}>Dashboard</NavLink>
             </div>
 

@@ -1,13 +1,44 @@
-.containerTasks {
+.containerSectionMyTasks {
+    min-width: 78rem;
+}
+
+.containerHeaderMyTasks {
+    padding-bottom: 2rem;
+}
+
+.containerMainMyTasks {
+    display: grid;
+    grid-template-rows: 1fr min-content;
+}
+
+
+.containerMyTasks {
     display: grid;
     grid-template-columns: min-content min-content;
+    justify-content: space-between;
+    justify-items: center;
     gap: 2rem;
+    padding-bottom: 3rem;
 }
 
-.row {
-    color:blue
+.warningMyTasks {
+    grid-column: 1 / -1;
 }
 
-.subRow {
-    background-color: yellow;
+.buttonMyTasks {
+    justify-self: end;
+    border: 1px solid var(--border-color);
+    border-radius: .4rem;
+    padding: .8rem 1.1rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    background-color: var(--link-dark-color);
+    color: var(--white-color);
+    cursor: pointer;
+    transition: background-color .2s ;
+    text-decoration: none;
+}
+
+.buttonMyTasks:enabled:hover {
+    background-color: var(--link-light-color);
 }
