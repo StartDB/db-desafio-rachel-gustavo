@@ -1,4 +1,4 @@
-package com.cuidarmais.demo.Controllers;
+package com.cuidarmais.demo.UnitTests.Controllers;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -21,6 +21,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
+import com.cuidarmais.demo.Controllers.TaskController;
 import com.cuidarmais.demo.Entities.Task;
 import com.cuidarmais.demo.Entities.EntityObjects.Enums.Status;
 import com.cuidarmais.demo.Entities.EntityObjects.Enums.SupportType;
