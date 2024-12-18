@@ -3,7 +3,6 @@ import { TaskSaveResponseDTO } from "../services/interfaces/taskSaveResponse.dto
 
 export async function postTask(task:TaskDTO): Promise<TaskSaveResponseDTO | String> {
     const url = `http://localhost:8080/task/save`;
-
     const response: Response = await fetch(url, {
         method: "POST",
         headers: {

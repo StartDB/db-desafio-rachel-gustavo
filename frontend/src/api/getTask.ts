@@ -5,7 +5,7 @@ export default async function getTask(taskId: number): Promise<TaskDTO> {
 
     try {
         const response: Response = await fetch(url)
-
+        
         if (!response.ok) {
             let errorBody: string | undefined;
 
@@ -19,8 +19,9 @@ export default async function getTask(taskId: number): Promise<TaskDTO> {
             const errorMessage: string = errorBody || `Status ${response.status}: ${response.statusText}`;
             throw new Error(errorMessage);
         }
-
-        return response.json()
+        const finalResponse = await response.json()
+        console.log(finalResponse)
+        return finalResponse
 
     } catch(error: any){
         throw error;
