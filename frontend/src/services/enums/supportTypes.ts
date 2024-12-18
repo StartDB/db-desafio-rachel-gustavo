@@ -1,4 +1,4 @@
-export enum SupportsTypes {
+export enum SupportTypes {
     COMPANIONSHIP_AND_TRANSPORT =  "Acompanhamento e Transporte",
     MAINTENANCE_AND_REPAIRS =  "Manutenção e Reparo",
     TEACHING_AND_TECHNOLOGY  =  "Ensino e Tecnologia",
@@ -6,7 +6,7 @@ export enum SupportsTypes {
     PHYSICAL_ACTIVITIES =  "Atividades Físicas",
 }
 
-export enum SupportsTypesCodes {
+export enum SupportTypesCodes {
     COMPANIONSHIP_AND_TRANSPORT = "COMPANIONSHIP_AND_TRANSPORT",
     MAINTENANCE_AND_REPAIRS = "MAINTENANCE_AND_REPAIRS",
     TEACHING_AND_TECHNOLOGY = "TEACHING_AND_TECHNOLOGY",
