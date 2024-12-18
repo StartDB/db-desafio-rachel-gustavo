@@ -11,6 +11,7 @@ import { handleChangeTask, handleChangeTextAreaTask } from "../utils/handleChang
 import { postTask } from "../api/postTask";
 import { useNavigate } from "react-router";
 import { taskInitialValues } from "../utils/initialValues";
+import { SupportTypes, SupportTypesCodes } from "../services/enums/supportTypes";
 
 export default function CreateTask() {
     const { user } = useUser();
@@ -18,31 +19,31 @@ export default function CreateTask() {
     const navigate = useNavigate();
 
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>): Promise<void> {
-            e.preventDefault();
-    
-            try {
-                if (user) {
-                    task.requestBy.id = user.id? user.id : 0;
-                }
-                const response = await postTask(task);
-                
-                if ("message" in response && "id" in response) {
-                    navigate(`/dashboard/${user?.id}/tarefa/${response.id}`);
-                    alert(response.message);
-                };
-    
-            } catch (error: any) {
-                alert("Não foi possível criar a tarefa.\n\nPor favor, tente novamente mais tarde.")
-                console.error(`Erro ao enviar os dados: \nNome: ${error.name} \nMensagem: ${error.message}`)
+        e.preventDefault();
+
+        try {
+            if (user) {
+                task.requestBy.id = user.id ? user.id : 0;
             }
+            const response = await postTask(task);
+
+            if ("message" in response && "id" in response) {
+                navigate(`/dashboard/${user?.id}/tarefa/${response.id}`);
+                alert(response.message);
+            };
+
+        } catch (error: any) {
+            alert("Não foi possível criar a tarefa.\n\nPor favor, tente novamente mais tarde.")
+            console.error(`Erro ao enviar os dados: \nNome: ${error.name} \nMensagem: ${error.message}`)
         }
+    }
 
     return (
-    <section className="container-section-base">
-        <header className={styles.containerHeader}>
-            <MainTitle content="Criar uma Tarefa" />
-        </header>
-        <form onSubmit={handleSubmit}>
+        <section className="container-section-base">
+            <header className={styles.containerHeader}>
+                <MainTitle content="Criar uma Tarefa" />
+            </header>
+            <form onSubmit={handleSubmit}>
                 <fieldset className={styles.containerFormSection}>
                     <Legend content="Dados gerais" />
 
@@ -91,32 +92,32 @@ export default function CreateTask() {
 
                         <div className={styles.rowSupportsTypes}>
                             <div>
-                                <input type="radio" name="supportType" value="COMPANIONSHIP_AND_TRANSPORT" checked={task.supportType === "COMPANIONSHIP_AND_TRANSPORT"} onChange={(e) => handleChangeTask(e, task, setTask)} disabled={false} />
-                                <label>Acompanhamento e Transporte</label>
+                                <input type="radio" name="supportType" value={SupportTypesCodes.COMPANIONSHIP_AND_TRANSPORT} checked={task.supportType === SupportTypesCodes.COMPANIONSHIP_AND_TRANSPORT} onChange={(e) => handleChangeTask(e, task, setTask)} disabled={false} />
+                                <label>{SupportTypes.COMPANIONSHIP_AND_TRANSPORT}</label>
                             </div>
                             <div>
-                                <input type="radio" name="supportType" value="MAINTENANCE_AND_REPAIRS" checked={task.supportType === "MAINTENANCE_AND_REPAIRS"} onChange={(e) => handleChangeTask(e, task, setTask)} disabled={false} />
-                                <label>Manunteção e Reparo</label>
+                                <input type="radio" name="supportType" value={SupportTypesCodes.MAINTENANCE_AND_REPAIRS} checked={task.supportType === SupportTypesCodes.MAINTENANCE_AND_REPAIRS} onChange={(e) => handleChangeTask(e, task, setTask)} disabled={false} />
+                                <label>{SupportTypes.MAINTENANCE_AND_REPAIRS}</label>
                             </div>
                             <div>
-                                <input type="radio" name="supportType" value="TEACHING_AND_TECHNOLOGY" checked={task.supportType === "TEACHING_AND_TECHNOLOGY"} onChange={(e) => handleChangeTask(e, task, setTask)} disabled={false} />
-                                <label>Ensino e Tecnologia</label>
+                                <input type="radio" name="supportType" value={SupportTypesCodes.TEACHING_AND_TECHNOLOGY} checked={task.supportType === SupportTypesCodes.TEACHING_AND_TECHNOLOGY} onChange={(e) => handleChangeTask(e, task, setTask)} disabled={false} />
+                                <label>{SupportTypes.TEACHING_AND_TECHNOLOGY}</label>
                             </div>
                             <div>
-                                <input type="radio" name="supportType" value="SOCIAL_ACTIVITIES" checked={task.supportType === "SOCIAL_ACTIVITIES"} onChange={(e) => handleChangeTask(e, task, setTask)} disabled={false} />
-                                <label>Atividades Sociais</label>
+                                <input type="radio" name="supportType" value={SupportTypesCodes.SOCIAL_ACTIVITIES} checked={task.supportType === SupportTypesCodes.SOCIAL_ACTIVITIES} onChange={(e) => handleChangeTask(e, task, setTask)} disabled={false} />
+                                <label>{SupportTypes.SOCIAL_ACTIVITIES}</label>
                             </div>
                             <div>
-                                <input type="radio" name="supportType" value="PHYSICAL_ACTIVITIES" checked={task.supportType === "PHYSICAL_ACTIVITIES"} onChange={(e) => handleChangeTask(e, task, setTask)} disabled={false} />
-                                <label>Atividades Físicas</label>
+                                <input type="radio" name="supportType" value={SupportTypesCodes.PHYSICAL_ACTIVITIES} checked={task.supportType === SupportTypesCodes.PHYSICAL_ACTIVITIES} onChange={(e) => handleChangeTask(e, task, setTask)} disabled={false} />
+                                <label>{SupportTypes.PHYSICAL_ACTIVITIES}</label>
                             </div>
                         </div>
                     </div>
                 </fieldset>
                 <div className={styles.footerContainer}>
-					<InputButton type="submit" value="Criar Tarefa" />
-				</div>
+                    <InputButton type="submit" value="Criar Tarefa" />
+                </div>
             </form>
-    </section>
+        </section>
     )
 }

@@ -51,6 +51,8 @@ export default function MyTasks() {
         <section className={`container-section-base ${styles.containerSectionMyTasks}`}>
             <header className={styles.containerHeaderMyTasks}>
                 <MainTitle content="Minhas Tarefas" />
+
+                {user?.role === "elderly"? <NavLink className={styles.buttonMyTasks} to="criar-tarefa">Criar Tarefa</NavLink>:<></>}
             </header>
 
             <main className={styles.containerMainMyTasks}>
@@ -59,8 +61,6 @@ export default function MyTasks() {
                         <Task key={task.id} {...task} />
                     )) : <p className={`mainSectionWarning ${styles.warningMyTasks}`}>{`(${warning})`}</p>}
                 </div>
-
-                {user?.role === "elderly"? <NavLink className={styles.buttonMyTasks} to="criar-tarefa">Criar Tarefa</NavLink>:<></>}
             </main>
         </section>
     );

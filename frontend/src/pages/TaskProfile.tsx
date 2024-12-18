@@ -15,6 +15,7 @@ import { userInitialValues } from "../utils/initialValues";
 import getTaskUpdate from "../api/getTaskUpdate";
 import { UserDTO } from "../services/interfaces/user.dto";
 import { statusColors } from "../services/records/statusColors";
+import { SupportTypes, SupportTypesCodes } from "../services/enums/supportTypes";
 
 enum statusType {
     AVAILABLE = "AVAILABLE",
@@ -74,18 +75,18 @@ export default function TaskProfile() {
                         setIsVisibleMiniCards(false)
                     }
                 }
-                
+
                 break;
 
             case "elderly":
-                if (!(status === statusType.COMPLETED || status === statusType.CANCELED)){
+                if (!(status === statusType.COMPLETED || status === statusType.CANCELED)) {
                     setButtonContent(optionButtonContent.canceled)
                     setIsVisible(true)
                     setIsVisibleButton(true)
-            }
+                }
 
                 break;
-                
+
             default:
                 console.log("Tipo de cadastro não identificado")
                 setIsVisible(false)
@@ -118,7 +119,7 @@ export default function TaskProfile() {
 
     async function updateTask(valueButton: string): Promise<void> {
         try {
-            const taskUpdated: TaskDTO = await getTaskUpdate(taskEdited.id?taskEdited.id:0, valueButton, Number(userCurrent.id))
+            const taskUpdated: TaskDTO = await getTaskUpdate(taskEdited.id ? taskEdited.id : 0, valueButton, Number(userCurrent.id))
 
             setTaskEdited(taskUpdated)
 
@@ -154,7 +155,7 @@ export default function TaskProfile() {
                     setIsVisibleButton(true)
                     setIsVisible(false)
                     break
-                
+
                 case optionButtonContent.canceled:
                     updateTask("cancel")
                     setIsVisibleButton(false)
@@ -170,8 +171,8 @@ export default function TaskProfile() {
     }
 
     function completeTask() {
-        try{
-           updateTask("complete") 
+        try {
+            updateTask("complete")
         } catch (error: any) {
             alert("Não foi possível atualizar a página.\n\nPor favor, tente novamente mais tarde.")
             console.error(`Erro ao puxar os dados:  \nMensagem: ${error.message}`)
@@ -239,24 +240,24 @@ export default function TaskProfile() {
 
                         <div className={styles.rowSupportsTypes}>
                             <div>
-                                <input type="radio" name="supportType" value="COMPANIONSHIP_AND_TRANSPORT" checked={taskEdited.supportType === "COMPANIONSHIP_AND_TRANSPORT"} onChange={(e) => handleChangeTask(e, taskEdited, setTaskEdited)} disabled={isDisabled} />
-                                <label>Acompanhamento e Transporte</label>
+                                <input type="radio" name="supportType" value={SupportTypesCodes.COMPANIONSHIP_AND_TRANSPORT} checked={taskEdited.supportType === SupportTypesCodes.COMPANIONSHIP_AND_TRANSPORT} onChange={(e) => handleChangeTask(e, taskEdited, setTaskEdited)} disabled={isDisabled} />
+                                <label>{SupportTypes.COMPANIONSHIP_AND_TRANSPORT}</label>
                             </div>
                             <div>
-                                <input type="radio" name="supportType" value="MAINTENANCE_AND_REPAIRS" checked={taskEdited.supportType === "MAINTENANCE_AND_REPAIRS"} onChange={(e) => handleChangeTask(e, taskEdited, setTaskEdited)} disabled={isDisabled} />
-                                <label>Manunteção e Reparo</label>
+                                <input type="radio" name="supportType" value={SupportTypesCodes.MAINTENANCE_AND_REPAIRS} checked={taskEdited.supportType === SupportTypesCodes.MAINTENANCE_AND_REPAIRS} onChange={(e) => handleChangeTask(e, taskEdited, setTaskEdited)} disabled={isDisabled} />
+                                <label>{SupportTypes.MAINTENANCE_AND_REPAIRS}</label>
                             </div>
                             <div>
-                                <input type="radio" name="supportType" value="TEACHING_AND_TECHNOLOGY" checked={taskEdited.supportType === "TEACHING_AND_TECHNOLOGY"} onChange={(e) => handleChangeTask(e, taskEdited, setTaskEdited)} disabled={isDisabled} />
-                                <label>Ensino e Tecnologia</label>
+                                <input type="radio" name="supportType" value={SupportTypesCodes.TEACHING_AND_TECHNOLOGY} checked={taskEdited.supportType === SupportTypesCodes.TEACHING_AND_TECHNOLOGY} onChange={(e) => handleChangeTask(e, taskEdited, setTaskEdited)} disabled={isDisabled} />
+                                <label>{SupportTypes.TEACHING_AND_TECHNOLOGY}</label>
                             </div>
                             <div>
-                                <input type="radio" name="supportType" value="SOCIAL_ACTIVITIES" checked={taskEdited.supportType === "SOCIAL_ACTIVITIES"} onChange={(e) => handleChangeTask(e, taskEdited, setTaskEdited)} disabled={isDisabled} />
-                                <label>Atividades Sociais</label>
+                                <input type="radio" name="supportType" value={SupportTypesCodes.SOCIAL_ACTIVITIES} checked={taskEdited.supportType === SupportTypesCodes.SOCIAL_ACTIVITIES} onChange={(e) => handleChangeTask(e, taskEdited, setTaskEdited)} disabled={isDisabled} />
+                                <label>{SupportTypes.SOCIAL_ACTIVITIES}</label>
                             </div>
                             <div>
-                                <input type="radio" name="supportType" value="PHYSICAL_ACTIVITIES" checked={taskEdited.supportType === "PHYSICAL_ACTIVITIES"} onChange={(e) => handleChangeTask(e, taskEdited, setTaskEdited)} disabled={isDisabled} />
-                                <label>Atividades Físicas</label>
+                                <input type="radio" name="supportType" value={SupportTypesCodes.PHYSICAL_ACTIVITIES} checked={taskEdited.supportType === SupportTypesCodes.PHYSICAL_ACTIVITIES} onChange={(e) => handleChangeTask(e, taskEdited, setTaskEdited)} disabled={isDisabled} />
+                                <label>{SupportTypes.PHYSICAL_ACTIVITIES}</label>
                             </div>
                         </div>
                     </div>
@@ -294,8 +295,11 @@ export default function TaskProfile() {
 
             <footer className={styles.containerFooter}>
                 <a className={`navigationLink ${styles.linkReturn}`} href="#" onClick={returnPreviousPage}>Voltar</a>
-                <button className={styles.buttonMain} style={{visibility: ((user?.role === "elderly") && (taskEdited.status === statusType.ACCEPTED)) ? "visible" : "hidden"}} onClick={completeTask}>Concluir</button>
-                <button className={styles.buttonMain} style={{ visibility: isVisibleButton ? "visible" : "hidden" }} onClick={handleClick}>{buttonContent}</button>
+
+                <div className={styles.containerFooterButtons}>
+                    <button className={styles.buttonMain} style={{ visibility: ((user?.role === "elderly") && (taskEdited.status === statusType.ACCEPTED)) ? "visible" : "hidden" }} onClick={completeTask}>Concluir</button>
+                    <button className={styles.buttonMain} style={{ visibility: isVisibleButton ? "visible" : "hidden" }} onClick={handleClick}>{buttonContent}</button>
+                </div>
             </footer>
         </section>
     )

@@ -5,10 +5,10 @@ import { TaskDTO } from "../services/interfaces/task.dto";
 import Task from "../components/Task.tsx";
 import MainTitle from "../components/MainTitle.tsx";
 import styles from './SearchTasks.module.css';
-// import { exampleTask } from "../services/tests/testTask.ts";
 import Legend from "../components/form/Legend.tsx";
 import Label from "../components/form/Label.tsx";
 import { TaskWarnings } from "../services/enums/taskWarnings.ts";
+import { SupportTypes, SupportTypesCodes } from "../services/enums/supportTypes.ts";
 
 
 interface SearchDTO {
@@ -23,9 +23,6 @@ export default function SearchTasks() {
     });
 
     async function captureTasks(supportType?: string): Promise<void> {
-        // setTasks([exampleTask])
-        // setWarning("")
-        // console.log(supportType)
         try {
             const tasks: TaskDTO[] = await getTasks(supportType);
 
@@ -43,7 +40,7 @@ export default function SearchTasks() {
         } catch (error: any) {
             setTasks([]);
             setWarning(TaskWarnings.TasksNotIdentified)
-            
+
             alert("Não foi possível atualizar a página.\n\nPor favor, tente novamente mais tarde.")
             console.error(`Erro ao solicitar os dados: \nNome: ${error.name} \nMensagem: ${error.message}`)
         }
@@ -52,7 +49,7 @@ export default function SearchTasks() {
     useEffect(() => {
         captureTasks();
     }, []);
-    
+
     function handleChange(e: React.ChangeEvent<HTMLInputElement>): void {
         const { value } = e.target
 
@@ -74,7 +71,7 @@ export default function SearchTasks() {
         <section className={`container-section-base ${styles.sectionSearchTasks}`}>
 
             <header className={styles.containerHeaderSearchTasks}>
-                <MainTitle content="Buscar Tarefas"/>
+                <MainTitle content="Buscar Tarefas" />
             </header>
 
             <div className={styles.containerSearchTasks}>
@@ -84,31 +81,31 @@ export default function SearchTasks() {
                         <Legend content="Pesquisa" />
 
                         <div className={styles.containerRadiosSupportTypes}>
-                            <Label content="Área de Suporte:"/>
-                            
+                            <Label content="Área de Suporte:" />
+
                             <div className={styles.test}>
-                                <input type="radio" name="supportType" value="COMPANIONSHIP_AND_TRANSPORT" checked={search.supportType === "COMPANIONSHIP_AND_TRANSPORT"} onChange={handleChange} />
-                                <label>Acompanhamento e Ensino</label>
+                                <input type="radio" name="supportType" value={SupportTypesCodes.COMPANIONSHIP_AND_TRANSPORT} checked={search.supportType === SupportTypesCodes.COMPANIONSHIP_AND_TRANSPORT} onChange={handleChange} />
+                                <label>{SupportTypes.COMPANIONSHIP_AND_TRANSPORT}</label>
                             </div>
 
                             <div>
-                                <input type="radio" name="supportType" value="MAINTENANCE_AND_REPAIRS" checked={search.supportType === "MAINTENANCE_AND_REPAIRS"} onChange={handleChange} />
-                                <label>Manunteção e Reparo</label>
-                                </div>
-
-                            <div>
-                                <input type="radio" name="supportType" value="TEACHING_AND_TECHNOLOGY " checked={search.supportType === "TEACHING_AND_TECHNOLOGY "} onChange={handleChange} />
-                                <label>Ensino e Tecnologia</label>
+                                <input type="radio" name="supportType" value={SupportTypesCodes.MAINTENANCE_AND_REPAIRS} checked={search.supportType === SupportTypesCodes.MAINTENANCE_AND_REPAIRS} onChange={handleChange} />
+                                <label>{SupportTypes.MAINTENANCE_AND_REPAIRS}</label>
                             </div>
 
                             <div>
-                                <input type="radio" name="supportType" value="SOCIAL_ACTIVITIES" checked={search.supportType === "SOCIAL_ACTIVITIES"} onChange={handleChange} />
-                                <label>Atividades Sociais</label>
+                                <input type="radio" name="supportType" value={SupportTypesCodes.TEACHING_AND_TECHNOLOGY} checked={search.supportType === SupportTypesCodes.TEACHING_AND_TECHNOLOGY} onChange={handleChange} />
+                                <label>{SupportTypes.TEACHING_AND_TECHNOLOGY}</label>
                             </div>
 
                             <div>
-                                <input type="radio" name="supportType" value="PHYSICAL_ACTIVITIES" checked={search.supportType === "PHYSICAL_ACTIVITIES"} onChange={handleChange} />
-                                <label>Atividades Físicas</label>
+                                <input type="radio" name="supportType" value={SupportTypesCodes.SOCIAL_ACTIVITIES} checked={search.supportType === SupportTypesCodes.SOCIAL_ACTIVITIES} onChange={handleChange} />
+                                <label>{SupportTypes.SOCIAL_ACTIVITIES}</label>
+                            </div>
+
+                            <div>
+                                <input type="radio" name="supportType" value={SupportTypesCodes.PHYSICAL_ACTIVITIES} checked={search.supportType === SupportTypesCodes.PHYSICAL_ACTIVITIES} onChange={handleChange} />
+                                <label>{SupportTypes.PHYSICAL_ACTIVITIES}</label>
                             </div>
                         </div>
                     </fieldset>
