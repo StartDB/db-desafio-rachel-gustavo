@@ -7,6 +7,7 @@ import { userInitialValues } from "../utils/initialValues";
 import { TaskDTO } from "../services/interfaces/task.dto";
 import { transformTasksSupportTypes } from "../utils/taskSupportTypeMapper";
 import styles from './MyTasks.module.css';
+import { TaskWarnings } from "../services/enums/taskWarnings";
 
 export default function MyTasks() {
 
@@ -17,42 +18,45 @@ export default function MyTasks() {
     const [warning, setWarning] = useState<string>("Tarefas não encontradas.");
 
     async function captureTasks(userType: string | undefined, userId: number | undefined): Promise<void> {
-            
-            try {
-                const tasks: TaskDTO[] = await getMyTasks(userType, userId);
-    
-                if (tasks.length == 0) {
-                    throw Error("Tarefas não encontradas")
-                }
-    
-                let formattedTasks: TaskDTO[] = transformTasksSupportTypes(tasks)
-    
-                setTasks(formattedTasks);
-                setWarning("")
-    
-            } catch (error) {
-                if ((error as Error).name == "TypeError") {
-                    (error as Error).message = "Tarefas não identificadas"
-                }
+        try {
+            const tasks: TaskDTO[] = await getMyTasks(userType, userId);
+
+            if (tasks.length == 0) {
                 setTasks([]);
-                setWarning((error as Error).message)
+                setWarning(TaskWarnings.NoTasksFound)
+                return;
             }
+
+            const formattedTasks: TaskDTO[] = transformTasksSupportTypes(tasks)
+
+            setTasks(formattedTasks);
+            setWarning("")
+
+        } catch (error: any) {
+            setTasks([]);
+            setWarning(TaskWarnings.TasksNotIdentified)
+
+            alert("Não foi possível atualizar a página.\n\nPor favor, tente novamente mais tarde.")
+            console.error(`Erro ao solicitar os dados: \nNome: ${error.name} \nMensagem: ${error.message}`)
         }
 
-        useEffect(() => {
-                captureTasks(userFinal?.role, userFinal?.id);
-            }, [user]);
+    }
+
+    useEffect(() => {
+        captureTasks(userFinal?.role, userFinal?.id);
+    }, [user]);
 
     return (
-        <section>
-            <MainTitle content="Minhas Tarefas"/>
-            <div className={styles.containerTasks}>
-                <main className={styles.row}>
+        <section className={`container-section-base ${styles.containerSectionMyTasks}`}>
+            <header className={styles.containerHeaderMyTasks}>
+                <MainTitle content="Minhas Tarefas" />
+            </header>
+
+            <main className={styles.containerMyTasks}>
                 {warning == "" ? tasks.map((task) => (
-                                        <Task key={task.id} {...task} />
-                                    )) : warning}
-                </main>
-            </div>
+                    <Task key={task.id} {...task} />
+                )) : <p className="mainSectionWarning">{`(${warning})`}</p>}
+            </main>
         </section>
     );
 }

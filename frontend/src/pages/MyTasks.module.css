@@ -1,13 +1,14 @@
-.containerTasks {
+.containerSectionMyTasks {
+    min-width: 60rem;
+}
+
+.containerHeaderMyTasks {
+    padding-bottom: 2rem;
+}
+
+.containerMyTasks {
     display: grid;
     grid-template-columns: min-content min-content;
+    justify-content: space-between;
     gap: 2rem;
-}
-
-.row {
-    color:blue
-}
-
-.subRow {
-    background-color: yellow;
 }
