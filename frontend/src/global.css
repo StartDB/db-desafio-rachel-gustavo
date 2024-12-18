@@ -76,6 +76,11 @@ body {
   color: #5d9099;;
 }
 
+.canceled {
+  background-color: #f1c5c5;
+  color: #973d3d;;
+}
+
 .mainSectionWarning {
   place-self: start center;
   max-width: 40ch;
