@@ -21,7 +21,7 @@ export default function CreateTask() {
             e.preventDefault();
     
             try {
-                
+                console.log(task)
                 if (user) {
                     task.requestBy.id = user.id? user.id : 0;
                 }

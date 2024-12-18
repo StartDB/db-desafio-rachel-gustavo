@@ -72,10 +72,20 @@ export function handleChangeTask(
 ): void {
     const { name, value, checked } = e.target;
 
+    if (value === "PHYSICAL_ACTIVITIES" || value === "MAINTENANCE_AND_REPAIRS" || value === "COMPANIONSHIP_AND_TRANSPORT") {
+        setState({
+            ...state,
+            [name]: value,
+            ["isOnline"]: false,
+        })
+    } else {
+
     setState({
         ...state,
         [name]: name == "isOnline" ? checked : value,
     });
+}
+
 }
 
 export function handleChangeTextAreaTask(

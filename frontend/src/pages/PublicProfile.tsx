@@ -1,10 +1,10 @@
-import Input from "../components/form/Input"
-import MainTitle from "../components/MainTitle"
+import Input from "../components/form/Input";
+import MainTitle from "../components/MainTitle";
 import styles from './PublicProfile.module.css';
-import Label from "../components/form/Label"
-import Legend from "../components/form/Legend"
-import { userInitialValues } from "../utils/initalValues"
-import { useNavigate, useParams } from "react-router"
+import Label from "../components/form/Label";
+import Legend from "../components/form/Legend";
+import { userInitialValues } from "../utils/initialValues";
+import { useNavigate, useParams } from "react-router";
 import { useEffect, useState } from "react";
 import { UserDTO } from "../services/interfaces/user.dto";
 import getPublicUser from "../api/getPublicUser";
