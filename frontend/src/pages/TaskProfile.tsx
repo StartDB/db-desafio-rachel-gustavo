@@ -27,7 +27,7 @@ export default function TaskProfile() {
     const params = useParams()
 
     const [userCurrent, setUserCurrent] = useState<UserDTO>(userInitialValues)
-    const [task, setTask] = useState<TaskDTO>()
+    const [task, setTask] = useState<TaskDTO>(taskInitialValues)
 
     useEffect(() => {
         const userFinal = user ? user : userInitialValues
@@ -49,12 +49,11 @@ export default function TaskProfile() {
         captureTask(Number(params.taskId))
     }, [])
 
-
     return (
         <>
             {userCurrent.role == "elderly" ?
-                <TaskProfileElderly task={task ? task : taskInitialValues} userId={Number(userCurrent.id)} /> :
-                <TaskProfileVolunteer task={task ? task : taskInitialValues} userId={Number(userCurrent.id)} />}
+                <TaskProfileElderly task={task} userId={Number(userCurrent.id)} /> :
+                <TaskProfileVolunteer task={task} userId={Number(userCurrent.id)} />}
         </>
     )
 }
