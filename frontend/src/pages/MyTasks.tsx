@@ -60,7 +60,7 @@ export default function MyTasks() {
                     )) : <p className={`mainSectionWarning ${styles.warningMyTasks}`}>{`(${warning})`}</p>}
                 </div>
 
-                {user?.role === "elderly"? <NavLink className={styles.buttonMyTasks} to="/criar-tarefa">Criar Tarefa</NavLink>:<></>}
+                {user?.role === "elderly"? <NavLink className={styles.buttonMyTasks} to="criar-tarefa">Criar Tarefa</NavLink>:<></>}
             </main>
         </section>
     );

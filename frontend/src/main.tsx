@@ -35,7 +35,7 @@ createRoot(document.getElementById('root')!).render(
                   <Route path="minhas-tarefas" element={<MyTasks />}/>
                   <Route path="buscar-tarefas" element={<SearchTasks />} />
                   <Route path="tarefa/:taskId" element={<TaskProfile />}/> 
-                  <Route path="criar-tarefa" element={<CreateTask />}/>
+                  <Route path="minhas-tarefas/criar-tarefa" element={<CreateTask />}/>
                   <Route path="tarefa/:taskId/perfil-publico/:role/:publicId" element={<PublicProfile />}/>
                 </Route>
               </Route>
