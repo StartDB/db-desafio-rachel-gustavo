@@ -7,6 +7,7 @@ import { userInitialValues } from "../utils/initialValues";
 import { TaskDTO } from "../services/interfaces/task.dto";
 import { transformTasksSupportTypes } from "../utils/taskSupportTypeMapper";
 import styles from './MyTasks.module.css';
+import { NavLink } from "react-router";
 
 export default function MyTasks() {
 
@@ -45,13 +46,16 @@ export default function MyTasks() {
 
     return (
         <section>
+            <header>
             <MainTitle content="Minhas Tarefas"/>
+            </header>
             <div className={styles.containerTasks}>
                 <main className={styles.row}>
                 {warning == "" ? tasks.map((task) => (
                                         <Task key={task.id} {...task} />
                                     )) : warning}
                 </main>
+                {user?.role === "elderly"? <NavLink to="/criar-tarefa">Criar Tarefa</NavLink>:<></>}
             </div>
         </section>
     );
