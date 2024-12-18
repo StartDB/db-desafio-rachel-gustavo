@@ -80,11 +80,11 @@ public class Task {
         this.supportType = supportType;
     }
 
-    public boolean isOnline() {
+    public boolean getIsOnline() {
         return isOnline;
     }
 
-    public void setOnline(boolean isOnline) {
+    public void setIsOnline(boolean isOnline) {
         this.isOnline = isOnline;
     }
 
