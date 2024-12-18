@@ -8,6 +8,7 @@ import { TaskDTO } from "../services/interfaces/task.dto";
 import { transformTasksSupportTypes } from "../utils/taskSupportTypeMapper";
 import styles from './MyTasks.module.css';
 import { TaskWarnings } from "../services/enums/taskWarnings";
+import { NavLink } from "react-router";
 
 export default function MyTasks() {
 
@@ -56,6 +57,7 @@ export default function MyTasks() {
                 {warning == "" ? tasks.map((task) => (
                     <Task key={task.id} {...task} />
                 )) : <p className={`mainSectionWarning ${styles.warningMyTasks}`}>{`(${warning})`}</p>}
+                {user?.role === "elderly"? <NavLink to="/criar-tarefa">Criar Tarefa</NavLink>:<></>}
             </main>
         </section>
     );

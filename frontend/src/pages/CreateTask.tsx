@@ -21,7 +21,7 @@ export default function CreateTask() {
             e.preventDefault();
     
             try {
-                
+                console.log(task)
                 if (user) {
                     task.requestBy.id = user.id? user.id : 0;
                 }
@@ -115,7 +115,7 @@ export default function CreateTask() {
                     </div>
                 </fieldset>
                 <div className={styles.footerContainer}>
-					<InputButton type="submit" value="Criar" />
+					<InputButton type="submit" value="Criar Tarefa" />
 				</div>
             </form>
     </section>

@@ -49,7 +49,7 @@ export function Login() {
                 <div className={styles.row}>
                     <div className={styles.subRow}>
                         <Label content="Nome do Usuário:" />
-                        <Input type="text" name="username" placeholder="Nome Completo" value={userCredentials.username} onChange={handleChange} className={styles.inputHeight}/>
+                        <Input type="text" name="username" placeholder="Usuário" value={userCredentials.username} onChange={handleChange} className={styles.inputHeight}/>
                     </div>
                     <div className={styles.subRow}>
                         <Label content="Senha:" />
