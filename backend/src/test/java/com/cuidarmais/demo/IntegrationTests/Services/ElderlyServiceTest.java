@@ -1,4 +1,4 @@
-package com.cuidarmais.demo.Services;
+package com.cuidarmais.demo.IntegrationTests.Services;
 
 import com.cuidarmais.demo.DTO.ProfileDTO;
 import com.cuidarmais.demo.DTO.UpdateUserDTO;
@@ -6,13 +6,10 @@ import com.cuidarmais.demo.DTO.UserResponseDTO;
 import com.cuidarmais.demo.Entities.Elderly;
 import com.cuidarmais.demo.Entities.EntityObjects.Address;
 import com.cuidarmais.demo.Repositories.ElderlyRepository;
-
-import jakarta.transaction.Transactional;
+import com.cuidarmais.demo.Services.ElderlyService;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
@@ -23,8 +20,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @SpringBootTest
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-@Transactional
 public class ElderlyServiceTest {
 
     @Autowired

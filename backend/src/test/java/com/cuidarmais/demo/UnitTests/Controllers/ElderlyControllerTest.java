@@ -1,4 +1,4 @@
-package com.cuidarmais.demo.Controllers;
+package com.cuidarmais.demo.UnitTests.Controllers;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -19,6 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
+import com.cuidarmais.demo.Controllers.ElderlyController;
 import com.cuidarmais.demo.DTO.UpdateUserDTO;
 import com.cuidarmais.demo.Entities.Elderly;
 import com.cuidarmais.demo.Entities.EntityObjects.Address;
