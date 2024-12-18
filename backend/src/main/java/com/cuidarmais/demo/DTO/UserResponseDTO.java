@@ -11,7 +11,7 @@ public record UserResponseDTO (Long id, String firstName, String lastName, Strin
             LocalDate birthdate, Address address, String description, LocalDateTime createdAt, String role, String token) {
 
     public static UserResponseDTO transformToUserResponseDTO(User user, String generatedToken) {
-        System.out.println(generatedToken);
+        
         return new UserResponseDTO(
             user.getId(), 
             user.getFirstName(), 

@@ -14,7 +14,7 @@ public class TaskDTOTransform {
         return new TaskDTO(taskList.getId(),
          taskList.getTitle(),
           taskList.getSupportType(),
-           taskList.isOnline(),
+           taskList.getIsOnline(),
             taskList.getDescription(),
              taskList.getDate(),
               taskList.getTime(),
