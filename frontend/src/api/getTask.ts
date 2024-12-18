@@ -20,7 +20,6 @@ export default async function getTask(taskId: number): Promise<TaskDTO> {
             throw new Error(errorMessage);
         }
         const finalResponse = await response.json()
-        console.log(finalResponse)
         return finalResponse
 
     } catch(error: any){
