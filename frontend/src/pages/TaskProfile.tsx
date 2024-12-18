@@ -295,8 +295,11 @@ export default function TaskProfile() {
 
             <footer className={styles.containerFooter}>
                 <a className={`navigationLink ${styles.linkReturn}`} href="#" onClick={returnPreviousPage}>Voltar</a>
-                <button className={styles.buttonMain} style={{ visibility: ((user?.role === "elderly") && (taskEdited.status === statusType.ACCEPTED)) ? "visible" : "hidden" }} onClick={completeTask}>Concluir</button>
-                <button className={styles.buttonMain} style={{ visibility: isVisibleButton ? "visible" : "hidden" }} onClick={handleClick}>{buttonContent}</button>
+
+                <div className={styles.containerFooterButtons}>
+                    <button className={styles.buttonMain} style={{ visibility: ((user?.role === "elderly") && (taskEdited.status === statusType.ACCEPTED)) ? "visible" : "hidden" }} onClick={completeTask}>Concluir</button>
+                    <button className={styles.buttonMain} style={{ visibility: isVisibleButton ? "visible" : "hidden" }} onClick={handleClick}>{buttonContent}</button>
+                </div>
             </footer>
         </section>
     )

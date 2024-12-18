@@ -108,13 +108,16 @@
 .containerMiniCard h3 {
     font-size: .9rem;
 }
-
-
-
 .containerFooter {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding-top: 2rem;
+}
+
+.containerFooterButtons {
+    display: flex;
+    gap: 2rem;
 }
 
 .linkReturn {
