@@ -1,5 +1,5 @@
 .containerSectionMyTasks {
-    min-width: 60rem;
+    min-width: 78rem;
 }
 
 .containerHeaderMyTasks {
@@ -10,5 +10,10 @@
     display: grid;
     grid-template-columns: min-content min-content;
     justify-content: space-between;
+    justify-items: center;
     gap: 2rem;
+}
+
+.warningMyTasks {
+    grid-column: 1 / -1;
 }

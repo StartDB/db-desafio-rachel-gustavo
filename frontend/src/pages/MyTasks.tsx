@@ -15,7 +15,7 @@ export default function MyTasks() {
     const userFinal = user ? user : setUser(userInitialValues)
 
     const [tasks, setTasks] = useState<TaskDTO[]>([]);
-    const [warning, setWarning] = useState<string>("Tarefas não encontradas.");
+    const [warning, setWarning] = useState<string>("");
 
     async function captureTasks(userType: string | undefined, userId: number | undefined): Promise<void> {
         try {
@@ -55,7 +55,7 @@ export default function MyTasks() {
             <main className={styles.containerMyTasks}>
                 {warning == "" ? tasks.map((task) => (
                     <Task key={task.id} {...task} />
-                )) : <p className="mainSectionWarning">{`(${warning})`}</p>}
+                )) : <p className={`mainSectionWarning ${styles.warningMyTasks}`}>{`(${warning})`}</p>}
             </main>
         </section>
     );
