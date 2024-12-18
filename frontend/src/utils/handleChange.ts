@@ -10,7 +10,7 @@ export function handleChangeUserForm(
 
     switch (name) {
         case 'phone':
-            const regexDigits: RegExp = /^\d{1,9}$/
+            const regexDigits: RegExp = /^\d{1,11}$/
 
             if (value == "") {
                 setState({
