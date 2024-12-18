@@ -24,7 +24,7 @@ export default function MyTasks() {
 
             if (tasks.length == 0) {
                 setTasks([]);
-                setWarning(TaskWarnings.NoTasksFound)
+                setWarning("Sem tarefas")
                 return;
             }
 
@@ -53,11 +53,14 @@ export default function MyTasks() {
                 <MainTitle content="Minhas Tarefas" />
             </header>
 
-            <main className={styles.containerMyTasks}>
-                {warning == "" ? tasks.map((task) => (
-                    <Task key={task.id} {...task} />
-                )) : <p className={`mainSectionWarning ${styles.warningMyTasks}`}>{`(${warning})`}</p>}
-                {user?.role === "elderly"? <NavLink to="/criar-tarefa">Criar Tarefa</NavLink>:<></>}
+            <main className={styles.containerMainMyTasks}>
+                <div className={styles.containerMyTasks}>
+                    {warning == "" ? tasks.map((task) => (
+                        <Task key={task.id} {...task} />
+                    )) : <p className={`mainSectionWarning ${styles.warningMyTasks}`}>{`(${warning})`}</p>}
+                </div>
+
+                {user?.role === "elderly"? <NavLink className={styles.buttonMyTasks} to="/criar-tarefa">Criar Tarefa</NavLink>:<></>}
             </main>
         </section>
     );
