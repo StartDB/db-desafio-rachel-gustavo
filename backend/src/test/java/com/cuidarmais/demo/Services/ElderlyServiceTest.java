@@ -2,6 +2,7 @@ package com.cuidarmais.demo.Services;
 
 import com.cuidarmais.demo.DTO.ProfileDTO;
 import com.cuidarmais.demo.DTO.UpdateUserDTO;
+import com.cuidarmais.demo.DTO.UserResponseDTO;
 import com.cuidarmais.demo.Entities.Elderly;
 import com.cuidarmais.demo.Entities.EntityObjects.Address;
 import com.cuidarmais.demo.Repositories.ElderlyRepository;
@@ -84,10 +85,10 @@ public class ElderlyServiceTest {
         ResponseEntity<Object> response = elderlyService.updateElderly(updateDTO);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        Elderly updatedElderly = (Elderly) response.getBody();
+        UserResponseDTO updatedElderly = (UserResponseDTO) response.getBody();
         assertNotNull(updatedElderly);
-        assertEquals("Updated description", updatedElderly.getDescription());
-        assertEquals("newpassword", updatedElderly.getPassword());
+        assertEquals("Updated description", updatedElderly.description());
+        assertEquals("newpassword", updatedElderly.password());
     }
 
     @Test
