@@ -1,0 +1,140 @@
+.containerStatus {
+    font-size: .85rem;
+    padding: .5rem .75rem;
+    border-radius: .5rem;
+    font-weight: bold;
+}
+
+.containerHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 2rem;
+}
+
+.containerFormSection {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+    border: none;
+    padding-bottom: 2rem;
+}
+
+.containerFormSection legend {
+    grid-column: 1 / -1;
+    padding-bottom: 1rem;
+}
+
+.containerFormSection > div:not(.rowDateTime, .rowLocation, .rowIsOnline ), .rowDateTime div,  .rowLocation div {
+    display: flex;
+    flex-direction: column;
+    gap: .2rem;
+}
+
+.rowTitle {
+    grid-column: 1 / -1;
+}
+
+.rowDateTime, .rowLocation {
+    grid-column: 1 / 3;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.rowLocation {
+    justify-content: space-between;
+}
+
+.rowDescription, .rowSupportType {
+    grid-column: 1 / -1;
+}
+
+.rowIsOnline {
+    display: grid;
+}
+
+.rowSupportsTypes  {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+    color: var(--input-disabled-color)
+}
+
+.rowSupportsTypes input, .rowIsOnline input {
+    min-width: 1.1rem;
+} 
+
+.textAreaForm {
+    font-family: inherit;
+    color: inherit;
+    border: 1px solid var(--border-color);
+    min-height: 6.5rem;
+    border-radius: .35rem;
+    padding: 1rem;
+    font-size: .8rem;
+    resize: none;
+}
+
+.textAreaForm:disabled  {
+    font-family: inherit;
+    color: var(--input-disabled-color);
+    background-color: #f7f5f562;
+}
+
+.containerMiniCards {
+    padding-bottom: 2rem;
+    max-width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.containerMiniCards h2 {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    padding-bottom: .25rem;
+}
+
+.containerMiniCard {
+    display: flex;
+    justify-content: space-between;
+    padding: .6rem;
+    border-left: 4px solid var(--black-color);
+    box-shadow: 5px 5px 5px var(--shadow-background-color);
+}
+
+.containerMiniCard h3 {
+    font-size: .9rem;
+}
+
+
+
+.containerFooter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.linkReturn {
+    font-size: 1rem;
+}
+
+.buttonMain {
+    border: 1px solid var(--border-color);
+    min-height: 2.5rem;
+    min-width: 12.2rem;
+    border-radius: .4rem;
+    padding: .8rem 1rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    background-color: var(--link-dark-color);
+    color: var(--white-color);
+    cursor: pointer;
+    transition: background-color .2s ;
+}
+
+.buttonMain:enabled:hover {
+    background-color: var(--link-light-color);
+}

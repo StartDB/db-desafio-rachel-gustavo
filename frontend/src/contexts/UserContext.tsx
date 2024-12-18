@@ -17,7 +17,7 @@ interface UserProviderProps {
 
 function UserProvider({ children }: UserProviderProps) {
     const [user, setUser] = useState<UserDTO | null>(null);
-    
+
     useEffect(() => {
       const fetchUser = async () => {
         const userToken = localStorage.getItem("user_token");
@@ -38,7 +38,7 @@ function UserProvider({ children }: UserProviderProps) {
     }, [])
 
     return (
-      <UserContext.Provider value={{ user, setUser }}>
+      <UserContext.Provider value={{ user, setUser}}>
         {children}
       </UserContext.Provider>
     );
