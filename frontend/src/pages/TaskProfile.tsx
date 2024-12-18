@@ -15,6 +15,7 @@ import { userInitialValues } from "../utils/initialValues";
 import getTaskUpdate from "../api/getTaskUpdate";
 import { UserDTO } from "../services/interfaces/user.dto";
 import { statusColors } from "../services/records/statusColors";
+import { SupportsTypes, SupportsTypesCodes } from "../services/enums/supportsTypes";
 
 enum statusType {
     AVAILABLE = "AVAILABLE",
@@ -239,24 +240,24 @@ export default function TaskProfile() {
 
                         <div className={styles.rowSupportsTypes}>
                             <div>
-                                <input type="radio" name="supportType" value="COMPANIONSHIP_AND_TRANSPORT" checked={taskEdited.supportType === "COMPANIONSHIP_AND_TRANSPORT"} onChange={(e) => handleChangeTask(e, taskEdited, setTaskEdited)} disabled={isDisabled} />
-                                <label>Acompanhamento e Transporte</label>
+                                <input type="radio" name="supportType" value={SupportsTypesCodes.COMPANIONSHIP_AND_TRANSPORT} checked={taskEdited.supportType === SupportsTypesCodes.COMPANIONSHIP_AND_TRANSPORT} onChange={(e) => handleChangeTask(e, taskEdited, setTaskEdited)} disabled={isDisabled} />
+                                <label>{SupportsTypes.COMPANIONSHIP_AND_TRANSPORT}</label>
                             </div>
                             <div>
-                                <input type="radio" name="supportType" value="MAINTENANCE_AND_REPAIRS" checked={taskEdited.supportType === "MAINTENANCE_AND_REPAIRS"} onChange={(e) => handleChangeTask(e, taskEdited, setTaskEdited)} disabled={isDisabled} />
-                                <label>Manunteção e Reparo</label>
+                                <input type="radio" name="supportType" value={SupportsTypesCodes.MAINTENANCE_AND_REPAIRS} checked={taskEdited.supportType === SupportsTypesCodes.MAINTENANCE_AND_REPAIRS} onChange={(e) => handleChangeTask(e, taskEdited, setTaskEdited)} disabled={isDisabled} />
+                                <label>{SupportsTypes.MAINTENANCE_AND_REPAIRS}</label>
                             </div>
                             <div>
-                                <input type="radio" name="supportType" value="TEACHING_AND_TECHNOLOGY" checked={taskEdited.supportType === "TEACHING_AND_TECHNOLOGY"} onChange={(e) => handleChangeTask(e, taskEdited, setTaskEdited)} disabled={isDisabled} />
-                                <label>Ensino e Tecnologia</label>
+                                <input type="radio" name="supportType" value={SupportsTypesCodes.TEACHING_AND_TECHNOLOGY} checked={taskEdited.supportType === SupportsTypesCodes.TEACHING_AND_TECHNOLOGY} onChange={(e) => handleChangeTask(e, taskEdited, setTaskEdited)} disabled={isDisabled} />
+                                <label>{SupportsTypes.TEACHING_AND_TECHNOLOGY}</label>
                             </div>
                             <div>
-                                <input type="radio" name="supportType" value="SOCIAL_ACTIVITIES" checked={taskEdited.supportType === "SOCIAL_ACTIVITIES"} onChange={(e) => handleChangeTask(e, taskEdited, setTaskEdited)} disabled={isDisabled} />
-                                <label>Atividades Sociais</label>
+                                <input type="radio" name="supportType" value={SupportsTypesCodes.SOCIAL_ACTIVITIES} checked={taskEdited.supportType === SupportsTypesCodes.SOCIAL_ACTIVITIES} onChange={(e) => handleChangeTask(e, taskEdited, setTaskEdited)} disabled={isDisabled} />
+                                <label>{SupportsTypes.SOCIAL_ACTIVITIES}</label>
                             </div>
                             <div>
-                                <input type="radio" name="supportType" value="PHYSICAL_ACTIVITIES" checked={taskEdited.supportType === "PHYSICAL_ACTIVITIES"} onChange={(e) => handleChangeTask(e, taskEdited, setTaskEdited)} disabled={isDisabled} />
-                                <label>Atividades Físicas</label>
+                                <input type="radio" name="supportType" value={SupportsTypesCodes.PHYSICAL_ACTIVITIES} checked={taskEdited.supportType === SupportsTypesCodes.PHYSICAL_ACTIVITIES} onChange={(e) => handleChangeTask(e, taskEdited, setTaskEdited)} disabled={isDisabled} />
+                                <label>{SupportsTypes.PHYSICAL_ACTIVITIES}</label>
                             </div>
                         </div>
                     </div>
