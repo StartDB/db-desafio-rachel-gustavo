@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import UserCredentialsDTO from "../services/interfaces/userCredentials.dto";
-// import { testUser } from "../services/tests/testUser";
 import MainTitle from "../components/MainTitle";
 import Input from "../components/form/Input";
 import Label from "../components/form/Label";

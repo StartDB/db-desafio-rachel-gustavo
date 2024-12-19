@@ -37,5 +37,5 @@ export const taskInitialValues: TaskDTO = {
         id: 0,
         role: "elderly"
     },
-    assessment: null // Avaliação ainda não realizada
+    assessment: null
 }

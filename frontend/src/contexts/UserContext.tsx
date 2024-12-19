@@ -2,13 +2,11 @@ import { createContext, ReactNode, useEffect, useState } from "react";
 import { UserDTO } from "../services/interfaces/user.dto";
 import getUserByToken from "../api/getUserByToken"
 
-// Tipando as Props do contexto
 export interface UserContextType {
     user: UserDTO | null;
     setUser: React.Dispatch<React.SetStateAction<UserDTO | null>>;
 }
 
-// Criando o contexto UserContext
 const UserContext = createContext<UserContextType | undefined>(undefined);
 
 interface UserProviderProps {
