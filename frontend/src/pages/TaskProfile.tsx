@@ -72,7 +72,7 @@ export default function TaskProfile() {
                     } else if (status === statusType.COMPLETED) {
                         setIsVisible(true)
                         setIsVisibleButton(false)
-                        setIsVisibleMiniCards(false)
+                        setIsVisibleMiniCards(true)
                     }
                 }
 
@@ -129,7 +129,7 @@ export default function TaskProfile() {
         }
 
         captureTask(Number(params.taskId))
-    }, []);
+    }, [user]);
 
     async function updateTask(valueButton: string): Promise<void> {
         try {
