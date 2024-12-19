@@ -22,5 +22,5 @@ export const exampleTask: TaskDTO = {
         firstName: "Amanda",
         lastName: "Carneiro",
     },
-    assessment: null // Avaliação ainda não realizada
+    assessment: null
 };
