@@ -72,6 +72,10 @@ O frontend está estruturado de forma modular, com:
 Os testes no backend foram desenvolvidos com **JUnit** e **Mockito**:
 - **Testes Isolados**: Validam a funcionalidade de controllers isoladamente.
 - **Testes de Integração**: Verificam o funcionamento entre as diferentes camadas.
+Para rodar os testes, entre no diretório backend e execute o seguinte comando:
+```bash
+   docker-compose -f docker-compose.test.yml up --build
+   ```
 
 ### Contato
 - Gustavo Silva: [Linkedin](https://www.linkedin.com/in/gusilvo/)
