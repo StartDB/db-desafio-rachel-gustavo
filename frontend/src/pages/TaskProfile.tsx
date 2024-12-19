@@ -80,9 +80,23 @@ export default function TaskProfile() {
 
             case "elderly":
                 if (!(status === statusType.COMPLETED || status === statusType.CANCELED)) {
+
                     setButtonContent(optionButtonContent.canceled)
-                    setIsVisible(true)
                     setIsVisibleButton(true)
+
+                    if (volunteerId) {
+                        setIsVisible(true)
+                }
+                } else if (status === statusType.COMPLETED) {
+                    
+                    setIsVisibleButton(false);
+                    setIsVisible(true)
+                    
+                } else { 
+
+                    setIsVisibleButton(false)
+                    setIsVisible(true)
+                    
                 }
 
                 break;
